@@ -1,0 +1,6 @@
+<h1>Editing Verse</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@book_series, @collection, @book, @chapter, @verse] %> |
+<%= link_to 'Back', book_series_collection_book_chapter_verses_path(@book_series, @collection, @book, @chapter) %>

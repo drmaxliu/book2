@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Book Title:</b> <%= @book.title %> of Collection <%= @collection.title %>
+</p>
+
+<p>
+  <b>Book Description:</b>
+  <%= @book.description %>
+</p>
+
+<p>
+  <b>Collection:</b>
+  <%= @book.collection_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_series_collection_book_path(@book_series, @collection, @book) %> |
+<%= link_to 'Back', book_series_collection_books_path(@book_series, @collection) %>

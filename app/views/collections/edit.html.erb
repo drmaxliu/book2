@@ -1,0 +1,6 @@
+<h1>Editing Collection <%= @collection.title %></h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@book_series, @collection] %> |
+<%= link_to 'Back', book_series_collections_path(@book_series) %>

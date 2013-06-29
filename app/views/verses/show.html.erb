@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Verse no:</b> <%= @verse.verse_no %>
+</p>
+
+<p>
+  <b>Chapter:</b> <%= @verse.chapter_id %>
+</p>
+
+<p>
+  <b>Content kjv:</b> <%= @verse.content_kjv %>
+</p>
+
+<p>
+  <b>Content cuvs:</b> <%= @verse.content_cuvs %>
+</p>
+
+<p>
+  <b>Content cuvt:</b> <%= @verse.content_cuvt %>
+</p>
+
+<p>
+  <b>Content revs:</b> <%= @verse.content_revs %>
+</p>
+
+<p>
+  <b>Content revt:</b> <%= @verse.content_revt %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_series_collection_book_chapter_verse_path(@book_series, @collection, @book, @chapter, @verse) %> |
+<%= link_to 'Back', book_series_collection_book_chapter_verses_path(@book_series, @collection, @book, @chapter) %>

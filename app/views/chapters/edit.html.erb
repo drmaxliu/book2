@@ -1,0 +1,6 @@
+<h1>Editing Chapter <%= @chapter.chapter_no %></h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', [@book_series, @collection, @book, @chapter] %> |
+<%= link_to 'Back', book_series_collection_book_chapters_path(@book_series, @collection, @book) %>

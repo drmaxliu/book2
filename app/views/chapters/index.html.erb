@@ -1,0 +1,39 @@
+<h1>Chapter Listing of Book <%= @book.title %> of Collection <%= @collection.title %></h1>
+
+<% if !@book.chapters.empty? %>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Book</th>
+      <th>Chapter no</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @chapters.each do |chapter| %>
+    <tr>
+      <td><%= chapter.title %></td>
+      <td><%= chapter.description %></td>
+      <td><%= chapter.book_id %></td>
+      <td><%= chapter.chapter_no %></td>
+      <td><%= link_to 'Show', [@book_series, @collection, @book, chapter] %></td>
+      <td><%= link_to 'Edit', edit_book_series_collection_book_chapter_path(@book_series, @collection, @book, chapter) %></td>
+      <td><%= link_to 'Destroy', [@book_series, @collection, @book, chapter], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+<% else %>
+  <p>Book <%= @book.title %> of Collection <%= @collection.title %> Has No Chapters Yet!</p>
+
+<% end %>
+
+<p>
+  <%= link_to 'New Chapter', new_book_series_collection_book_chapter_path(@book_series, @collection, @book) %> |
+  <%= link_to 'Back', [@book_series, @collection, @book] %>
+</p>

@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Chapter Title:</b> <%= @chapter.title %> of Book <%= @book.title %>, Collection <%= @collection.title %>
+</p>
+
+<p>
+  <b>Chapter Description:</b> <%= @chapter.description %>
+</p>
+
+<p>
+  <b>Book:</b> <%= @chapter.book_id %>
+</p>
+
+<p>
+  <b>Chapter no:</b> <%= @chapter.chapter_no %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_series_collection_book_chapter_path(@book_series, @collection, @book, @chapter) %> |
+<%= link_to 'Back', book_series_collection_book_chapters_path(@book_series, @collection, @book) %>

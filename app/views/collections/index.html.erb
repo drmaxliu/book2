@@ -1,0 +1,36 @@
+<h1>Collection List of Book Series <%= @book_series.title %></h1>
+
+<% if !@book_series.collections.empty? %>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Descriptin</th>
+      <th>Book series</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @collections.each do |collection| %>
+      <tr>
+        <td><%= collection.title %></td>
+        <td><%= collection.descriptin %></td>
+        <td><%= collection.book_series_id %></td>
+        <td><%= link_to 'Show', [@book_series, collection] %></td>
+        <td><%= link_to 'Edit', edit_book_series_collection_path(@book_series, collection) %></td>
+        <td><%= link_to 'Destroy', [@book_series, collection], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br />
+
+<% else %>
+  <p> Book Series <%= @book_series.title %> has no collections yet.</p>
+<% end %>
+
+<p>
+  <%= link_to 'New Collection', new_book_series_collection_path(@book_series) %> | 
+  <%= link_to 'Back', @book_series %>
+</p>

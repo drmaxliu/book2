@@ -1,0 +1,46 @@
+<h1>Verses:</h1>
+
+<% if !@chapter.verses.empty? %>
+
+  <table>
+    <tr>
+      <th>Verse no</th>
+      <th>Chapter</th>
+      <th>Content kjv</th>
+      <th>Content cuvs</th>
+      <th>Content cuvt</th>
+      <th>Content revs</th>
+      <th>Content revt</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+
+    <% @verses.each do |verse| %>
+      <tr>
+        <td><%= verse.verse_no %></td>
+        <td><%= verse.chapter_id %></td>
+        <td><%= verse.content_kjv %></td>
+        <td><%= verse.content_cuvs %></td>
+        <td><%= verse.content_cuvt %></td>
+        <td><%= verse.content_revs %></td>
+        <td><%= verse.content_revt %></td>
+        <td><%= link_to 'Show', [@book_series, @collection, @book, @chapter, verse] %></td>
+        <td><%= link_to 'Edit', edit_book_series_collection_book_chapter_verse_path(@book_series, @collection, @book, @chapter, verse) %></td>
+        <td><%= link_to 'Destroy', [@book_series, @collection, @book, @chapter, verse], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <br />
+
+<% else %>
+  <p>Chapter <%= @chapter.title %> of Book <%= @book.title %> Has no verses yet!</p>
+
+<% end %>
+
+<p>
+  <%= link_to 'New Verse', new_book_series_collection_book_chapter_verse_path(@book_series, @collection, @book, @chapter) %> |
+  <%= link_to 'Back', [@book_series, @collection, @book, @chapter] %>
+</p>

@@ -1,0 +1,41 @@
+<%= form_for([@book_series, @collection, @book, @chapter, @verse]) do |f| %>
+  <% if @verse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@verse.errors.count, "error") %> prohibited this verse from being saved:</h2>
+
+      <ul>
+      <% @verse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :verse_no %><br />
+    <%= f.number_field :verse_no %>
+  </div>
+  <div class="field">
+    <%= f.label :content_kjv %><br />
+    <%= f.text_field :content_kjv %>
+  </div>
+  <div class="field">
+    <%= f.label :content_cuvs %><br />
+    <%= f.text_field :content_cuvs %>
+  </div>
+  <div class="field">
+    <%= f.label :content_cuvt %><br />
+    <%= f.text_field :content_cuvt %>
+  </div>
+  <div class="field">
+    <%= f.label :content_revs %><br />
+    <%= f.text_field :content_revs %>
+  </div>
+  <div class="field">
+    <%= f.label :content_revt %><br />
+    <%= f.text_field :content_revt %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

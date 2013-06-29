@@ -1,0 +1,31 @@
+<h1>聖經編排：</h1>
+
+<table>
+  <tr>
+    <th>名稱</th>
+    <th>簡介</th>
+    <th></th>
+    <th></th>
+<!--
+    <th></th>
+-->
+  </tr>
+
+<% @book_series.each do |book_series| %>
+  <tr>
+    <td><%= book_series.title %></td>
+    <td><%= book_series.description %></td>
+    <td><%= link_to '簡介', book_series %></td>
+    <td><%= link_to '目錄', book_series_collections_path(@book_series) %></td>
+<!--
+    
+    <td><%= link_to 'Edit', edit_book_series_path(book_series) %></td>
+    <td><%= link_to 'Destroy', book_series, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+-->
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+ONLY FOR TEST: <%= link_to 'New Book Series', new_book_series_path %>
