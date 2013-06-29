@@ -1,4 +1,16 @@
 Book2::Application.routes.draw do
+
+  resources :book_series do
+    resources :collections do
+      resources :books do
+        resources :chapters do
+          resources :verses
+        end
+      end
+    end
+  end
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
