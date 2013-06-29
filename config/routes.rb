@@ -1,5 +1,16 @@
 Book2::Application.routes.draw do
 
+
+  root :to => 'pages#index'
+
+  get 'about' => 'pages#about'
+  get 'topics' => 'pages#topics'
+  get 'topic_verse' => 'pages#topic_verse'
+  get 'book_verse' => 'pages#book_verse'
+  get 'top_outline' => 'pages#top_outline'
+
+  devise_for :users
+
   resources :book_series do
     resources :collections do
       resources :books do

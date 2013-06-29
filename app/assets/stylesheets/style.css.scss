@@ -1,0 +1,25 @@
+$navbarBackgroundHighlight: white;
+$navbarBackground: white;
+/* $btnPrimaryBackground: green; */
+
+
+@import 'bootstrap';
+
+@import 'bootstrap-responsive';
+
+body {
+	margin-top: 30px;
+	margin-bottom: 200px
+}
+
+
+/*
+.navbar-inner {
+	@include box-shadow(none !important);
+	border: 0;
+}
+*/
+
+.footer {
+	background-color: #AACCFF;
+}
