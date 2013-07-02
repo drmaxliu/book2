@@ -15,7 +15,7 @@
     <% @collections.each do |collection| %>
       <tr>
         <td><%= collection.title %></td>
-        <td><%= collection.descriptin %></td>
+        <td><%= collection.description %></td>
         <td><%= collection.book_series_id %></td>
         <td><%= link_to 'Show', [@book_series, collection] %></td>
         <td><%= link_to 'Edit', edit_book_series_collection_path(@book_series, collection) %></td>

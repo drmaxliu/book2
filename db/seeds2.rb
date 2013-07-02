@@ -46,7 +46,7 @@ isralite_history = protestant_canon.collections.create(title: "以色列歷史",
 	ezra = isralite_history.books.create(name: "Ezra", title: "以斯拉記", book_code: "Ezr", chinese_code: "拉",
 		description: "")
 	nehemiah = isralite_history.books.create(name: "Nehemiah", title: "尼希米記", book_code: "Ne", chinese_code: "尼",
-		description: "")
+		description: "尼希米記")
 	esther = isralite_history.books.create(name: "Esther", title: "以斯帖記", book_code: "Est", chinese_code: "斯",
 		description: "")
 
@@ -111,7 +111,7 @@ gospels = protestant_canon.collections.create(title: "四福音書", description
 		description: "")
 
 church_history = protestant_canon.collections.create(title: "教會歷史", description: "")
-	acts = church_history.books.create(name: "Acts", title: "使徒行傳", book_code: "Ac", chinese_code: "",
+	acts = church_history.books.create(name: "Acts", title: "", book_code: "Ac", chinese_code: "",
 		description: "")
 
 paul_letters = protestant_canon.collections.create(title: "保羅書信", description: "")
@@ -131,7 +131,7 @@ paul_letters = protestant_canon.collections.create(title: "保羅書信", descri
 		description: "")
 	thess_1 = paul_letters.books.create(name: "1 Thessalonians", title: "帖撒羅尼迦前書", book_code: "1Th", chinese_code: "帖前",
 		description: "")
-	thess_2 = paul_letters.books.create(name: "2 Thessalonians", title: "帖撒羅尼迦后書", book_code: "2Th", chinese_code: "帖后",
+	thess_2 = paul_letters.books.create(name: "2 Thessalonians", title: "帖撒羅尼迦前書", book_code: "2Th", chinese_code: "帖后",
 		description: "")
 	tim_1 = paul_letters.books.create(name: "1 Timothy", title: "提摩太前書", book_code: "1Ti", chinese_code: "提前",
 		description: "")
@@ -160,7 +160,7 @@ other_letters = protestant_canon.collections.create(title: "一般書信", descr
 	jude = other_letters.books.create(name: "Jude", title: "猶大書", book_code: "Jude", chinese_code: "",
 		description: "")
 
-end_prophecy = protestant_canon.collections.create(title: "末世預言", description: "")
+end_prophecy = protestant_canon.collections.create(title: "新約先知書", description: "")
 	revelation = end_prophecy.books.create(name: "Revelation", title: "啓示錄", book_code: "Rev", chinese_code: "",
 		description: "")
 
@@ -202,7 +202,7 @@ isralite_history_c = catholic_canon.collections.create(title: "以色列歷史",
 	ezra_c = isralite_history_c.books.create(name: "Ezra", title: "厄斯德拉上", book_code: "Ezr", chinese_code: "厄上",
 		description: "")
 	nehemiah_c = isralite_history_c.books.create(name: "Nehemiah", title: "厄斯德拉下", book_code: "Ne", chinese_code: "厄下",
-		description: "")
+		description: "尼希米記")
 	tobias = isralite_history_c.books.create(name: "Tobias", title: "多俾亞傳", book_code: "Tb", chinese_code: "多",
 		description: "")
 	judith = isralite_history_c.books.create(name: "Judith", title: "友弟德傳", book_code: "Jdt", chinese_code: "友",
@@ -249,7 +249,7 @@ prophets = catholic_canon.collections.create(title: "先知書", description: ""
 		description: "")
 	amos_c = prophets.books.create(name: "Amos", title: "亞毛斯", book_code: "Am", chinese_code: "亞",
 		description: "")
-	obadiah_c = prophets.books.create(name: "Obadiah", title: "俄巴底亞", book_code: "Ob", chinese_code: "俄",
+	obadiah_c = prophets.books.create(name: "Obadiah", title: "俄巴底亞書", book_code: "Ob", chinese_code: "俄",
 		description: "")
 	jonah_c = prophets.books.create(name: "Jonah", title: "約納", book_code: "Joh", chinese_code: "納",
 		description: "")
@@ -257,7 +257,7 @@ prophets = catholic_canon.collections.create(title: "先知書", description: ""
 		description: "")
 	nahum_c = prophets.books.create(name: "Nahum", title: "納鴻", book_code: "Na", chinese_code: "鴻",
 		description: "")
-	habakkuk_c = prophets.books.create(name: "Habakkuk", title: "哈巴谷", book_code: "Hab", chinese_code: "哈",
+	habakkuk_c = prophets.books.create(name: "Habakkuk", title: "哈巴谷書", book_code: "Hab", chinese_code: "哈",
 		description: "")
 	zephaniah_c = prophets.books.create(name: "Zephaniah", title: "索福尼亞", book_code: "Zp", chinese_code: "索",
 		description: "")
@@ -299,7 +299,7 @@ paul_letters_c = catholic_canon.collections.create(title: "保羅書信", descri
 		description: "")
 	thess_1c = paul_letters_c.books.create(name: "1 Thessalonians", title: "得撒洛尼前書", book_code: "1Th", chinese_code: "得前",
 		description: "")
-	thess_2c = paul_letters_c.books.create(name: "2 Thessalonians", title: "得撒洛尼后書", book_code: "2Th", chinese_code: "得后",
+	thess_2c = paul_letters_c.books.create(name: "2 Thessalonians", title: "得撒洛尼前書", book_code: "2Th", chinese_code: "得后",
 		description: "")
 	tim_1c = paul_letters_c.books.create(name: "1 Timothy", title: "弟茂德前書", book_code: "1Ti", chinese_code: "弟前",
 		description: "")
@@ -328,7 +328,7 @@ other_letters_c = catholic_canon.collections.create(title: "一般書信", descr
 	jude_c = other_letters_c.books.create(name: "Jude", title: "猶達書", book_code: "Ju", chinese_code: "猶",
 		description: "")
 
-end_prophecy_c = catholic_canon.collections.create(title: "末世預言", description: "")
+end_prophecy_c = catholic_canon.collections.create(title: "新約先知書", description: "")
 	revelation_c = end_prophecy_c.books.create(name: "Revelation", title: "若望默示錄", book_code: "Rv", chinese_code: "",
 		description: "")
 
@@ -395,4 +395,3 @@ writings_scrolls = jewish_canon.collections.create(title: "一般文集", descri
 		description: "")
 	chron_1２ = writings_scrolls.books.create(name: "Chronicles", title: "歷代志", book_code: "Ch", chinese_code: "代上",
 		description: "")
-

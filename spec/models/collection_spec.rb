@@ -4,10 +4,10 @@
 #
 #  id             :integer          not null, primary key
 #  title          :string(255)
-#  descriptin     :string(255)
 #  book_series_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  description    :text
 #
 
 require 'spec_helper'

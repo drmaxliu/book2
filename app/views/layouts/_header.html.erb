@@ -17,22 +17,23 @@
         <!-- .nav, .navbar-search, .navbar-form, etc -->
 
 		    <ul class="nav">
-         <li><%= link_to "聖經主題", topics_path %></li>
-         <li><%= link_to "主題讀經", topic_verse_path %></li>
-         <li><%= link_to "書卷讀經", book_verse_path %></li>
-			   <li><%= link_to "關於", about_path %></li>
+         <li><%= link_to "聖經介紹", bible_intro_path %></li>
+         <li><%= link_to "閲讀指南", reader_guide_path %></li>
+         <li><%= link_to "主題讀經", topics_path %></li>
+         <li><%= link_to "書卷讀經", 'book_series' %></li>
+			   <li><%= link_to "信仰告白", faith_statement_path %></li>
 		    </ul>
 
 		    <ul class="nav pull-right">
 
         <% if user_signed_in? %>
-          <li><%= link_to "我的讀經", "#" %></li>
+          <li><%= link_to "我的讀經", 'user#resume_reading' %></li>
           <li><%= link_to current_user.name, edit_user_registration_path %></li>
           <li><%= link_to "登出", destroy_user_session_path, method: :delete %></li>
             <% else %>
     			   <li><%= link_to "登入", new_user_session_path %></li>
             <% end %>
-          <li><%= link_to "聯係我們", "#" %></li>
+          <li><%= link_to "成爲會員", contact_path %></li>
 		    </ul>
 
       </div>

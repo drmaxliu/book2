@@ -1,9 +1,15 @@
 Book2::Application.routes.draw do
 
 
+  get "user/resume_reading"
+
   root :to => 'pages#index'
 
-  get 'about' => 'pages#about'
+  get 'reader_guide' => 'pages#reader_guide'
+  get 'bible_intro' => 'pages#bible_intro'
+  get 'contact' => 'pages#about'
+  get 'faith_statement' => 'pages#faith_statement'
+
   get 'topics' => 'pages#topics'
   get 'topic_verse' => 'pages#topic_verse'
   get 'book_verse' => 'pages#book_verse'
