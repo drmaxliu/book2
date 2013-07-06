@@ -3,6 +3,7 @@ class BookSeriesController < ApplicationController
   # GET /book_series.json
   def index
     @book_series = BookSeries.all
+    @book_series_1 = BookSeries.first
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,8 @@ class BookSeriesController < ApplicationController
   # GET /book_series/1.json
   def show
     @book_series = BookSeries.find(params[:id])
+    @book_series_1 = BookSeries.first
+    all_book_titles
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,4 +83,15 @@ class BookSeriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def all_book_titles
+    @series_one = BookSeries.find(1)
+    @book_names = Array.new
+    @series_one.collections.each do |collection|
+      collection.books.each do |book|
+        @book_names << book.title
+      end
+    end
+  end
+
 end

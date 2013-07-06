@@ -1,3 +1,53 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span12">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <% @book_series_1.collections.each do |collection| %>
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span2">
+                  <p>
+                  </p>
+                  <p>
+                    <% p2 = "/" + collection.logo %>
+                  </p>
+                  
+                  <img data-src="holder.js/120x100" class="img-rounded" alt="120x100" style="width: 120px; height: 100px;" src="<%= p2.to_s %>">
+                </div>
+                <div class="span10">
+                  <h3>
+                    <%= collection.title %>
+                  </h3>
+                  <% pp =  collection.description.split("PP") %> 
+                    <% pp.each do |p1| %>
+                    <p>
+                      <%= p1 %>
+                    </p> 
+                    <% end %>
+                  <p>
+                    <%=link_to "更多内容", book_series_collection_url(@book_series_1, collection), class: "btn btn-min btn-primary" %> 
+                  </p>
+                  <p> 選擇本書卷的：| 
+                    <% collection.books.each do |book| %>
+                      <%= link_to book.title, book_series_collection_book_url(@book_series_1, collection, book) %> |
+                    <% end %> 開始閲讀
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr class="featurette-divider">
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
 <h1>Collection List of Book Series <%= @book_series.title %></h1>
 
 <% if !@book_series.collections.empty? %>

@@ -14,6 +14,7 @@
 class Chapter < ActiveRecord::Base
   attr_accessible :book_id, :chapter_no, :description, :title
 
-  has_many :verses
+  has_many :verses, dependent: :destroy
   belongs_to :book
+  validates :book_id, presence: true
 end

@@ -1,0 +1,33 @@
+<%= form_for(@collection_page) do |f| %>
+  <% if @collection_page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collection_page.errors.count, "error") %> prohibited this collection_page from being saved:</h2>
+
+      <ul>
+      <% @collection_page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :collection_id %><br />
+    <%= f.number_field :collection_id %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.number_field :type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

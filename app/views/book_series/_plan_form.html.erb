@@ -1,0 +1,21 @@
+<%= form_for(@book_series_1) do |f| %>
+  <% if @book_series_1.errors.any? %>
+    <div id="error_explanation">
+      <h2>設定發生<%= @book_series_1.errors.count %>個錯誤:</h2>
+
+      <ul>
+      <% @book_series_1.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title, "xuanzhe" %><br />
+    <%= f.select :title, @book_names %>
+  </div>
+  <div class="actions">
+    <%= f.submit "設定讀經", class: "btn btn-min btn-warning"%>
+  </div>
+<% end %>

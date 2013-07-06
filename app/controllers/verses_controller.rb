@@ -88,6 +88,7 @@ class VersesController < ApplicationController
   # a chapter object @chapter
   def get_chapter
     @book_series = BookSeries.find(params[:book_series_id])
+    @book_series_1 = BookSeries.first
     @collection = @book_series.collections.find(params[:collection_id])
     @book = @collection.books.find(params[:book_id])
     @chapter = @book.chapters.find(params[:chapter_id])

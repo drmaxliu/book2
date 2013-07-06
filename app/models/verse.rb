@@ -15,8 +15,10 @@
 #
 
 class Verse < ActiveRecord::Base
-  attr_accessible :chapter_id, :content_cuvs, :content_cuvt, :content_kjv, :content_revs, :content_revt, :verse_no
+  attr_accessible :chapter_id, :content_cuvs, :content_cuvt, :content_kjv, :content_revs,
+                  :content_revt, :verse_no, :title
 
-  belongs_to :book
+  belongs_to :chapter
+  validates :chapter_id, presence: true
 
 end

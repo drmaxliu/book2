@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130701051151) do
+ActiveRecord::Schema.define(:version => 20130704190456) do
+
+  create_table "book_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "book_id"
+    t.integer  "type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "chapter_index"
+  end
 
   create_table "book_series", :force => true do |t|
     t.string   "title"
@@ -29,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130701051151) do
     t.string   "book_code"
     t.string   "chinese_code"
     t.string   "name"
+    t.string   "logo"
   end
 
   create_table "chapters", :force => true do |t|
@@ -40,12 +51,22 @@ ActiveRecord::Schema.define(:version => 20130701051151) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "collection_pages", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "collection_id"
+    t.integer  "type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "collections", :force => true do |t|
     t.string   "title"
     t.integer  "book_series_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.text     "description"
+    t.string   "logo"
   end
 
   create_table "users", :force => true do |t|
@@ -77,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130701051151) do
     t.string   "content_revt"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "title"
   end
 
 end

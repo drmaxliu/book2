@@ -1,0 +1,21 @@
+
+<div class="well sidebar-nav">
+
+  <button type="button" class="btn btn-block btn-primary">
+  <h3><%= @book.title %></h3>
+  </button>
+  <p><% i = 1 %></p>
+
+  <table class="table table-hover" width=90%>
+    <tbody>
+      <tr> |
+        <% @book.chapters.each do |chapter| %>
+          <%= i.to_s %> |
+          <% i = i+1 %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

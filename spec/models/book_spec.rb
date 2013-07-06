@@ -8,6 +8,10 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  description   :text
+#  book_code     :string(255)
+#  chinese_code  :string(255)
+#  name          :string(255)
+#  logo          :string(255)
 #
 
 require 'spec_helper'

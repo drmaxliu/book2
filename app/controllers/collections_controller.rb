@@ -18,10 +18,13 @@ class CollectionsController < ApplicationController
   # GET /collections/1.json
   def show
     @collection = @book_series.collections.find(params[:id])
-
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @collection }
+      format.html { redirect_to book_series_collection_books_url(@book_series, @collection) }
+      format.json { head :no_content }
+
+    # respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @collection }
     end
   end
 
@@ -89,5 +92,6 @@ class CollectionsController < ApplicationController
   # a book_series object @book_series
   def get_book_series
     @book_series = BookSeries.find(params[:book_series_id])
+    @book_series_1 = BookSeries.first
   end
 end

@@ -1,3 +1,83 @@
+<div class="container-fluid">
+
+  <hr class="featurette-divider">
+
+  <div class="row-fluid">
+
+    <div class="span3">
+      <%= render 'navibar_collections' %>
+      <%= render 'navibar_books' %>
+      <div class="well sidebar-nav">
+  			<img data-src="holder.js/280x600" alt="">
+			</div>
+    </div>
+
+    <div class="span9">
+
+    	<div class="container-fluid">
+        <h2>
+        	<%= @collection.title %>
+        </h2>
+        <% pp =  @collection.description.split("PP") %> 
+        <% pp.each do |p1| %>
+        <p>
+          <%= p1 %>
+        </p> 
+        <% end %>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <% @collection.books.each do |book| %>
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span2">
+                  <p>
+                  </p>
+                  <p>
+                  	<% if book.logo == nil %>
+                  		<% p2 ="/bible1.jpg" %>
+                    <% else %>
+                      <%  p2 = "/" + book.logo %>
+                    <% end %>
+                  </p>
+                  
+                  <img data-src="holder.js/120x100" class="img-rounded" alt="120x100" style="width: 120px; height: 100px;" src="<%= p2.to_s %>">
+                </div>
+
+                <div class="span10">
+                	<h3>
+                  	<%= book.title %>
+                	</h3>
+                  <% pp = book.description.split("PP") %> 
+                    <% pp.each do |p1| %>
+                    <p>
+                      <%= p1 %>
+                    </p> 
+                    <% end %>
+                  <p>
+                    <%=link_to "更多内容", book_series_collection_book_url(@book_series_1, @collection, book), class: "btn btn-min btn-primary" %>
+                  </p>
+                  <p> 閲讀本書第： |
+                  	<% book.chapters.each do |chap| %>
+                  		<%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, book, chap) %> | 
+
+                  	<% end %> 章
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr class="featurette-divider">
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <p>

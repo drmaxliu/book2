@@ -21,8 +21,12 @@ class ChaptersController < ApplicationController
     # @chapter = Chapter.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @chapter }
+      format.html { redirect_to book_series_collection_book_chapter_verses_url(@book_series, @collection, @book, @chapter) }
+      format.json { head :no_content }
+
+    # respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @chapter }
     end
   end
 
@@ -94,6 +98,7 @@ class ChaptersController < ApplicationController
   # a book object @book
   def get_book
     @book_series = BookSeries.find(params[:book_series_id])
+    @book_series_1 = BookSeries.first
     @collection = @book_series.collections.find(params[:collection_id])
     @book = @collection.books.find(params[:book_id])
   end

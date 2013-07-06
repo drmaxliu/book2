@@ -1,0 +1,26 @@
+
+<div class="well sidebar-nav">
+
+  <button type="button" class="btn btn-block btn-primary">
+  <h3>聖經目錄</h3>
+  </button>
+  <p></p>
+
+  <table class="table table-hover">
+    <tbody>
+      <% @book_series_1.collections.each do |collection| %>
+      <tr>
+        <% if collection.id < 6 %>
+          <td><span class="badge badge-warning">舊約</span></td>
+        <% else %>
+          <td><span class="badge badge-info">新約</span></td>
+        <% end %>
+
+        <td><font color="#000000"><%= link_to collection.title, 
+          book_series_collection_url(@book_series_1, collection) %></font></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

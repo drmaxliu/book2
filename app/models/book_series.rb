@@ -12,5 +12,5 @@
 class BookSeries < ActiveRecord::Base
   attr_accessible :description, :title
 
-  has_many :collections
+  has_many :collections, dependent: :destroy
 end

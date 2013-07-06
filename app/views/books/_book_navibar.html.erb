@@ -1,0 +1,248 @@
+
+  <div class="well sidebar-nav">
+
+    <button type="button" class="btn btn-block btn-primary">
+    <h3>聖經目錄</h3>
+    </button>
+    <p></p>
+
+    <table class="table table-hover">
+      <tbody>
+        <% @book_series_1.collections.each do |collection| %>
+        <tr>
+          <% if collection.id < 6 %>
+            <td><span class="badge badge-warning">舊約</span></td>
+          <% else %>
+            <td><span class="badge badge-info">新約</span></td>
+          <% end %>
+
+          <td><font color="#000000"><%= link_to collection.title, 
+            book_series_collection_url(@book_series_1, collection) %></font></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="well sidebar-nav">
+
+    <p>聖經分部 <span class="badge badge-info">新約</span><h3>四福音書</h3> </p>
+
+    <table class="table table-hover">
+
+      <tbody>
+        <tr>
+          <td><span class="badge badge-info">1</span></td>
+          <td><a href="#"><font color="#000000">馬太福音</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-info">2</span></td>
+          <td><a href="#"><font color="#000000">馬可福音</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-info">3</span></td>
+          <td><a href="#"><font color="#000000">路加福音</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-info">4</span></td>
+          <td><a href="#"><font color="#000000">約翰福音</font></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
+  <div class="well sidebar-nav">
+    
+    <p>書卷分段 <span class="badge badge-info">新約</span> 
+      <span class="badge badge-info">四福音書</span>
+      <h4>約翰福音</h4></p>
+
+    <table class="table table-hover">
+
+      <tbody>
+        <tr>
+          <td><span class="badge badge-success">1:1-1:18</span></td>
+          <td><a href="#"><font color="#000000">道成肉身</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">1:19-1:28</span></td>
+          <td><a href="#"><font color="#000000">施洗約翰傳道</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">1:29-1:34</span></td>
+          <td><a href="#"><font color="#000000">耶穌受洗</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">1:35-1:51</span></td>
+          <td><a href="#"><font color="#000000">初召門徒</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">2:1-2:12</span></td>
+          <td><a href="#"><font color="#000000">迦拿的婚宴</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">2:13-2:25</span></td>
+          <td><a href="#"><font color="#000000">洁净圣殿</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">3:1-3:21</span></td>
+          <td><a href="#"><font color="#000000">与尼哥底母谈道</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">3:22-3:36</span></td>
+          <td><a href="#"><font color="#000000">约旦河边替人施洗</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">4:1-4:42</span></td>
+          <td><a href="#"><font color="#000000">撒玛利亚井边谈道</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">4:43-4:45</span></td>
+          <td><a href="#"><font color="#000000">施洗约翰下监</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">4:46-4:54</span></td>
+          <td><a href="#"><font color="#000000">医治大臣的儿子</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">5:1-5:18</span></td>
+          <td><a href="#"><font color="#000000">医治38年的摊子</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">5:19-5:47</span></td>
+          <td><a href="#"><font color="#000000">逾越节圣殿讲道</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">6:1-6:15</span></td>
+          <td><a href="#"><font color="#000000">五饼二鱼</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">6:16-6:21</span></td>
+          <td><a href="#"><font color="#000000">海面行走</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">6:22-6:71</span></td>
+          <td><a href="#"><font color="#000000">耶穌是生命的糧</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">7:1-7:52</span></td>
+          <td><a href="#"><font color="#000000">活水的江河</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">8:1-8:11</span></td>
+          <td><a href="#"><font color="#000000">行淫的妇人</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">8:12-8:30</span></td>
+          <td><a href="#"><font color="#000000">生命的光</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">8:31-8:47</span></td>
+          <td><a href="#"><font color="#000000">真理使人自由</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">8:48-8:59</span></td>
+          <td><a href="#"><font color="#000000">只求天父的荣耀</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">9:1-9:33</span></td>
+          <td><a href="#"><font color="#000000">治好生來瞎眼的</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">9:34-9:41</span></td>
+          <td><a href="#"><font color="#000000">靈裏的眼瞎</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">10:1-10:21</span></td>
+          <td><a href="#"><font color="#000000">好牧人</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">10:22-10:42</span></td>
+          <td><a href="#"><font color="#000000">耶穌與父合為一</font></a></td>
+        </tr>
+        <tr>
+        <td><span class="badge badge-success">11:1-11:54</span></td>
+          <td><a href="#"><font color="#000000">拉撒路復活</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">12:1-12:11</span></td>
+          <td><a href="#"><font color="#000000">瑪麗亞香膏抹主</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">12:12-12:19</span></td>
+          <td><a href="#"><font color="#000000">耶穌榮耀進城</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">12:20-12:36</span></td>
+          <td><a href="#"><font color="#000000">得榮耀的時候到了</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">12:37-12:50</span></td>
+          <td><a href="#"><font color="#000000">不信的將受審判</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">13:1-13:20</span></td>
+          <td><a href="#"><font color="#000000">為門徒洗腳</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">13:21-13:30</span></td>
+          <td><a href="#"><font color="#000000">預言猶大出賣</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">13:31-13:35</span></td>
+          <td><a href="#"><font color="#000000">愛的命令</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">13:36-13:38</span></td>
+          <td><a href="#"><font color="#000000">預言彼得三次不認主</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">14:1-14:14</span></td>
+          <td><a href="#"><font color="#000000">耶穌是道路真理生命</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">14:15-14:31</span></td>
+          <td><a href="#"><font color="#000000">聖靈寳惠師要來</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">15:1-15:17</span></td>
+          <td><a href="#"><font color="#000000">耶穌是真葡萄樹</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">15:18-16:33</span></td>
+          <td><a href="#"><font color="#000000">聖靈的工作</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">17:1-17:26</span></td>
+          <td><a href="#"><font color="#000000">為門徒禱告</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">18:1-18:40</span></td>
+          <td><a href="#"><font color="#000000">被抓受審</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">19:1-19:30</span></td>
+          <td><a href="#"><font color="#000000">被釘十字架</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">9:31-19:42</span></td>
+          <td><a href="#"><font color="#000000">安葬</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">20:1-20:29</span></td>
+          <td><a href="#"><font color="#000000">復活</font></a></td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-success">21:1-21:23</span></td>
+          <td><a href="#"><font color="#000000">你愛我嗎</font></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+<div class="well sidebar-nav">
+  <img data-src="holder.js/280x600" alt="">
+</div>

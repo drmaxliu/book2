@@ -1,0 +1,29 @@
+<h1>Listing collection_pages</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Collection</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @collection_pages.each do |collection_page| %>
+  <tr>
+    <td><%= collection_page.title %></td>
+    <td><%= collection_page.description %></td>
+    <td><%= collection_page.collection_id %></td>
+    <td><%= collection_page.type %></td>
+    <td><%= link_to 'Show', collection_page %></td>
+    <td><%= link_to 'Edit', edit_collection_page_path(collection_page) %></td>
+    <td><%= link_to 'Destroy', collection_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Collection page', new_collection_page_path %>

@@ -1,4 +1,45 @@
-<h1>Chapter Listing of Book <%= @book.title %> of Collection <%= @collection.title %></h1>
+<div class="container-fluid">
+
+  <hr class="featurette-divider">
+
+  <div class="row-fluid">
+
+    <div class="span3">
+      <%= render 'navibar_collections' %>
+      <%= render 'navibar_books' %>
+      <div class="well sidebar-nav">
+        <img data-src="holder.js/280x600" alt="">
+      </div>
+    </div>
+
+    <div class="span9">
+
+      <div class="container-fluid">
+        <h2>
+          <%= @book.title %>
+        </h2>
+        <% pp =  @book.description.split("PP") %> 
+        <% pp.each do |p1| %>
+        <p>
+          <%= p1 %>
+        </p> 
+        <% end %>
+        <p>閲讀本書第 |
+          <% @book.chapters.each do |chap| %>
+            <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, @book, chap) %> |
+          <% end %>
+          章
+        </p>
+      </div>
+
+      <hr class="featurette-divider">
+
+    </div>
+
+  </div>
+</div>
+
+<h3>Chapter Listing of Book <%= @book.title %></h3>
 
 <% if !@book.chapters.empty? %>
 
