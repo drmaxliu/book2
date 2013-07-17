@@ -7,6 +7,27 @@ class VersesController < ApplicationController
   def index
     @verses = @chapter.verses
 
+    if @chapter.stat_read == nil then @chapter.stat_read = 1
+    else @chapter.stat_read += 1
+    end
+    jj = @chapter.stat_read
+    @chapter.update_attributes(:stat_read => jj) 
+
+    if @chapter.stat_finish == nil then @chapter.stat_finish = 0
+    end
+
+    if @chapter.stat_app == nil then @chapter.stat_app = 0
+    end
+
+    if @chapter.stat_summary == nil then @chapter.stat_summary = 0
+    end
+
+    if @chapter.stat_note == nil then @chapter.stat_note = 0
+    end
+
+    if @chapter.stat_question == nil then @chapter.stat_question = 0
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @verses }
@@ -92,6 +113,13 @@ class VersesController < ApplicationController
     @collection = @book_series.collections.find(params[:collection_id])
     @book = @collection.books.find(params[:book_id])
     @chapter = @book.chapters.find(params[:chapter_id])
+  end
+
+  def update_finish
+    @chapter.stat_finish += 1
+    jj = @chapter.stat_finish
+    @chapter.update_attributes(:stat_finish => jj) 
+    redirect_to book_series_collection_book_chapter_verses_url(@book_series, @collection, @book, @chapter)
   end
 
 end

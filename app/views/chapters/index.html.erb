@@ -34,6 +34,10 @@
 
       <hr class="featurette-divider">
 
+      <% if @book.static_link.presence %>
+        <%= render @book.static_link %>
+      <% end %>
+
     </div>
 
   </div>

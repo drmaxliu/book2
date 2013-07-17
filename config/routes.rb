@@ -1,10 +1,8 @@
 Book2::Application.routes.draw do
 
 
-  resources :collection_pages
-
-
-  resources :book_pages
+  
+  
 
 
   get "user/resume_reading"
@@ -13,7 +11,6 @@ Book2::Application.routes.draw do
 
   get 'reader_guide' => 'pages#reader_guide'
   get 'bible_intro' => 'pages#bible_intro'
-  get 'bible_top' => 'book_series#index'
   get 'contact' => 'pages#about'
   get 'faith_statement' => 'pages#faith_statement'
 
@@ -26,9 +23,12 @@ Book2::Application.routes.draw do
 
   resources :book_series do
     resources :collections do
+      resources :collection_pages
       resources :books do
+        resources :book_pages
         resources :chapters do
           resources :verses
+          resources :comments
         end
       end
     end

@@ -31,6 +31,13 @@ a {
 }
 */
 
+a#chapter_list {
+  background-color: #fff;
+  &:hover {
+    color: red;
+  }
+}
+
 div {
   &.field, &.actions {
     margin-bottom: 10px;

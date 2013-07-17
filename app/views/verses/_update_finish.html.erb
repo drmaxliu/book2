@@ -1,0 +1,20 @@
+<%= simple_form_for([@book_series, @collection, @book, @chapter], :html => { :method => :post}) do |f| %>
+  <% if @chapter.errors.any? %>
+    <div id="error_explanation">
+      <h2>更新發生<%= @chapter.errors.count %>個錯誤:</h2>
+
+      <ul>
+      <% @chapter.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% @chapter.stat_finish += 1 %>
+  <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 完成本章閲讀" %>
+
+  <div class="form-actions">
+    <%= f.button :submit, icon_tag2.html_safe, class: "btn btn-min btn-primary" %>
+  </div>
+<% end %>

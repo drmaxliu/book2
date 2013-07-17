@@ -14,14 +14,21 @@ class BookSeriesController < ApplicationController
   # GET /book_series/1
   # GET /book_series/1.json
   def show
-    @book_series = BookSeries.find(params[:id])
     @book_series_1 = BookSeries.first
-    all_book_titles
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @book_series }
+      format.html { redirect_to book_series_collections_url(@book_series_1) }
+      format.json { head :no_content }
     end
+
+   # @book_series = BookSeries.find(params[:id])
+   # @book_series_1 = BookSeries.first
+   # all_book_titles
+
+   #  respond_to do |format|
+   #   format.html # show.html.erb
+   #   format.json { render json: @book_series }
+   # end
   end
 
   # GET /book_series/new

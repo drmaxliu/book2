@@ -1,3 +1,26 @@
 // Place all the styles related to the verses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+textarea#description {
+  width: 750px;
+  height: 500px;
+}
+
+input#subject {
+	width:200px;
+}
+
+input#verse {
+	width:20px;
+}
+
+.red .active a,
+.red .active a:hover {
+    background-color: red;
+}
+
+.yellow .active a,
+.yellow .active a:hover {
+    background-color: yellow;
+}

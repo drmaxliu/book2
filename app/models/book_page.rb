@@ -6,14 +6,13 @@
 #  title         :string(255)
 #  description   :text
 #  book_id       :integer
-#  type          :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  chapter_index :integer
 #
 
 class BookPage < ActiveRecord::Base
-  attr_accessible :book_id, :description, :title, :type, :chapter_index
+  attr_accessible :book_id, :description, :title, :grp, :chapter_index
 
   belongs_to :book
   validates :book_id, presence: true

@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704190456) do
+ActiveRecord::Schema.define(:version => 20130716042317) do
 
   create_table "book_pages", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "book_id"
-    t.integer  "type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "chapter_index"
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130704190456) do
     t.string   "chinese_code"
     t.string   "name"
     t.string   "logo"
+    t.string   "static_link"
   end
 
   create_table "chapters", :force => true do |t|
@@ -47,17 +47,24 @@ ActiveRecord::Schema.define(:version => 20130704190456) do
     t.string   "description"
     t.integer  "book_id"
     t.integer  "chapter_no"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "static_link"
+    t.integer  "stat_read"
+    t.integer  "stat_summary"
+    t.integer  "stat_app"
+    t.integer  "stat_question"
+    t.integer  "stat_note"
+    t.integer  "stat_finish"
   end
 
   create_table "collection_pages", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "collection_id"
-    t.integer  "type"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "grp"
   end
 
   create_table "collections", :force => true do |t|
@@ -67,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20130704190456) do
     t.datetime "updated_at",     :null => false
     t.text     "description"
     t.string   "logo"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "chapter_id"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.text     "note"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "grp"
   end
 
   create_table "users", :force => true do |t|
@@ -88,6 +105,18 @@ ActiveRecord::Schema.define(:version => 20130704190456) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "verse_blocks", :force => true do |t|
+    t.string   "title"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "chapter_no"
+    t.string   "book_code"
+  end
+
   create_table "verses", :force => true do |t|
     t.integer  "verse_no"
     t.integer  "chapter_id"
@@ -99,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130704190456) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "title"
+    t.text     "description"
   end
 
 end

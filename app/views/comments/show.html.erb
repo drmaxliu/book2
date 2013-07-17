@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Chapter:</b>
+  <%= @comment.chapter_id %>
+</p>
+
+<p>
+  <b>Verse from:</b>
+  <%= @comment.verse_from %>
+</p>
+
+<p>
+  <b>Verse to:</b>
+  <%= @comment.verse_to %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @comment.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

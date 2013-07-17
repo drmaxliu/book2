@@ -31,7 +31,7 @@ torah = protestant_canon.collections.create(title: "律法書",
 		神與人所立的彩虹之約，和人類各族的起源和有不同語言的原因。PP
 		第二部分記載了神救贖計劃的開始，就是揀選亞伯拉罕，與他立約，要從他的身上興起屬神民族就是以色列。
 		以色列將成爲神祭祀的囯，向全世界的萬民作見證，帶領萬民歸向神。",
-		logo: "flower 2.jpg")
+		logo: "flower 2.jpg", static_link: "book_cover_1")
 		gen1 = genesis.chapters.create(chapter_no: 1)
 			gen1.verses.create(verse_no: 0,
 				content_kjv: "",
@@ -47,10 +47,16 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_revt: "") 
 			gen1.verses.create(verse_no: 2,
 				content_kjv: "",
-				content_cuvs: "地是空虚混沌．渊面黑暗．　神的灵运行在水面上。",
+				content_cuvs: "地是空虚混沌．渊面黑暗。　神的灵运行在水面上。",
 				content_cuvt: "",
-				content_revs: "地是空虛<font color=\"#FF0000\">無形．被黑暗完全遮蓋</font>．　神的灵运行在水面上。",
+				content_revs: "地<font color=\"#FF0000\">还没成形，空无一物．被黑暗完全遮蓋</font>。 神的灵运行在水面上。",
 				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "头一日",
+				content_cuvt: "頭一日",
+				content_revs: "",
+				content_revt: "") 
 			gen1.verses.create(verse_no: 3,
 				content_kjv: "",
 				content_cuvs: " 神说、要有光、就有了光。",
@@ -69,47 +75,62 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: " 神称光为昼、称暗为夜．有晚上、有早晨、这是头一日。",
 				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "第二日",
+				content_cuvt: "第二日",
+				content_revs: "",
+				content_revt: "")
 			gen1.verses.create(verse_no: 6,
 				content_kjv: "",
 				content_cuvs: " 神说、诸水之间要有空气、将水分为上下。",
 				content_cuvt: "",
-				content_revs: " 神说、诸水之间要有空气、将水分为上下。",
+				content_revs: " 神说、诸水之间要有<font color=\"#FF0000\">穹苍</font>、将水分为上下。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 7,
 				content_kjv: "",
 				content_cuvs: " 神就造出空气、将空气以下的水、空气以上的水分开了．事就这样成了。",
 				content_cuvt: "",
-				content_revs: " 神就造出空气、将空气以下的水、空气以上的水分开了．事就这样成了。",
+				content_revs: " 神就造出空气、将<font color=\"#FF0000\">穹苍</font>以下的水、
+					<font color=\"#FF0000\">穹苍</font>以上的水分开了．事就这样成了。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 8,
 				content_kjv: "",
-				content_cuvs: " 神称空气为天．有晚上、有早晨、是第二日。",
+				content_cuvs: " 神称空气为天。有晚上、有早晨、是第二日。",
 				content_cuvt: "",
-				content_revs: " 神称空气为天．有晚上、有早晨、是第二日。",
+				content_revs: " 神称<font color=\"#FF0000\">穹苍</font>为天。有晚上、有早晨、是第二日。",
+				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "第三日",
+				content_cuvt: "第三日",
+				content_revs: "",
 				content_revt: "")
 			gen1.verses.create(verse_no: 9,
 				content_kjv: "",
-				content_cuvs: " 神说、天下的水要聚在一处、使旱地露出来．事就这样成了。",
+				content_cuvs: " 神说、天下的水要聚在一处、使旱地露出来。事就这样成了。",
 				content_cuvt: "",
-				content_revs: " 神说、天下的水要聚在一处、使旱地露出来．事就这样成了。",
+				content_revs: " 神说、天下的水要聚在一处、使旱地露出来。事就这样成了。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 10,
 				content_kjv: "",
-				content_cuvs: " 神称旱地为地、称水的聚处为海．　神看着是好的。",
+				content_cuvs: " 神称旱地为地、称水的聚处为海。　神看着是好的。",
 				content_cuvt: "",
-				content_revs: " 神称旱地为地、称水的聚处为海．　神看着是好的。",
+				content_revs: " 神称旱地为<font color=\"#FF0000\">陆</font>为地、称水的聚处为海。　神看着是好的。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 11,
 				content_kjv: "",
-				content_cuvs: "　神说、地要发生青草、和结种子的菜蔬、并结果子的树木、各从其类、果子都包着核．事就这样成了。",
+				content_cuvs: "　神说、地要发生青草、和结种子的菜蔬、并结果子的树木、各从其类、果子都包着核。事就这样成了。",
 				content_cuvt: "",
-				content_revs: "　神说、地要发生青草、和结种子的菜蔬、并结果子的树木、各从其类、果子都包着核．事就这样成了。",
+				content_revs: "　神说、地要发生青草、结种子的菜蔬、并结果子的树木、<font color=\"#FF0000\">果子里要有种子。
+					这些种子又会产生结出它们的菜蔬和果树</font>。事就这样成了。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 12,
 				content_kjv: "",
 				content_cuvs: "于是地发生了青草、和结种子的菜蔬、各从其类、并结果子的树木、各从其类、果子都包着核。　神看着是好的。",
 				content_cuvt: "",
-				content_revs: "于是地发生了青草、和结种子的菜蔬、各从其类、并结果子的树木、各从其类、果子都包着核。　神看着是好的。",
+				content_revs: "于是地发生了青草、结种子的菜蔬、<font color=\"#FF0000\">并结果子的树木，果子里有种子。
+					这些种子又长出菜蔬和果树、和原来结出这些种子的菜蔬果树一样</font>。　神看着是好的。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 13,
 				content_kjv: "",
@@ -117,23 +138,30 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: "有晚上、有早晨、是第三日。",
 				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "第四日",
+				content_cuvt: "第四日",
+				content_revs: "",
+				content_revt: "")
 			gen1.verses.create(verse_no: 14,
 				content_kjv: "",
 				content_cuvs: "　神说、天上要有光体、可以分昼夜、作记号、定节令、日子、年岁。",
 				content_cuvt: "",
-				content_revs: "　神说、天上要有光体、可以分昼夜、作记号、定节令、日子、年岁。",
+				content_revs: "　神说、<font color=\"#FF0000\">穹苍之上</font>要有光体、可以分昼夜、作记号、定节令、日子、年岁。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 15,
 				content_kjv: "",
-				content_cuvs: "并要发光在天空、普照在地上．事就这样成了。",
+				content_cuvs: "并要发光在天空、普照在地上。事就这样成了。",
 				content_cuvt: "",
-				content_revs: "并要发光在天空、普照在地上．事就这样成了。",
+				content_revs: "并要发光在天空、普照在地上。事就这样成了。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 16,
 				content_kjv: "",
-				content_cuvs: "于是　神造了两个大光、大的管昼、小的管夜．又造众星。",
+				content_cuvs: "于是　神造了两个大光、大的管昼、小的管夜，又造众星。",
 				content_cuvt: "",
-				content_revs: "于是　神造了两个大光、大的管昼、小的管夜．又造众星。",
+				content_revs: "于是　神造了两个大光、<font color=\"#FF0000\">较</font>大的管昼、
+					<font color=\"#FF0000\">较</font>小的管夜，又造众星。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 17,
 				content_kjv: "",
@@ -143,9 +171,9 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_revt: "")
 			gen1.verses.create(verse_no: 18,
 				content_kjv: "",
-				content_cuvs: "管理昼夜、分别明暗．　神看着是好的。",
+				content_cuvs: "管理昼夜、分别明暗。神看着是好的。",
 				content_cuvt: "",
-				content_revs: "管理昼夜、分别明暗．　神看着是好的。",
+				content_revs: "管理昼夜、分别明暗。神看着是好的。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 19,
 				content_kjv: "",
@@ -153,11 +181,17 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: "有晚上、有早晨、是第四日。",
 				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "第五日",
+				content_cuvt: "第五日",
+				content_revs: "",
+				content_revt: "")
 			gen1.verses.create(verse_no: 20,
 				content_kjv: "",
 				content_cuvs: "　神说、水要多多滋生有生命的物．要有雀鸟飞在地面以上、天空之中。",
 				content_cuvt: "",
-				content_revs: "　神说、水要多多滋生有生命的物．要有雀鸟飞在地面以上、天空之中。",
+				content_revs: "　神说、水要多多滋生<font color=\"#FF0000\">各样</font>有生命的物．要有雀鸟飞在地面以上、天空之中。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 21,
 				content_kjv: "",
@@ -169,7 +203,8 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_kjv: "",
 				content_cuvs: "　神就赐福给这一切、说、滋生繁多、充满海中的水．雀鸟也要多生在地上。",
 				content_cuvt: "",
-				content_revs: "　神就赐福给这一切、说、滋生繁多、充满海中的水．雀鸟也要多生在地上。",
+				content_revs: "　神就赐福给这一切、说、滋生繁多、充满海中的水．
+					雀鸟也要<font color=\"#FF0000\">繁多</font>在地上。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 23,
 				content_kjv: "",
@@ -177,23 +212,33 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: "有晚上、有早晨、是第五日。",
 				content_revt: "")
+			gen1.verses.create(verse_no: -1,
+				content_kjv: "",
+				content_cuvs: "第六日",
+				content_cuvt: "第六日",
+				content_revs: "",
+				content_revt: "")
 			gen1.verses.create(verse_no: 24,
 				content_kjv: "",
 				content_cuvs: "　神说、地要生出活物来、各从其类．牲畜、昆虫、野兽、各从其类．事就这样成了。",
 				content_cuvt: "",
-				content_revs: "　神说、地要生出活物来、各从其类．牲畜、昆虫、野兽、各从其类．事就这样成了。",
+				content_revs: "　神说、地要生出<font color=\"#FF0000\">各样</font>活物来,
+					<font color=\"#FF0000\">他们又能产生与自己相同的下一代-</font>
+					牲畜、<font color=\"#FF0000\">地上爬的</font>、野兽
+					<font color=\"#FF0000\">等，各从其类</font>。事就这样成了。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 25,
 				content_kjv: "",
-				content_cuvs: "于是　神造出野兽、各从其类．牲畜、各从其类．地上一切昆虫、各从其类．　神看着是好的。",
+				content_cuvs: "于是　神造出野兽、各从其类。牲畜、各从其类。地上一切昆虫、各从其类。　神看着是好的。",
 				content_cuvt: "",
-				content_revs: "于是　神造出野兽、各从其类．牲畜、各从其类．地上一切昆虫、各从其类．　神看着是好的。",
+				content_revs: "于是　神造出野兽、各从其类。牲畜、各从其类。地上一切<font color=\"#FF0000\">爬的</font>、、各从其类。　神看着是好的。",
 				content_revt: "")  
 			gen1.verses.create(verse_no: 26,
 				content_kjv: "",
 				content_cuvs: "　神说、我们要照着我们的形像、按着我们的样式造人、使他们管理海里的鱼、空中的鸟、地上的牲畜、和全地、并地上所爬的一切昆虫。",
 				content_cuvt: "",
-				content_revs: "　神说、我们要照着我们的形像、按着我们的样式造人、使他们管理海里的鱼、空中的鸟、地上的牲畜、和全地、并地上所爬的一切昆虫。",
+				content_revs: "　神说、我们要照着我们的形像、按着我们的样式造人、使他们管理海里的鱼、空中的鸟、地上的牲畜、和全地、并地上
+					<font color=\"#FF0000\">一切所爬的</font>。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 27,
 				content_kjv: "",
@@ -211,7 +256,8 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_kjv: "",
 				content_cuvs: "　神说、看哪、我将遍地上一切结种子的菜蔬、和一切树上所结有核的果子、全赐给你们作食物。",
 				content_cuvt: "",
-				content_revs: "　神说、看哪、我将遍地上一切结种子的菜蔬、和一切树上所结有核的果子、全赐给你们作食物。",
+				content_revs: "　神说、看哪、我将遍地上一切结种子的菜蔬、
+					和一切<font color=\"#FF0000\">结果子并果子有种子的</font>树、全赐给你们作食物。",
 				content_revt: "")
 			gen1.verses.create(verse_no: 30,
 				content_kjv: "",
@@ -225,6 +271,32 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: "　神看着一切所造的都甚好．有晚上、有早晨、是第六日。",
 				content_revt: "")
+
+			gen1.comments.create(verse_from: 1, verse_to: 2, grp: 0,
+				note: "圣经记载世界的开始是出于神。用比喻说就是有一位设计和建筑师，按着他的理念有了世界。
+				在描述接下来六天创造的过程之前，虽然还没有光，圣经记载已经有地和水，只是出于混乱的状态。
+				这样的情况或许接近科学大爆炸的理论，在没有大爆炸或有光之前，已经有一个大黑洞。")
+			gen1.comments.create(verse_from: 5, verse_to: 5, grp: 0,
+				note: "一般在读圣经，理解圣经时，应从字面意思来理解。但在这节经文中，说有早晨有晚上是违反因果关系的。
+				因为在第四日 神造两个大光来定白天晚上之前，是没有所谓的白天晚上的。
+				我们知道圣经有不同的文体，解释圣经时要根据文体来。例如诗篇是感情的发抒，就不能用字面意义直接解释。
+				所以创世记第一章在记载每一阶段的创造时，用了\"有晚上，有早晨\"来做结束，是一种文体，用来表达创造的阶段性，
+				在这里的每一日不能用我们现在所认知的一天来解释。
+				英王钦定本（KJV）在创2:4用了一个英文字generations来说明第一章创造的过程，
+				就是同样认为第一章所说的每一天是创造阶段的意思。好像我们现在的无线电话有2G, 3G, 4G, 5G, 
+				或说下一代的无线电话通信（next generation celluar phone）, 这些数字都是代表新一代的通信技术。")
+			gen1.comments.create(verse_from: 16, verse_to: 16, grp: 0,
+				note: "既然说两个大光，就不能后来又说小。只能说两个大光中有一个较大的，有一个较小的，在翻译上精准些。")
+
+			gen1.verse_blocks.create(book_code: "Jn", chapter_no: 1, verse_from: 1, verse_to: 14,
+				title: "萬物是藉著基督造的")
+			gen1.verse_blocks.create(book_code: "Ro", chapter_no: 1, verse_from: 20, verse_to: 20,
+				title: "藉著所造之物可以知道神")
+			gen1.verse_blocks.create(book_code: "Col", chapter_no: 1, verse_from: 15, verse_to: 17,
+				title: "萬物也是為基督而造")
+			gen1.verse_blocks.create(book_code: "Ps", chapter_no: 19, verse_from: 1, verse_to: 6,
+				title: "諸天述説神創造的榮耀")
+
 		gen2 = genesis.chapters.create(chapter_no: 2)
 			gen2.verses.create(verse_no: 0,
 				content_kjv: "",
@@ -257,10 +329,12 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_revs: "创造天地的来历、在耶和华　神造天地的日子、乃是这样:",
 				content_revt: "")
 			gen2.verses.create(verse_no: 5,
+				content_kjv: "",
 				content_cuvs: "野地还没有草木、田间的菜蔬还没有长起来、因为耶和华　神还没有降雨在地上、也没有人耕地。",
 				content_cuvt: "",
 				content_revs: "野地还没有草木、田间的菜蔬还没有长起来、因为耶和华　神还没有降雨在地上、也没有人耕地。",
 				content_revt: "")
+			
 		gen_3 = genesis.chapters.create(chapter_no: 3)
 		gen_4 = genesis.chapters.create(chapter_no: 4)
 		gen_5 = genesis.chapters.create(chapter_no: 5)
@@ -433,6 +507,8 @@ poetry = protestant_canon.collections.create(title: "智慧和詩歌",
 		description: "")
 	psalms = poetry.books.create(name: "Psalms", title: "詩篇", book_code: "Ps", chinese_code: "詩",
 		description: "")
+		psalms19 = psalms.chapters.create(chapter_no: 19)
+
 	proverbs = poetry.books.create(name: "Proverbs", title: "箴言", book_code: "Pr", chinese_code: "箴",
 		description: "")
 	ecclesiastes = poetry.books.create(name: "Ecclesiastes", title: "傳道書", book_code: "Ecc", chinese_code: "傳",
@@ -508,6 +584,7 @@ gospels = protestant_canon.collections.create(title: "四福音書",
 		description: "")
 	john = gospels.books.create(name: "John", title: "約翰福音", book_code: "Jn", chinese_code: "約",
 		description: "")
+		john_1 = john.chapters.create(chapter_no: 1)
 
 church_history = protestant_canon.collections.create(title: "教會歷史", 
 	description: "在舊約正典中，最有權威性，就是神藉著摩西所啓示給以色列民的五卷律法書，其完成的時間約在公元前1450年左右。
@@ -530,6 +607,8 @@ paul_letters = protestant_canon.collections.create(title: "保羅書信",
 	logo: "light 3.jpg")
 	romans = paul_letters.books.create(name: "Romans", title: "羅馬書", book_code: "Ro", chinese_code: "羅",
 		description: "")
+		romans1 = romans.chapters.create(chapter_no: 1)
+
 	corith_1 = paul_letters.books.create(name: "1 Corithians", title: "哥林多前書", book_code: "1Co", chinese_code: "林前",
 		description: "")
 	corith_2 = paul_letters.books.create(name: "2 Corithians", title: "哥林多后書", book_code: "2C", chinese_code: "林后",
@@ -542,6 +621,8 @@ paul_letters = protestant_canon.collections.create(title: "保羅書信",
 		description: "")
 	colossians = paul_letters.books.create(name: "Colossians", title: "歌羅西書", book_code: "Col", chinese_code: "西",
 		description: "")
+		col_1 = colossians.chapters.create(chapter_no: 1)
+		
 	thess_1 = paul_letters.books.create(name: "1 Thessalonians", title: "帖撒羅尼迦前書", book_code: "1Th", chinese_code: "帖前",
 		description: "")
 	thess_2 = paul_letters.books.create(name: "2 Thessalonians", title: "帖撒羅尼迦后書", book_code: "2Th", chinese_code: "帖后",

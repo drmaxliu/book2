@@ -12,11 +12,13 @@
 #  content_revt :string(255)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  title        :string(255)
+#  description  :text
 #
 
 class Verse < ActiveRecord::Base
   attr_accessible :chapter_id, :content_cuvs, :content_cuvt, :content_kjv, :content_revs,
-                  :content_revt, :verse_no, :title
+                  :content_revt, :verse_no, :title, :description
 
   belongs_to :chapter
   validates :chapter_id, presence: true

@@ -12,6 +12,7 @@
 #  chinese_code  :string(255)
 #  name          :string(255)
 #  logo          :string(255)
+#  static_link   :string(255)
 #
 
 require 'spec_helper'

@@ -3,26 +3,27 @@
   <div class="row-fluid">
 
     <div class="span6">
-      <h1>書卷讀經</h1>
+      <h2>書卷讀經</h2>
     </div>
+    <p>
+    </p>
 
     <div class="span6">
     </div>
-
   </div>
 </div>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <p>
-      在開始聖經的書卷讀經前，需要對聖經的正典，聖經書卷的分類，以及每卷書有先的了解。根據您的情況，您可以直接
-      <a href="#book_select">選擇聖經</a>，
-      開始您的書卷讀經。或者你也可以先決定
-      <%= link_to "從哪眷書開始讀起", book_series_url(@book_series_1) %>並建立讀聖經的基本態度與法則，
-      認識<%= link_to "基督教聖經的書卷分類", book_series_collections_url(@book_series_1) %>，
-      或從以下介紹了解聖經正典的形成，及基督教，天主教，即猶太教正典的相同和不相同的地方。
+      聖經是由許多的書卷組成，這些書卷是聖靈透過不同作者，不同時代背景寫成。被收納進入聖經的書卷需要得到教會或公會的認可，
+      確定有神的啓示才行。經過認可的聖經書卷稱爲正典。猶太教，天主教，及基督教有共同部分的正典，也有不一樣的地方。
+      以下有對這三個聖經正典有簡單的介紹，而maxBibleReader所用的聖經和翻譯是根據基督教的聖經正典。
     </p>
     <p>
-      maxBibleReader的書卷讀經根據基督教聖經正典的内容和中文和合本的翻譯。以下的天主教聖經正典及猶太教的聖經正典僅供參考。
+      讀者可以點選以下聖經書卷名稱，進入書卷讀經，或點選
+      <%= link_to "認識聖經書卷分類", book_series_url(@book_series_1), class: "btn btn-min btn-primary" %>，
+      了解聖經66卷書的分類。
     </p>
   </div>
 </div>
@@ -53,11 +54,7 @@
           <%= paragraph %>
         </p>
       <% end %>
-      <% if book_series.id == 1 %>
-        <p>
-          <%= link_to "開始書卷讀經", book_series_url(book_series), class: "btn btn-min btn-primary" %>
-        </p>
-      <% end %>
+      
 
       <table class="table table-hover" width="560" >
 

@@ -1,39 +1,652 @@
 <div class="container-fluid">
+
+  <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+
+      <div class="item active">
+         <img data-src="holder.js/1200x500" class="img-rounded" alt="1200x500" style="width: 1200px; height: 500px;" src="/light 2.jpg">
+        <div class="container" width="1000px">
+          <div class="carousel-caption">
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Sign up today</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <img data-src="holder.js/1200x500" class="img-rounded" alt="1200x500" style="width: 1200px; height: 500px;" src="/light 3.jpg">
+        <div class="container" width="1000px">
+          <div class="carousel-caption">
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Learn more</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+         <img data-src="holder.js/1200x500" class="img-rounded" alt="1200x500" style="width: 1200px; height: 500px;" src="/light 1.jpg">
+        <div class="container" width="1000px">
+          <div class="carousel-caption">
+            <!-- <p class="lead"> -->
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div><!-- /.carousel -->
+
+
+  <!-- <div class="bs-docs-example">  level 1 tab block -->
+    <ul id="collection_tabs" class="nav nav-pills">
+      <% ii = 1 %>
+      <% @book_series_1.collections.each do |collection| %>
+        <% link_1 = "#collect_" + ii.to_s %>
+        <% if ii==1 %>
+          <li class="active"><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
+        <% else %>
+          <li><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
+        <% end %>
+        <% ii = ii+1 %>
+      <% end %>
+    </ul>
+
+    <div id="collection_list" class="tab-content"> <!-- level 1 tab content -->
+       <% ii = 1 %>
+        <% @book_series_1.collections.each do |collection| %> <!-- level 1 iteration -->
+          <% if ii==1 %>
+            <% dd = "<div class=\"tab-pane fade in active\" id=" + "\"collect_" + ii.to_s + "\">" %>
+          <% else %>
+            <% dd = "<div class=\"tab-pane fade\" id=" + "\"collect_" + ii.to_s + "\">" %>
+          <% end %>
+          <%= dd.html_safe %>
+
+          <!-- <div class="bs-docs-example">  level 2 tab block -->
+            <% dd = "<ul id=\"book_tabs_" + ii.to_s + "\" class=\"nav nav-tabs yellow\">" %>
+            <%= dd.html_safe %>
+              <% jj = 1 %>
+              <% collection.books.each do |book| %>
+                <% link_1 = "#book_" + ii.to_s + "_" + jj.to_s %>
+                <% if jj==1 %>
+                  <li class="active"><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
+                <% else %>
+                  <li><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
+                <% end %>
+                <% jj = jj+1 %>
+              <% end %> <!-- book -->
+            </ul>
+
+            <div class="tab-content"> <!-- level 2 tab content-->
+
+              <% jj = 1 %>
+              <% collection.books.each do |book| %>
+                <% if jj==1 %>
+                  <% dd = "<div class=\"tab-pane fade in active\" id=book_" + ii.to_s + "_" + jj.to_s %>
+                <% else %>
+                  <% dd = "<div class=\"tab-pane fade\" id=book_" + ii.to_s + "_" + jj.to_s %>
+                <% end %>
+                  <%= dd.html_safe %>
+                  <p>閲讀本書第 |
+                    <% book.chapters.each do |chap| %>
+                      <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), :id => "chapter_list" %> |
+                    <% end %>
+                    章
+                  </p>
+                <% jj = jj+1 %>
+                </div>
+              <% end %> <!-- level 2 iteration -->
+            </div> <!-- level 2 tab content -->
+          <!-- /div> level 2 tab block -->
+
+          <% ii = ii+1 %> <!-- for each level 1 collection -->
+          </div>
+        <% end %> <!-- level 1 iteration -->
+    </div> <!-- level 1 tab content -->
+  <!-- </div>  level tab block -->
+
+
+
   <div class="row-fluid">
 
-    <div class="span3">
-      <%= render 'navibar_collections' %>
-      <%= render 'navibar_books' %>
-      <div class="well sidebar-nav">
-        <img data-src="holder.js/280x600" alt="">
-      </div>
-    </div>
-
-    <div class="span9">
+    <div class="span12">
       <h2>
-        <%= @book.title %>
-      </h2>
-      <p>閲讀本書第 |
-        <% @book.chapters.each do |chap| %>
-          <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, @book, chap) %> |
+        <%= @book.title %><%= @chapter.chapter_no %>章
+        <%= link_to "本书介绍", book_series_collection_book_url(@book_series, @collection, @book), 
+          class: "btn btn-min btn-primary" %>
+        <% prev_id = @chapter.id - 1 %>
+        <% if prev_id > 0 %>
+          <% prev_chap = Chapter.find(prev_id) %>
+          <% prev_book_id = prev_chap.book_id %>
+          <% prev_book = Book.find(prev_book_id) %>
+          <% prev_coll_id = prev_book.collection_id %>
+          <% prev_coll = Book.find(prev_coll_id) %>
+
+          <%= link_to "上一章", book_series_collection_book_chapter_url(@book_series, prev_coll, prev_book, prev_chap), 
+            class: "btn btn-min btn-warning" %>
+        <% end %> 
+
+        <% next_id = @chapter.id + 1 %>
+        <% if next_id <= Chapter.count %>
+          <% next_chap = Chapter.find(next_id) %>
+          <% next_book_id = next_chap.book_id %>
+          <% next_book = Book.find(next_book_id) %>
+          <% next_coll_id = next_book.collection_id %>
+          <% next_coll = Book.find(next_coll_id) %>
+
+          <%= link_to "下一章", book_series_collection_book_chapter_url(@book_series, next_coll, next_book, next_chap), 
+            class: "btn btn-min btn-warning" %>
         <% end %>
-        章
-      </p>
+      </h2>
 
       <hr class="featurette-divider">
 
+      
+
+      <div class="row-fluid">
+
+        <div class="span3">
+          <% if user_signed_in? %>
+            <p>聖經進度：10%</p> 
+            <div class="progress">
+              <div class="bar bar-info" style="width: 10%;"></div>
+            </div>
+          <% else %>
+            <p>聖經進度：　-- 請先登入</p> 
+            <div class="progress">
+              <div class="bar bar-info" style="width: 0%;"></div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="span3">
+          <% if user_signed_in? %>
+            <p>本書進度：30%</p> 
+            <div class="progress">
+              <div class="bar bar-info" style="width: 30%;"></div>
+            </div>
+          <% else %>
+            <p>本書進度：　-- 請先登入</p> 
+            <div class="progress">
+              <div class="bar bar-info" style="width: 0%;"></div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="span3">
+          <p>本章點閱縂數：　<%= @chapter.stat_read.to_s %></p>
+        </div>
+
+        <div class="span3">
+          <p>本章閲讀完成數：　<%= @chapter.stat_finish.to_s %></p>
+        </div>
+
+
+      </div><!--row-fluid-->
+
+      <!-- if user_signed_in? -->
+
+      <div class="row-fluid">
+        <div class="span6">
+          <h3>本章相關經文:</h3>
+          <% if @chapter.verse_blocks.empty? %>
+            <%= "無相關經文" %>
+          <% else %>
+            <% @chapter.verse_blocks.each do |ref| %>
+              <% bb = Book.find_by_book_code(ref.book_code) %>
+              <% coll = Collection.find(bb.collection_id) %>
+              <% cc = bb.chapters.find_by_chapter_no(ref.chapter_no) %>
+
+              <% verse_ref = bb.chinese_code + ref.chapter_no.to_s + ":" + ref.verse_from.to_s + "-" + 
+                 ref.verse_to.to_s %>
+              <%= link_to verse_ref.html_safe, 
+                book_series_collection_book_chapter_url(@book_series, coll, bb, cc),
+                class: "btn btn-min btn-primary" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="span6">
+          <h3>经文阅读历史:</h3>
+          <%= link_to "马太福音14", "#", class: "btn btn-min btn-inverse" %> 
+          <%= link_to "马可福音6", "#", class: "btn btn-min btn-inverse" %> 
+          <%= link_to "路加福音9", "#", class: "btn btn-min btn-inverse" %>
+          <%= link_to "约翰福音1", "#", class: "btn btn-min btn-inverse" %>
+        </div>
+      </div><!--row-fluid-->
+
+
+      <hr class="featurette-divider">
+
+      <div class="row-fluid">
+
+        <div class="span6">
+
+          <button type="button" class="btn btn-block btn-success">和合本經文
+          </button>
+          <p></p>
+
+          <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
+          </button>
+          <p></p>
+          <font color="#000000">
+            <p>
+              <% @chapter.verses.each do |verse| %>
+                <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
+                <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
+                  <!--
+                  <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
+                  <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
+                  -->
+                <% else %>
+                  |<%= verse.verse_no.to_s %>| <%= verse.content_cuvs.html_safe %>
+                <% end %>
+              <% end %>
+            </p>
+          </font>
+
+          <hr class="featurette-divider">
+        </div>
+
+        <div class="span6">
+
+          <button type="button" class="btn btn-block btn-success">
+            經文修正參考
+          </button>
+          <p></p>
+
+          <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
+          </button>
+          <p></p>
+          <font color="#000000">
+            <p>
+              <% @chapter.verses.each do |verse| %>
+                <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
+                <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
+                  <!--
+                  <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
+                  <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
+                  -->
+                 
+                <% else %>
+                 |<%= verse.verse_no.to_s %>| <%= verse.content_revs.html_safe %>
+                <% end %>
+              <% end %>
+            </p>
+          </font>
+
+          <hr class="featurette-divider">
+        </div>
+      </div>
+
+      <div class="row-fluid">
+        <div class="span12">
+          <button type="button" class="btn btn-block btn-warning">
+            經文註釋
+          </button>
+          <p></p>
+          <p>
+
+          <% @chapter.comments.each do |comment| %>
+            <% if comment.grp==0 %> 
+              <p>
+                <% comment_number = @chapter.chapter_no.to_s + ":"  + comment.verse_from.to_s %>
+                <% if comment.verse_from != comment.verse_to %>
+                  <% comment_number = comment_number + "-"  + comment.verse_to.to_s %>
+                <% end %>
+                <!-- <span class="badge"><%= comment_number %></span> -->
+                |<%= comment_number %>| <%= comment.note.html_safe %>
+              </p>
+            <% end %>
+          <% end %>
+
+          <div align="middle">
+            <p>
+              <% icon_tag1 = "<i class=\"icon-file icon-white\"></i>" + " 加入讀經历史" %>
+              <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 完成本章閲讀" %>
+              <% icon_tag3 = "<i class=\"icon-heart icon-white\"></i>" + " 以上解釋按赞" %>
+            </p>
+            <div class="bs-docs-example bs-docs-example-popover">
+              <div class="popover top">
+                <div class="arrow"></div>
+                <h3 class="popover-title">Popover top</h3>
+                <div class="popover-content">
+                  <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+                </div>
+              </div>
+            </div>
+            <p>
+              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <%= link_to icon_tag2.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <%= link_to icon_tag3.html_safe, "#", class: "btn btn-min btn-primary" %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+    </div> <!-- end of first span12 -->
+  </div> <!-- end of first row-fluid -->
+
+  <div class="row-fluid">
+
+    <div class="span3">
+      <button type="button" class="btn btn-block btn-danger">
+        經文背景
+      </button>
+      <p></p>
+      <p><span class="badge badge-inverse">故事背景</span>  羅馬統治下的以色列人生活困苦流離，百姓在心靈上和生活上都需要迫切幫助。分封的希律王殘暴，不久前殺了施洗約翰。雖然如此，耶穌差遣門徒各處傳道，醫治病人。</p>
+      <p><span class="badge badge-inverse">故事時間</span>  春天，快要過逾越節了。距離耶穌上十字架的最後晚餐約一年。</p>
+      <p><span class="badge badge-inverse">故事地點</span>  加利利海東邊的野地。</p>
+      <p><span class="badge badge-inverse">主要人物</span>  耶穌，12門徒，一個孩童，和衆人。</p>
+
+      <img data-src="holder.js/300x250" class="img-rounded" alt="300x250" style="width: 300px; height: 250px;" src="/flower 1.jpg">
+      <p></p>
     </div>
 
+    <div class="span9">
+
+      <div class="row-fluid"><!--/.3 column topic descriptions -->
+
+        <div class="span4">
+          <button type="button" class="btn btn-block btn-danger">
+            内容摘要
+          </button>
+          <p></p>
+
+          <% ii = 0 %>
+          <% @chapter.comments.each do |comment| %>
+            <% if comment.grp==0 %> 
+              <p>
+                <% ii += 1 %>
+                <span class="badge badge-warning"><%= ii.to_s %></span>
+                <%= comment.note.html_safe %>
+              </p>
+            <% end %>
+          <% end %>         
+          <p></p>
+
+          <div align="middle">
+            <p>
+              <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上摘要按个赞" %>
+            </p>
+            <p>
+              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+            </p>
+          </div>
+
+          <hr class="featurette-divider">
+
+
+        </div><!--/span-->
+
+        <div class="span4">
+          <button type="button" class="btn btn-block btn-danger">
+            思想问题
+          </button>
+          <p></p>
+
+          <% ii = 0 %>
+          <% @chapter.comments.each do |comment| %>
+            <% if comment.grp==0 %> 
+              <p>
+                <% ii += 1 %>
+                <span class="badge badge-warning"><%= ii.to_s %></span>
+                <%= comment.note.html_safe %>
+              </p>
+            <% end %>
+          <% end %>         
+          <p></p>
+
+          <div align="middle">
+            <p>
+              <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上问题按个赞" %>
+            </p>
+            <p>
+              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+            </p>
+          </div>
+
+          <hr class="featurette-divider">
+
+<!--
+          <div class="input-append">
+            <input class="span6" id="word-search" type="text">
+            <button class="btn btn-warning" type="button">用關鍵詞過濾</button>
+          </div>
+
+          <p></p>
+          <button class="btn btn-primary" type="button">開始閲讀</button>
+          <p></p>
+          <div class="thumbnail">
+            <div class="caption">
+              <p>1</p>
+              <p>2</p>
+              <p>3</p>
+              <p>4</p>
+              <p>5</p>
+              <p>6</p>
+              <p>7</p>
+              <p>8</p>
+            </div>
+          </div>
+          <p></p>
+          <p>共10篇</p>
+          <div class="pagination pagination-small">
+            <ul>
+              <li><a href="#">Prev</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">Next</a></li>
+            </ul>
+          </div>
+-->
+
+        </div><!--/span4-->
+
+        <div class="span4">
+          <button type="button" class="btn btn-block btn-danger">
+            經文應用
+          </button>
+          <p></p>
+            <% ii = 0 %>
+            <% @chapter.comments.each do |comment| %>
+            <% if comment.grp==0 %> 
+              <p>
+                <% ii += 1 %>
+                <span class="badge badge-warning"><%= ii.to_s %></span>
+                <%= comment.note.html_safe %>
+              </p>
+            <% end %>
+          <% end %>         
+          <p></p>
+
+          <div align="middle">
+            <p>
+              <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上应用按个赞" %>
+            </p>
+            <p>
+              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+            </p>
+          </div>
+
+          <hr class="featurette-divider">
+
+        </div><!--/span4-->
+      </div><!--/row-fluid -->
+    </div> <!-- end of second span9 -->
+  </div> <!-- end of second row-fluid -->
+
+  <p></p>
+  <button type="button" class="btn btn-block btn-danger">
+    互动园区
+  </button>
+  <p></p>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <ul id="social_tabs" class="nav nav-tabs">
+        <li class="active"><a href="#write_notes" data-toggle="tab">个人筆記</a></li>
+        <li><a href="#write_posts" data-toggle="tab">发表分享</a></li>
+        <li><a href="#write_suggestions" data-toggle="tab">網站建議</a></li>
+        <li><a href="#search_bible" data-toggle="tab">查找圣经</a></li>
+        <li><a href="#search_comments" data-toggle="tab">查找注释</a></li>
+        <li><a href="#search_notes" data-toggle="tab">查找笔记</a></li>
+        <li><a href="#search_posts" data-toggle="tab">查找分享</a></li>
+        <li><a href="#search_members" data-toggle="tab">查找会员</a></li>
+        <li><a href="#read_notes" data-toggle="tab">阅读笔记</a></li>
+        <li><a href="#read_posts" data-toggle="tab">阅读分享</a></li>
+      </ul>
+    </div>
+  </div>
+    
+
+  <div class="row-fluid">
+    <div class="span3">
+      <p></p>
+      <img data-src="holder.js/300x600" class="img-rounded" alt="300x600" style="width: 300px; height: 600px;" src="/giraff 1 vert.jpg">
+    </div>
+
+    <div class="span9">
+
+      <!--
+      <ul id="social_tabs" class="nav nav-tabs">
+        <li class="active"><a href="#write_notes" data-toggle="tab">个人筆記</a></li>
+        <li><a href="#write_posts" data-toggle="tab">发表分享</a></li>
+        <li><a href="#write_suggestions" data-toggle="tab">網站建議</a></li>
+        <li><a href="#search_bible" data-toggle="tab">查找圣经</a></li>
+        <li><a href="#search_comments" data-toggle="tab">查找注释</a></li>
+        <li><a href="#search_notes" data-toggle="tab">查找笔记</a></li>
+        <li><a href="#search_posts" data-toggle="tab">查找分享</a></li>
+        <li><a href="#search_members" data-toggle="tab">查找会员</a></li>
+        <li><a href="#read_notes" data-toggle="tab">阅读笔记</a></li>
+        <li><a href="#read_posts" data-toggle="tab">阅读分享</a></li>
+      </ul>
+      -->
+
+      <p></p>
+      <div id="write" class="tab-content">
+        <div class="tab-pane fade in active" id="write_notes">
+          <span class="help-inline">題目：</span><input type="text" id="subject">
+          <span class="help-inline"> 经文： <%= @book.title %>第<%= @chapter.chapter_no %>章：
+          <input type="text" id="verse">-<input type="text" id="verse">节。</span>
+          <textarea id="description">写下你的心得：</textarea>
+          <p></p>
+          <%= link_to "存入", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+        </div>
+
+        <div class="tab-pane fade" id="write_posts">
+          <span class="help-inline">題目：</span><input type="text" id="subject">
+          <span class="help-inline"> 经文： <%= @book.title %>第<%= @chapter.chapter_no %>章：
+          <input type="text" id="verse">-<input type="text" id="verse">节。</span>
+          <textarea style="overflow:auto" id="description">写下你的分享：</textarea>
+          <p></p>
+          <%= link_to "分享", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "邮寄", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="write_suggestions">
+          <span class="help-inline">关于：</span><input type="text">
+          <textarea style="overflow:auto" id="description">写下你的建议：</textarea>
+          <p></p>
+          <%= link_to "送出", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+        </div>
+
+        <div class="tab-pane fade" id="search_bible">
+          <span class="help-inline">查询字词：</span><input type="text">
+          <span class="help-inline">圣经范围：</span><input type="text">
+          <p></p>
+          <%= link_to "查找", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+          <p></p>
+          <textarea style="overflow:auto" id="description">搜寻结果：</textarea>
+          <%= link_to "打开经文", "#", class: "btn btn-min btn-primary" %>
+        </div>
+
+        <div class="tab-pane fade" id="search_comments">
+          <span class="help-inline">查询字词：</span><input type="text">
+          <span class="help-inline">注释类别：</span><input type="text">
+          <p></p>
+          <%= link_to "查找", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+          <p></p>
+          <textarea style="overflow:auto" id="description">搜寻结果：</textarea>
+          <%= link_to "打开经文", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="search_notes">
+          <span class="help-inline">查询字词：</span><input type="text">
+          <span class="help-inline">时间范围：</span><input type="text">
+          <span class="help-inline">圣经范围：</span><input type="text">
+          <p></p>
+          <%= link_to "查找", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+          <p></p>
+          <textarea style="overflow:auto" id="description">搜寻结果：</textarea>
+          <%= link_to "打开经文", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="search_posts">
+          <span class="help-inline">查询字词：</span><input type="text">
+          <span class="help-inline">时间范围：</span><input type="text">
+          <span class="help-inline">圣经范围：</span><input type="text">
+          <span class="help-inline">会员范围：</span><input type="text">
+          <p></p>
+          <%= link_to "查找", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+          <p></p>
+          <textarea style="overflow:auto" id="description">搜寻结果：</textarea>
+          <%= link_to "打开经文", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="search_members">
+          <span class="help-inline">关键字词：</span><input type="text">
+          <span class="help-inline">搜寻范围：</span><input type="text">
+          <p></p>
+          <%= link_to "查找", "#", class: "btn btn-min btn-primary" %>
+          <!-- 所有/我的粉丝/我的关注/我的小组/我的教会 -->
+          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+          <p></p>
+          <textarea style="overflow:auto" id="description">搜寻结果：</textarea>
+          <%= link_to "公开资料", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "成为粉丝", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "退出粉丝", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="read_notes">
+          <span class="help-inline">时间范围：</span><input type="text">
+          <span class="help-inline">圣经范围：</span><input type="text">
+          <span class="help-inline">收藏范围：</span><input type="text">
+          <p></p>
+          <textarea style="overflow:auto" id="description">我的笔记：</textarea>
+          <p></p>
+          <%= link_to "上一篇", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "下一篇", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "再思", "#", class: "btn btn-min btn-primary" %>
+        </div>
+        <div class="tab-pane fade" id="read_posts">
+          <span class="help-inline">我的关注：</span><input type="text">
+          <span class="help-inline">我的小组：</span><input type="text">
+          <span class="help-inline">时间范围：</span><input type="text">
+          <span class="help-inline">圣经范围：</span><input type="text">
+          <p></p>
+          <textarea style="overflow:auto" id="description">经文分享：</textarea>
+          <p></p>
+          <%= link_to "上一篇", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "下一篇", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "回应", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "按赞", "#", class: "btn btn-min btn-primary" %>
+          <%= link_to "收藏", "#", class: "btn btn-min btn-primary" %>
+        </div>
+      </div>
+    <p></p>
+
+    </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 <h3>Verses:</h3>
 
@@ -57,11 +670,11 @@
       <tr>
         <td><%= verse.verse_no %></td>
         <td><%= verse.chapter_id %></td>
-        <td><%= verse.content_kjv %></td>
-        <td><%= verse.content_cuvs %></td>
-        <td><%= verse.content_cuvt %></td>
-        <td><%= verse.content_revs %></td>
-        <td><%= verse.content_revt %></td>
+        <td><%= verse.content_kjv.html_safe %></td>
+        <td><%= verse.content_cuvs.html_safe %></td>
+        <td><%= verse.content_cuvt.html_safe %></td>
+        <td><%= verse.content_revs.html_safe %></td>
+        <td><%= verse.content_revt.html_safe %></td>
         <td><%= link_to 'Show', [@book_series, @collection, @book, @chapter, verse] %></td>
         <td><%= link_to 'Edit', edit_book_series_collection_book_chapter_verse_path(@book_series, @collection, @book, @chapter, verse) %></td>
         <td><%= link_to 'Destroy', [@book_series, @collection, @book, @chapter, verse], method: :delete, data: { confirm: 'Are you sure?' } %></td>

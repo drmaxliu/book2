@@ -1,0 +1,18 @@
+
+<div class="well sidebar-nav">
+
+  <button type="button" class="btn btn-block btn-primary">
+  <h3><%= @book.title %></h3>
+  </button>
+
+  <p> </p>
+  <p>| 
+    <% @book.chapters.each do |chap| %>
+      <%= link_to chap.chapter_no.to_s, 
+      book_series_collection_book_chapter_url(@book_series_1, @collection, @book, chap) %> |
+    <% end %>
+  </p>
+
+</div>
+
+

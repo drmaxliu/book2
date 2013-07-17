@@ -6,273 +6,97 @@
   </p>
 </div>
 
-<hr class="featurette-divider">
+      <hr class="featurette-divider">
+      <div class="container-fluid">
+        <div class="row-fluid">
 
-<div class="container-fluid">
-  <div class="row-fluid">
+          <div class="span2">
+            <p>
+            </p>
+            <p>
+            </p>
+            <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 1.jpg">
+          </div>
 
-    <div class="span2">
-      <p>
-      </p>
-      <p>
-      </p>
-      <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 1.jpg">
-    </div>
+            <h3>
+              直接選擇你想閲讀的聖經書卷:
+            </h3>
+       
+          <div class="span10">
 
-			<h3>
-        聖經該從哪卷書讀起
-      </h3>
-    <div class="span10">
-      <p>
-      	聖經66卷書分成共10部分。初學聖經的讀者可以先從聖經的每各分部了解基本内容。 
-      	<%= link_to "了解書卷分類", book_series_collections_url(@book_series_1), class: "btn btn-min btn-primary" %>
-      </p>
+            <table class="table table-hover" width="560" >
 
-      <p>
-        如果讀者已經有對聖經的10個部分由所了解，由於摩西五經是舊約聖經的根基，四福音書是新約聖經的根基，建議讀者可以從這兩部分開始。
-      </p>
-      <p>
-       	然而讀摩西五經的時候，很可能會遇到讀不下去的時候。例如，有些部分看起來不合科學，有些部分講到獻祭和會幕很枯燥，而有些部分講到許多人名地理感覺太不親切。讀四福音書的時候，所需的背景知識沒有如舊約的多，所以讀的時候可以較容易明白。然而要謹慎的是自己以爲的明白不見得是真正明白。例如耶穌講到天國的比喻，很多人有自己的解釋。
-      </p>
-    </div>
-  </div>
-</div>
+              <tbody>
+                <tr>
+                  <th width="100" scope="col">書卷分類</th>
+                  <th width="460" scope="col">書卷名稱</th>
+                </tr>
 
-<hr class="featurette-divider">
+                <% @book_series_1.collections.each do |collection| %>
 
-<div class="container-fluid">
-  <div class="row-fluid">
+                  <tr>
+                    <td>
+                    <!--
+                    <% if collection.id < 6 %><span class="badge badge-warning">
+                        <% else %><span class="badge badge-info"><% end %>
+                      <%= collection.id %></span> 
+                    -->
+                      <% if collection.id < 6 %><span class="badge badge-warning">舊約</span>
+                      <% else %><span class="badge badge-info">新約</span>
+                      <% end %>
+                       
+                      <%= link_to collection.title, book_series_collection_url(@book_series_1, collection) %>
+                    </td>
+                    <td>|
+                      <% collection.books.each do |book| %>
+                        <%= link_to book.title, book_series_collection_book_url(@book_series_1, collection, book) %> |
+                      <% end %>
+                    </td>
+                  </tr>
 
-    <div class="span2">
-      <p>
-      </p>
-      <p>
-      </p>
-      <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 1.jpg">
-    </div>
-
-			<h3>
-        maxBibleReader提供的閲讀幫助：
-      </h3>
-    <div class="span10">
-      <p>
-      	<span class="badge badge-important">1</span> 聖經書卷介紹：對每卷書提供背景知識，幫助了解作者寫書的目的，
-      	需要了解的歷史地理人物等，與相關的書卷與經文。
-      </p>
-      <p>
-      	<span class="badge badge-important">2</span> 提供簡易聖經註釋，以正確明白經文意義。
-      </p>
-      <p>
-      	<span class="badge badge-important">3</span> 對有些原中文和合本翻譯不正確，不達意，或不易明白的地方，
-      	maxBibleReader根據多個受歡迎的英文聖經翻譯版本如NIV,NLT,AMP,KJV,NKJV,MSG,和OJB(Orthodox Jewish Bible) 提供必要翻譯修正。為尊重原中文和合本，翻譯修正與中文和合本經文並列，提供讀者參考，便於正確明白原文的意思。
-      </p>
-      <p>
-      	<span class="badge badge-important">4</span> 鼓勵讀者成爲會員，得以利用提供的個人化服務如：讀經進度追蹤，筆記，分享個人領受，閲讀別人分享，與組織讀經小組。
-      </p>
-    </div>
-  </div>
-</div>
-
-<hr class="featurette-divider">
-<div class="container-fluid">
-	<div class="row-fluid">
-
-	  <div class="span2">
-	    <p>
-	    </p>
-	    <p>
-	    </p>
-	    <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 3.jpg">
-	  </div>
-			<h3>
-	      按書卷讀經的態度與法則
-	    </h3>
-	  <div class="span10">
-	    
-	    <p>
-	      剛開始讀聖經的人，雖然每個字都看的懂，但合起來就不明白。最根本的原因乃是聖經是神的話，用人的邏輯去理解神的邏輯就很難明白。爲此，以下提示幾個讀聖經的重要法則。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">1</span> 聖經是神的啓示。讀聖經時最重要的是態度，需要存敬畏，謙卑，渴慕的心。如果存批判的心，就很難進入真理。如果遇到難以明白的時候，只要用敬畏，謙卑，渴慕的心來禱告，求聖靈幫助，神會樂意打開我們心中的眼睛，讓我們看見亮光。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">2</span> 神的話大有能力，能打開我們的心，在我們彷徨時給我們亮光。然而，要能應用神的話在我們生活的處境中，首先必須正確明白神的話。也就是，有正確的解釋，才能有正確的應用。所以讀聖經的次序是：先要觀察，其次按正義解釋，然後才是領受和應用。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">3</span> 一個避免斷章取義按自己意思解釋的法則，就是需正確明白作者原來的目的。有些書卷可以很容易找到作者的寫書目的，例如約翰福音的作者約翰在20：31清楚說出他寫書的目的。有些就需要從全文分析得出。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">4</span> 除了從全文分析，對寫作歷史背景的了解也可以有效地幫助我們明白書卷的目的。例如耶利米書的歷史背景是猶大囯面臨巴比倫帝國的滅囯威脅。耶利米在此危難時候告訴以色列人遭難的原因，要他們做好亡國的準備，預言神將與以色列家另立新約。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">5</span> 有時光從一卷書本身也不容易了解作者的寫書目的。此時就需要從相關的書卷來發現。例如，如果我們將四福音書馬太，馬可，路加，和約翰福音合起來看時，就可以發現這四卷書有不同的重點：
-	    </p>
-
-	    <p>
-	      <table width="700" border="1">
-	        <tr>
-	          <th width="100" scope="col">比較</th>
-	          <th width="150" scope="col">馬太福音</th>
-	          <th width="150" scope="col">馬可福音</th>
-	          <th width="150" scope="col">路加福音</th>
-	          <th width="150" scope="col">約翰福音</th>
-	        </tr>
-	        <tr>
-	          <td valign="top"><div align="left">重點</div></td>
-	          <td valign="top"><div align="left">耶穌是君王</div></td>
-	          <td valign="top"><div align="left">耶穌是奴僕</div></td>
-	          <td valign="top"><div align="left">耶穌是人子</div></td>
-	          <td valign="top"><div align="left">耶穌是神子</div></td>
-	        </tr>
-	        <tr>
-	          <td valign="top"><div align="left">家譜</div></td>
-	          <td valign="top"><div align="left">王的家譜，從以色列人的先祖亞伯拉罕，經大衛王，往下推至約瑟</div></td>
-	          <td valign="top"><div align="left">沒有記載，因爲奴僕是沒有家譜的</div></td>
-	          <td valign="top"><div align="left">人的家譜，從母親往上推到人類的先祖亞當</div></td>
-	          <td valign="top"><div align="left">神的家譜：太初有道，道就是神，道成了肉身</div></td>
-	        </tr>
-	        <tr>
-	          <td valign="top"><div align="left">記載的重點</div></td>
-	          <td valign="top"><div align="left">有多處記載耶穌作爲天國國王的教訓如登山寳訓。另外多有引證舊約的預言，證明耶穌是彌賽亞，救世主。</div></td>
-	          <td valign="top"><div align="left">從耶穌作爲僕人的角度，記載耶穌風塵僕僕的工作。</div></td>
-	          <td valign="top"><div align="left">從耶穌作爲人子的角度，記載母親瑪麗亞受聖靈感孕的過程。</div></td>
-	          <td valign="top"><div align="left">記載耶穌作爲神子所顯出的做為，如記載七個神跡。也記載耶穌多次告訴門徒他與天父原為一，他所做的就是天父所做的，向許多人如撒瑪利亞婦人宣告自己就是彌賽亞，向猶太人宣告自己的名字是：我是。</div></td>
-	        </tr>
-	      </table>
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">6</span> 事實上，聖經全部66卷書也是有互相關聯的。maxBibleReader 的主題式讀經就是將整本聖經分成12個互相連貫的主題，可以幫助讀者明白聖經縂的目的。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">7</span> 為能在按書卷讀經時，能清楚看見寫書目的，maxBibleReader 根據書卷與整本聖經的關係，歷史的背景，加入標題和註釋，是使讀者能夠有充分的背景知識。
-	    </p>
-	    <p>
-	      <span class="badge badge-warning">8</span> 聖經的話語是非常奇妙的，隨著個人生命愈來愈認識神的心腸，就愈能有更深的體會，可以百讀不膩。然而為避免錯誤領受，對初讀聖經的讀者，建議先要將重點放在基本真理的明白。隨著靈命成長，聖靈光照，就自然能更深的明白神對自己要說的話。
-	    </p>
-	  </div>
-
-	</div>
-</div>
-
-<hr class="featurette-divider">
-<div class="container-fluid">
-	<div class="row-fluid">
-
-	  <div class="span2">
-	    <p>
-	    </p>
-	    <p>
-	    </p>
-	    <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 3.jpg">
-	  </div>
-
-		<h3>
-	    尋求教會幫助，把握學習的機會
-	  </h3>
-
-	  <div class="span10">
-	    
-	    <p>
-	      雖然今天網絡發達，讀者可以隨意上網找資料，但不見得得到正確的信息。雖然maxBibleReader本身也是經由網路幫助讀者學習聖經，仍然建議讀者向自己教會的牧者老師咨詢，得到認可。對初信者，最有效明白聖經的方法是把握住教會提供的學習機會，如主日學，小組查經，一對一學習等。在老師的教導下，就能少走很多彎路，避免自己錯誤的想法。如果有不明白的，可以即刻詢問。maxBibleReader仍只是個工具，使用時仍要配合教會的教導。
-	    </p> 
-	  </div>
-
-	</div>
-</div>
-
-<a id="book_select"></a>
-<hr class="featurette-divider">
-
-<div class="container-fluid">
-  <div class="row-fluid">
-
-		<div class="span2">
-      <p>
-      </p>
-      <p>
-      </p>
-      <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 1.jpg">
-    </div>
-
-      <h3>
-        直接選擇你想閲讀的聖經書卷:
-      </h3>
- 
-		<div class="span10">
-
-      <table class="table table-hover" width="560" >
-
-        <tbody>
-          <tr>
-            <th width="100" scope="col">書卷分類</th>
-            <th width="460" scope="col">書卷名稱</th>
-          </tr>
-
-          <% @book_series_1.collections.each do |collection| %>
-
-            <tr>
-              <td>
-              <!--
-              <% if collection.id < 6 %><span class="badge badge-warning">
-                  <% else %><span class="badge badge-info"><% end %>
-                <%= collection.id %></span> 
-              -->
-                <% if collection.id < 6 %><span class="badge badge-warning">舊約</span>
-                <% else %><span class="badge badge-info">新約</span>
                 <% end %>
-                 
-                <%= link_to collection.title, book_series_collection_url(@book_series_1, collection) %>
-              </td>
-              <td>|
-                <% collection.books.each do |book| %>
-                  <%= link_to book.title, book_series_collection_book_url(@book_series_1, collection, book) %> |
-                <% end %>
-              </td>
-            </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                </tr>
 
-          <% end %>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
+              </tbody>
+            </table>
 
-        </tbody>
-      </table>
+           </div>
+         </div>
+      </div>
 
-     </div>
-   </div>
-</div>
+      <hr class="featurette-divider">
+      <div class="container-fluid">
+        <div class="row-fluid">
 
-<hr class="featurette-divider">
-<div class="container-fluid">
-  <div class="row-fluid">
+          <div class="span2">
+            <p>
+            </p>
+            <p>
+            </p>
+            <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 3.jpg">
+          </div>
 
-    <div class="span2">
-      <p>
-      </p>
-      <p>
-      </p>
-      <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 120px; height: 120px;" src="/light 3.jpg">
-    </div>
+          <h3>
+            設定你的書卷讀經計劃：
+          </h3>
 
-    <h3>
-      設定你的書卷讀經計劃：
-    </h3>
+          <div class="span10">
+            <p>
+              讀聖經最重要的就是按著您的需要和聖經基礎，選擇合適的書卷，並持之以恆讀完。maxBibleReader願意幫助你完成每一卷書，並且享受其中。
+            </p>
+            <p>
+            <span class="badge badge-important">1</span> 設定
+            </p>
 
-    <div class="span10">
-      <p>
-        讀聖經最重要的就是按著您的需要和聖經基礎，選擇合適的書卷，並持之以恆讀完。maxBibleReader願意幫助你完成每一卷書，並且享受其中。
-      </p>
-      <p>
-      <span class="badge badge-important">1</span> 設定
-      </p>
+            <%= render 'plan_form' %>
 
-      <%= render 'plan_form' %>
+          </div>
 
-    </div>
-
-  </div>
-</div>
+        </div>
+      </div>
 
 
 

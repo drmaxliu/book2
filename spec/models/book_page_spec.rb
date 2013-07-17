@@ -6,7 +6,6 @@
 #  title         :string(255)
 #  description   :text
 #  book_id       :integer
-#  type          :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  chapter_index :integer
