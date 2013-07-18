@@ -1,3 +1,11 @@
+<div class="container-fluid">
+  
+  <%= render 'header_toc' %>
+
+</div>
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -17,9 +25,9 @@
 
 <p>
   <b>Type:</b>
-  <%= @book_page.type %>
+  <%= @book_page.grp %>
 </p>
 
 
-<%= link_to 'Edit', edit_book_page_path(@book_page) %> |
-<%= link_to 'Back', book_pages_path %>
+<%= link_to 'Edit', edit_book_series_collection_book_book_page_path(@book_series, @collection, @book, @book_page) %> |
+<%= link_to 'Back', book_series_collection_book_book_pages_path(@book_series, @collection, @book) %>

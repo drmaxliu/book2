@@ -1,7 +1,5 @@
 <div class="container-fluid">
 
-  <hr class="featurette-divider">
-
   <div class="row-fluid">
 
     <div class="span3">
@@ -24,6 +22,17 @@
           <%= p1 %>
         </p> 
         <% end %>
+
+        <% if !@collection.collection_pages.empty? %>
+          <p>閲讀書卷分類補充内容： |
+            <%= link_to "目錄", book_series_collection_collection_pages_url(@book_series, @collection), 
+              :id => "chapter_list" %> |
+            <% @collection.collection_pages.each do |collection_page| %>
+              <%= link_to collection_page.title, book_series_collection_collection_page_url(@book_series, @collection, collection_page), :id => "chapter_list" %> |
+            <% end %>
+          </p>
+        <% end %>
+
       </div>
 
       <hr class="featurette-divider">
@@ -59,12 +68,23 @@
                   <p>
                     <%=link_to "更多内容", book_series_collection_book_url(@book_series_1, @collection, book), class: "btn btn-min btn-primary" %>
                   </p>
-                  <p> 閲讀本書第： |
-                    <% book.chapters.each do |chap| %>
-                      <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, book, chap) %> | 
-
-                    <% end %> 章
-                  </p>
+                  <% if !book.chapters.empty? %>
+                    <p> 閲讀本書第： |
+                      <% book.chapters.each do |chap| %>
+                        <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, book, chap), :id => "chapter_list" %> | 
+                      <% end %> 章
+                    </p>
+                  <% end %>
+                  <% if !book.book_pages.empty? %>
+                    <p>
+                      閲讀本書補充内容： | <%= link_to "目錄", 
+                        book_series_collection_book_book_pages_url(@book_series, @collection, book),
+                         :id => "chapter_list" %> |
+                      <% book.book_pages.each do |book_page| %>
+                        <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, @collection, book, book_page), :id => "chapter_list" %> |
+                      <% end %>
+                    </p>
+                  <% end %>
                 </div>
               </div>
             </div>

@@ -115,7 +115,7 @@ class VersesController < ApplicationController
     @chapter = @book.chapters.find(params[:chapter_id])
   end
 
-  def update_finish
+  def stat_finish
     @chapter.stat_finish += 1
     jj = @chapter.stat_finish
     @chapter.update_attributes(:stat_finish => jj) 

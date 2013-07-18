@@ -1,3 +1,43 @@
+<div class="container-fluid">
+  <%= render 'header_toc' %>
+
+  <hr class="featurette-divider">
+
+  <% @book.book_pages.each do |book_page| %>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <p>
+          </p>
+          <p>
+            <% p2 ="/bible1.jpg" %>
+          </p>          
+          <img data-src="holder.js/100x100" class="img-rounded" alt="100x100" style="width: 100px; height: 100px;" src="<%= p2.to_s %>">
+        </div>
+        <div class="span10">
+          <h3>
+            <%= book_page.title %>
+          </h3>
+          <% pp = book_page.description.split("PP") %> 
+            <% pp.each do |p1| %>
+            <p>
+              <%= p1 %>
+            </p> 
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+  <% end %>
+
+</div>
+
+
+
+
+
+
+
 <h1>Listing book_pages</h1>
 
 <table>
@@ -16,14 +56,16 @@
     <td><%= book_page.title %></td>
     <td><%= book_page.description %></td>
     <td><%= book_page.book_id %></td>
-    <td><%= book_page.type %></td>
-    <td><%= link_to 'Show', book_page %></td>
-    <td><%= link_to 'Edit', edit_book_page_path(book_page) %></td>
-    <td><%= link_to 'Destroy', book_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= book_page.grp %></td>
+    <td><%= link_to 'Show', [@book_series, @collection, @book, book_page] %></td>
+    <td><%= link_to 'Edit', edit_book_series_collection_book_book_page_path(@book_series, @collection, @book, book_page) 
+        %></td>
+    <td><%= link_to 'Destroy', [@book_series, @collection, @book, book_page], 
+        method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Book page', new_book_page_path %>
+<%= link_to 'New Book page', new_book_series_collection_book_book_page_path(@book_series, @collection, @book) %>

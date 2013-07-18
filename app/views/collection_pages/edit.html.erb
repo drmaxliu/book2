@@ -1,6 +1,6 @@
-<h1>Editing collection_page</h1>
+<h1>Editing Collection Page</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @collection_page %> |
-<%= link_to 'Back', collection_pages_path %>
+<%= link_to 'Show', [@book_series, @collection, @collection_page] %> |
+<%= link_to 'Back', book_series_collection_collection_pages_path(@book_series, @collection) %>

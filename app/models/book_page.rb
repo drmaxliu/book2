@@ -9,6 +9,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  chapter_index :integer
+#  grp           :integer
 #
 
 class BookPage < ActiveRecord::Base

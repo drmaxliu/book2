@@ -1,3 +1,50 @@
+<div class="container-fluid">
+  
+  <div class="row-fluid">
+
+    <div class="span3">
+      <%= render 'navibar_collections' %>
+      <%= render 'navibar_books' %>
+      <div class="well sidebar-nav">
+        <img data-src="holder.js/280x600" alt="">
+      </div>
+    </div>
+
+    <div class="span9">
+
+      <div class="container-fluid">
+        <h2>
+          <%= @collection.title %>補充内容: <%= @collection_page.title %>
+        </h2>
+        <% pp =  @collection_page.description.split("PP") %> 
+        <% pp.each do |p1| %>
+        <p>
+          <%= p1 %>
+        </p> 
+        <% end %>
+
+      <p>閲讀其他補充内容: |
+        <% @collection.collection_pages.each do |collection_page| %>
+        　　<% if collection_page.id != @collection_page.id %>
+          	<%= link_to collection_page.title, book_series_collection_collection_page_url(@book_series, @collection, collection_page), :id => "chapter_list" %> |
+          <% end %>
+        <% end %>
+      </p>
+
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- static page to be rendered here -->
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -17,9 +64,9 @@
 
 <p>
   <b>Type:</b>
-  <%= @collection_page.type %>
+  <%= @collection_page.grp %>
 </p>
 
 
-<%= link_to 'Edit', edit_collection_page_path(@collection_page) %> |
-<%= link_to 'Back', collection_pages_path %>
+<%= link_to 'Edit', edit_book_series_collection_collection_page_path(@book_series, @collection, @collection_page) %> |
+<%= link_to 'Back', book_series_collection_collection_pages_path(@book_series, @collection) %>

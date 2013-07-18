@@ -1,4 +1,4 @@
-<%= form_for(@collection_page) do |f| %>
+<%= form_for([@book_series, @collection, @collection_page]) do |f| %>
   <% if @collection_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@collection_page.errors.count, "error") %> prohibited this collection_page from being saved:</h2>
@@ -24,8 +24,8 @@
     <%= f.number_field :collection_id %>
   </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.number_field :type %>
+    <%= f.label :grp %><br />
+    <%= f.number_field :grp %>
   </div>
   <div class="actions">
     <%= f.submit %>

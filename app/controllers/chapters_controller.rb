@@ -72,7 +72,11 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       if @chapter.update_attributes(params[:chapter])
-        format.html { redirect_to book_series_collection_book_chapters_url(@book_series, @collection, @book), notice: 'Chapter was successfully updated.' }
+        jj = @chapter.stat_read-1
+        if @chapter.stat_read >0 then @chapter.update_attributes(:stat_read => jj)
+        end
+        format.html { redirect_to book_series_collection_book_chapters_url(@book_series, @collection, @book), 
+          notice: "Successful Updates of " + params[:chapter].to_s }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

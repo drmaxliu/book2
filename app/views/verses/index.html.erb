@@ -1,5 +1,6 @@
 <div class="container-fluid">
 
+  <!--
   <div id="myCarousel" class="carousel slide">
     <div class="carousel-inner">
 
@@ -27,7 +28,6 @@
          <img data-src="holder.js/1200x500" class="img-rounded" alt="1200x500" style="width: 1200px; height: 500px;" src="/light 1.jpg">
         <div class="container" width="1000px">
           <div class="carousel-caption">
-            <!-- <p class="lead"> -->
             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
             <a class="btn btn-large btn-primary" href="#">Browse gallery</a>
           </div>
@@ -37,76 +37,12 @@
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  </div><!-- /.carousel -->
+  </div>
+  -->
 
+  <!-- /.carousel -->
 
-  <!-- <div class="bs-docs-example">  level 1 tab block -->
-    <ul id="collection_tabs" class="nav nav-pills">
-      <% ii = 1 %>
-      <% @book_series_1.collections.each do |collection| %>
-        <% link_1 = "#collect_" + ii.to_s %>
-        <% if ii==1 %>
-          <li class="active"><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
-        <% else %>
-          <li><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
-        <% end %>
-        <% ii = ii+1 %>
-      <% end %>
-    </ul>
-
-    <div id="collection_list" class="tab-content"> <!-- level 1 tab content -->
-       <% ii = 1 %>
-        <% @book_series_1.collections.each do |collection| %> <!-- level 1 iteration -->
-          <% if ii==1 %>
-            <% dd = "<div class=\"tab-pane fade in active\" id=" + "\"collect_" + ii.to_s + "\">" %>
-          <% else %>
-            <% dd = "<div class=\"tab-pane fade\" id=" + "\"collect_" + ii.to_s + "\">" %>
-          <% end %>
-          <%= dd.html_safe %>
-
-          <!-- <div class="bs-docs-example">  level 2 tab block -->
-            <% dd = "<ul id=\"book_tabs_" + ii.to_s + "\" class=\"nav nav-tabs yellow\">" %>
-            <%= dd.html_safe %>
-              <% jj = 1 %>
-              <% collection.books.each do |book| %>
-                <% link_1 = "#book_" + ii.to_s + "_" + jj.to_s %>
-                <% if jj==1 %>
-                  <li class="active"><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
-                <% else %>
-                  <li><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
-                <% end %>
-                <% jj = jj+1 %>
-              <% end %> <!-- book -->
-            </ul>
-
-            <div class="tab-content"> <!-- level 2 tab content-->
-
-              <% jj = 1 %>
-              <% collection.books.each do |book| %>
-                <% if jj==1 %>
-                  <% dd = "<div class=\"tab-pane fade in active\" id=book_" + ii.to_s + "_" + jj.to_s %>
-                <% else %>
-                  <% dd = "<div class=\"tab-pane fade\" id=book_" + ii.to_s + "_" + jj.to_s %>
-                <% end %>
-                  <%= dd.html_safe %>
-                  <p>閲讀本書第 |
-                    <% book.chapters.each do |chap| %>
-                      <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), :id => "chapter_list" %> |
-                    <% end %>
-                    章
-                  </p>
-                <% jj = jj+1 %>
-                </div>
-              <% end %> <!-- level 2 iteration -->
-            </div> <!-- level 2 tab content -->
-          <!-- /div> level 2 tab block -->
-
-          <% ii = ii+1 %> <!-- for each level 1 collection -->
-          </div>
-        <% end %> <!-- level 1 iteration -->
-    </div> <!-- level 1 tab content -->
-  <!-- </div>  level tab block -->
-
+  <%= render 'header_toc' %>
 
 
   <div class="row-fluid">
@@ -176,11 +112,15 @@
         </div>
 
         <div class="span3">
-          <p>本章點閱縂數：　<%= @chapter.stat_read.to_s %></p>
+          <p>本章點閱縂數：　
+            <span class="badge badge-success"><%= @chapter.stat_read.to_s %></span>
+          </p>
         </div>
 
         <div class="span3">
-          <p>本章閲讀完成數：　<%= @chapter.stat_finish.to_s %></p>
+          <p>完成本章閲讀：　
+            <span class="badge badge-success"><%= @chapter.stat_finish.to_s %></span>
+          </p>
         </div>
 
 
@@ -278,6 +218,20 @@
 
           <hr class="featurette-divider">
         </div>
+
+        <div align="middle">
+          <% icon_tag1 = "<i class=\"icon-file icon-white\"></i>" + " 加入讀經历史" %>
+          <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 完成本章閲讀" %>
+
+          <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+
+          <% @chapter.stat_finish += 1 %>
+          <%= link_to icon_tag2.html_safe, book_series_collection_book_chapter_path(@book_series,
+            @collection, @book, @chapter, :chapter => {:stat_finish => @chapter.stat_finish}), method: :put,
+            class: "btn btn-min btn-primary" %>
+          <p></p>
+        </div>
+
       </div>
 
       <div class="row-fluid">
@@ -303,23 +257,17 @@
 
           <div align="middle">
             <p>
-              <% icon_tag1 = "<i class=\"icon-file icon-white\"></i>" + " 加入讀經历史" %>
-              <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 完成本章閲讀" %>
-              <% icon_tag3 = "<i class=\"icon-heart icon-white\"></i>" + " 以上解釋按赞" %>
+              <% icon_tag3 = "<i class=\"icon-heart icon-white\"></i>" + " 給以上解釋按赞" %>
             </p>
-            <div class="bs-docs-example bs-docs-example-popover">
-              <div class="popover top">
-                <div class="arrow"></div>
-                <h3 class="popover-title">Popover top</h3>
-                <div class="popover-content">
-                  <p>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-                </div>
-              </div>
-            </div>
             <p>
-              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
-              <%= link_to icon_tag2.html_safe, "#", class: "btn btn-min btn-primary" %>
-              <%= link_to icon_tag3.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <% jj = @chapter.stat_note %>
+              <% @chapter.stat_note += 1 %>
+              <%= link_to icon_tag3.html_safe, book_series_collection_book_chapter_path(@book_series,
+                @collection, @book, @chapter, :chapter => {:stat_note => @chapter.stat_note}), method: :put,
+                class: "btn btn-min btn-primary" %>
+              <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> 
+              <%= @chapter.stat_note.to_s %></span>
+              
             </p>
           </div>
         </div>
@@ -373,7 +321,14 @@
               <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上摘要按个赞" %>
             </p>
             <p>
-              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <% jj = @chapter.stat_summary %>
+              <% @chapter.stat_summary += 1 %>
+              <%= link_to icon_tag1.html_safe, book_series_collection_book_chapter_path(@book_series,
+                @collection, @book, @chapter, :chapter => {:stat_summary => @chapter.stat_summary}), method: :put,
+                class: "btn btn-min btn-primary" %>
+            </p>
+            <p>
+              <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> <%= jj.to_s %></span>
             </p>
           </div>
 
@@ -404,8 +359,16 @@
             <p>
               <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上问题按个赞" %>
             </p>
+            
             <p>
-              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <% jj = @chapter.stat_question %>
+              <% @chapter.stat_question += 1 %>
+              <%= link_to icon_tag1.html_safe, book_series_collection_book_chapter_path(@book_series,
+                @collection, @book, @chapter, :chapter => {:stat_question => @chapter.stat_question}), method: :put,
+                class: "btn btn-min btn-primary" %>
+            </p>
+            <p>
+              <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> <%= jj.to_s %></span>
             </p>
           </div>
 
@@ -470,8 +433,16 @@
             <p>
               <% icon_tag1 = "<i class=\"icon-heart icon-white\"></i>" + " 给以上应用按个赞" %>
             </p>
+            
             <p>
-              <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
+              <% jj = @chapter.stat_app %>
+              <% @chapter.stat_app += 1 %>
+              <%= link_to icon_tag1.html_safe, book_series_collection_book_chapter_path(@book_series,
+                @collection, @book, @chapter, :chapter => {:stat_app => @chapter.stat_app}), method: :put,
+                class: "btn btn-min btn-primary" %>
+            </p>
+            <p>
+              <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> <%= jj.to_s %></span>
             </p>
           </div>
 
@@ -509,7 +480,7 @@
   <div class="row-fluid">
     <div class="span3">
       <p></p>
-      <img data-src="holder.js/300x600" class="img-rounded" alt="300x600" style="width: 300px; height: 600px;" src="/giraff 1 vert.jpg">
+      <img data-src="holder.js/300x600" class="img-rounded" alt="300x600" style="width: 300px; height: 600px;" src="/park 1 vert.jpg">
     </div>
 
     <div class="span9">
