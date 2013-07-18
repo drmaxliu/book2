@@ -52,11 +52,13 @@
                 <% end %>
                 章
               </p>
-              <p>閲讀本書補充内容 |
-                <% book.book_pages.each do |book_page| %>
-                  <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, collection, book, book_page), :id => "chapter_list" %> |
-                <% end %>
-              </p>
+              <% if !book.book_pages.empty? %>
+                <p>閲讀本書補充内容 |
+                  <% book.book_pages.each do |book_page| %>
+                    <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, collection, book, book_page), :id => "chapter_list" %> |
+                  <% end %>
+                </p>
+              <% end %>
             <% jj = jj+1 %>
             </div>
           <% end %> <!-- level 2 iteration -->

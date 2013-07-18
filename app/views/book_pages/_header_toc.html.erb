@@ -47,18 +47,20 @@
             <% end %>
               <%= dd.html_safe %>
               <p>閲讀本書第 |
-                <% book.chapters.each do |chap| %>
+                <% book.chapters.order("chapter_no").each do |chap| %>
                   <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), :id => "chapter_list" %> |
                 <% end %>
                 章
               </p>
-              <p>閲讀本書補充内容 | <%= link_to "目錄", 
-                  book_series_collection_book_book_pages_url(@book_series, @collection, book),
-                   :id => "chapter_list" %> |
-                <% book.book_pages.each do |book_page| %>
-                  <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, collection, book, book_page), :id => "chapter_list" %> |
-                <% end %>
-              </p>
+              <% if !book.book_pages.empty? %>
+                <p>閲讀本書補充内容 | <%= link_to "目錄", 
+                    book_series_collection_book_book_pages_url(@book_series, @collection, book),
+                     :id => "chapter_list" %> |
+                  <% book.book_pages.each do |book_page| %>
+                    <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, collection, book, book_page), :id => "chapter_list" %> |
+                  <% end %>
+                </p>
+              <% end %>
 
             <% jj = jj+1 %>
             </div>
