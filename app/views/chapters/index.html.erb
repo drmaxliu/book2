@@ -26,7 +26,7 @@
         <% end %>
         <% if !@book.chapters.empty? %>
           <p>閲讀本書第 |
-            <% @book.chapters.each do |chap| %>
+            <% @book.chapters.order("chapter_no").each do |chap| %>
               <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, @book, chap), :id => "chapter_list" %> |
             <% end %>
             章

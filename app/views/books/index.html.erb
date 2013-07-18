@@ -68,7 +68,7 @@
                   <p>
                     <%=link_to "更多内容", book_series_collection_book_url(@book_series_1, @collection, book), class: "btn btn-min btn-primary" %>
                   </p>
-                  <% if !book.chapters.empty? %>
+                  <% if !book.chapters.order("chapter_no").empty? %>
                     <p> 閲讀本書第： |
                       <% book.chapters.each do |chap| %>
                         <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, @collection, book, chap), :id => "chapter_list" %> | 
