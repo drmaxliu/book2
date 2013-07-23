@@ -143,11 +143,16 @@ class ChaptersController < ApplicationController
   # convert the book reading record to hash for checking
   def check_record
     @reading_plan = current_user.reading_plans.find_by_book_code(@book.book_code)
-    read_item = @reading_plan.read_record.split("PP")
-    @read_hash = {}
-    read_item.each do |item|
-      item_pair = item.split("/")
-      @read_hash[item_pair.first] = item_pair.last
+    rr = @reading_plan.read_record
+    if rr != nil
+      read_item = @reading_plan.read_record.split("PP")
+      @read_hash = {}
+      read_item.each do |item|
+        item_pair = item.split("/")
+        @read_hash[item_pair.first] = item_pair.last
+      end
+    else
+      @read_hash = {}
     end
   end
 

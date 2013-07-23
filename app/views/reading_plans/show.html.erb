@@ -31,8 +31,12 @@
 <% end %>
 
 <% if bb.chapters.count > 0 %>
-  <% accomplish_percentage = 100*read_info.count/bb.chapters.count %>
-  <% accomplish = accomplish_percentage.to_s + "%" %>
+  <% if @reading_plan.read_record != nil %>
+    <% accomplish_percentage = 100*read_info.count/bb.chapters.count %>
+    <% accomplish = accomplish_percentage.to_s + "%" %>
+  <% else %>
+    <% accomplish = "0%" %>
+  <% end %>
 <% else %>
   <% accomplish = "--" %>
 <% end %>
