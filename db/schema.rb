@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718072441) do
+ActiveRecord::Schema.define(:version => 20130721165148) do
 
   create_table "book_pages", :force => true do |t|
     t.string   "title"
@@ -85,6 +85,26 @@ ActiveRecord::Schema.define(:version => 20130718072441) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "grp"
+  end
+
+  create_table "reading_histories", :force => true do |t|
+    t.string   "page_type"
+    t.string   "page_code"
+    t.integer  "page_no"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "html_path"
+  end
+
+  create_table "reading_plans", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "book_code"
+    t.date     "target_date"
+    t.date     "finish_date"
+    t.text     "read_record"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

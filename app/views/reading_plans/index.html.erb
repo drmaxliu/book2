@@ -1,0 +1,77 @@
+<h3><%= @user.name %>, 您的讀經計劃列表如下：</h3>
+
+<% icon_tag1 = "<i class=\"icon-th-list icon-white\"></i>" %>
+<% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>" %>
+<% icon_tag3 = "<i class=\"icon-trash icon-white\"></i>" %>
+
+<p>
+  <table width="８00" border="1">
+    <tr>
+      <th width="100" scope="col">書卷名</th>
+      <th width="100" scope="col">計劃設定時間</th>
+      <th width="100" scope="col">計劃完成時間</th>
+      <th width="100" scope="col">上次讀經時間</th>
+      <th width="100" scope="col">完成進度</th>
+      <th width="100" scope="col">查看閲讀進度</th>
+      <th width="100" scope="col">更改目標時間</th>
+      <th width="100" scope="col">刪除讀經計劃</th>
+    </tr>
+    <% @reading_plans.each do |reading_plan| %>
+      <% bb = Book.find_by_book_code(reading_plan.book_code) %>
+      <% if bb != nil %>
+        <% book_name = bb.title %>
+        <% chapter_count = bb.chapters.count %>
+      <% else %>
+        <% book_name = "書卷未知" %>
+        <% chapter_count = 0 %>
+      <% end %>
+
+      <!-- test purpose -->
+      <!-- reading_plan.read_record -->
+      <% test = "1/" + "2013-7-22" + "PP" + "2/" + "2013-7-24" %>
+
+      <% if reading_plan.read_record != nil %>
+        <% read_item = reading_plan.read_record.split("PP") %>
+        <% read_info = Array.new %>
+        <% read_item.each do |item| %>
+          <% item_pair = item.split("/") %>
+          <% read_info << item_pair.last %>
+        <% end %>
+         <% last_read = read_info.last %>
+      <% else %>
+        <% last_read = "---" %>
+      <% end %>
+
+      <% if chapter_count > 0 %>
+        <% accomplish_percentage = 100*read_info.count/chapter_count %>
+        <% accomplish = accomplish_percentage.to_s + "%" %>
+      <% else %>
+        <% accomplish = "--" %>
+      <% end %>
+
+      <% created = reading_plan.created_at %>
+      <% created_date = created.year.to_s + "-" + created.month.to_s + "-" + created.day.to_s %>
+
+      <tr>
+        <td valign="top"><div align="left"><%= book_name %></div></td>
+        <td valign="top"><div align="left"><%= created_date  %></div></td>
+        <td valign="top"><div align="left"><%= reading_plan.target_date %></div></td>
+        <td valign="top"><div align="left"><%= last_read %></div></td>
+        <td valign="top"><div align="center"><%= accomplish %></div></td>
+        <td valign="top"><div align="center"><%= link_to icon_tag1.html_safe, [@user, reading_plan],
+          class: "btn btn-min btn-inverse"%></div></td>
+        <td valign="top"><div align="center">
+          <%= link_to icon_tag2.html_safe, edit_user_reading_plan_path(@user, reading_plan),
+          class: "btn btn-min btn-primary" %></div></td>
+        <td valign="top"><div align="center">
+            <%= link_to icon_tag3.html_safe, user_reading_plan_path(@user, reading_plan), 
+            method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-warning" %></div></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<br />
+
+<%= link_to '設立新的書卷讀經計劃', new_user_reading_plan_path(@user), class: "btn btn-min btn-success" %>
+

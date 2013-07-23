@@ -72,11 +72,44 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       if @chapter.update_attributes(params[:chapter])
+        # to avoid a repetitive count for the page read
         jj = @chapter.stat_read-1
         if @chapter.stat_read >0 then @chapter.update_attributes(:stat_read => jj)
         end
+
+        # check if to update the user reading plan progress
+        update_params = params[:chapter]
+        notice_msg = "Stats Updates: "
+
+        if user_signed_in? && update_params["stat_finish"] != nil then
+          @reading_plan = current_user.reading_plans.find_by_book_code(@book.book_code)
+          if @reading_plan != nil then
+            check_record
+            if @read_hash[@chapter.chapter_no.to_s] == nil then
+              # no exsiting chapter read record
+              # encode a new record to the reading record in the reading plan
+              current_time = Time.new
+              dd = Date.new(current_time.year, current_time.month, current_time.day)
+              if @read_hash.count == 0 then
+                new_read_record = @chapter.chapter_no.to_s + "/" + dd.to_s
+              else
+                new_read_record = @reading_plan.read_record + "PP" + @chapter.chapter_no.to_s + "/" + dd.to_s
+              end
+              @reading_plan.update_attributes(:read_record => new_read_record)
+              notice_msg = notice_msg + "Record of finishing reading on " + dd.to_s + " is added!"
+            else
+              notice_msg = notice_msg + "This chapter has been read on " + @read_hash[@chapter.chapter_no.to_s] 
+              nn = @chapter.stat_finish - 1
+              @chapter.update_attributes(:stat_finish => nn)
+            end
+          end
+        else notice_msg = notice_msg + update_params.to_s
+
+        end
+        
         format.html { redirect_to book_series_collection_book_chapters_url(@book_series, @collection, @book), 
-          notice: "Successful Updates of " + params[:chapter].to_s }
+          notice: notice_msg.html_safe }
+
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -105,6 +138,17 @@ class ChaptersController < ApplicationController
     @book_series_1 = BookSeries.first
     @collection = @book_series.collections.find(params[:collection_id])
     @book = @collection.books.find(params[:book_id])
+  end
+
+  # convert the book reading record to hash for checking
+  def check_record
+    @reading_plan = current_user.reading_plans.find_by_book_code(@book.book_code)
+    read_item = @reading_plan.read_record.split("PP")
+    @read_hash = {}
+    read_item.each do |item|
+      item_pair = item.split("/")
+      @read_hash[item_pair.first] = item_pair.last
+    end
   end
 
 end

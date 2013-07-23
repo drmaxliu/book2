@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+<h3><%= @user.name %>, 填寫您新的讀經計劃：</h3>
+
+<%= render 'form' %>
+
+<%= link_to '囘到計劃列表', user_reading_plans_path(@user), class: "btn btn-min btn-primary" %>
+
+<hr class="featurette-divider">
+
+<div class="row-fluid">
+
+	<h4>
+		關於設立新讀經計劃：
+	</h4>
+	<ul>
+		<li>良好的讀經習慣應以一卷一卷的書來讀。所以書卷讀經計劃以書卷為單位。</li>
+		<li>如果不知道該從哪卷書開始，請參考<%= link_to "聖經介紹", bible_intro_path, class: "btn btn-min btn-primary" %> 或
+			<%= link_to "閲讀指南", reader_guide_path, class: "btn btn-min btn-primary" %>。</li>
+		<li>設立新的讀經計劃只需兩個步驟：（１）選擇你要讀的書卷，（２）按照你的情況，自由設定你預定可以完成的時間。</li>
+		<li>計劃設定后，每次讀完一章，就在頁面處按鍵表示完成，maxBibleReader即會幫你追蹤你的讀經進度。</li>
+	</ul>
+
+</div>

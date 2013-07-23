@@ -29,7 +29,11 @@
                   <p>
                   </p>
                   <p>
-                    <% p2 = "/" + collection.logo %>
+                    <% if collection.logo != nil %>
+                      <% p2 = "/" + collection.logo %>
+                    <% else %>
+                      <% p2 = "/bible1.jpg" %>
+                    <% end %>
                   </p>
                   
                   <img data-src="holder.js/120x100" class="img-rounded" alt="120x100" style="width: 120px; height: 100px;" src="<%= p2.to_s %>">

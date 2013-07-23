@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<% bb = Book.find_by_book_code(@reading_plan.book_code) %>
+<h3><%= @user.name %>, 關於您<font color="#FF0000"><%= bb.title %></font>的讀經計劃和執行情況如下：</h3>
+
+<!-- test purpose -->
+<!--  @reading_plan.read_record -->
+<% test = "1/" + "2013-7-22" + "PP" + "2/" + "2013-7-24" %>
+
+<% created = @reading_plan.created_at %>
+<% created_date = created.year.to_s + "-" + created.month.to_s + "-" + created.day.to_s %>
+
+<h4>
+  <b>計劃創建時間:</b>
+  <%= created_date %>
+</h4>
+
+<h4>
+  <b>預定完成時間:</b>
+  <%= @reading_plan.target_date %>
+</h4>
+
+<% if @reading_plan.read_record != nil %>
+  <% read_item = @reading_plan.read_record.split("PP") %>
+  
+  <% read_info = {} %>
+  <% read_item.each do |item| %>
+    <% item_pair = item.split("/") %>
+    <% read_info[item_pair.first] = item_pair.last %>
+  <% end %>
+<% end %>
+
+<% if bb.chapters.count > 0 %>
+  <% accomplish_percentage = 100*read_info.count/bb.chapters.count %>
+  <% accomplish = accomplish_percentage.to_s + "%" %>
+<% else %>
+  <% accomplish = "--" %>
+<% end %>
+
+
+<h4>
+  <b>完成進度:　<%= accomplish %></b>
+</h4>
+
+<% icon_tag1 = "<i class=\"icon-star\"></i>" %>
+
+<% if @reading_plan.read_record != nil %>
+
+  <p>
+    <table width="８00" border="1">
+      <tr>
+        <th width="100" scope="col">章</th>
+        <th width="100" scope="col">已閲讀</th>
+        <th width="100" scope="col">閲讀完成時間</th>
+      </tr>
+
+      <% bb.chapters.order("chapter_no").each do |chapter| %>
+        <% record = read_info[chapter.chapter_no.to_s] %>
+        <% if record != nil %>
+          <% tag1 = icon_tag1 %>
+          <% tag2 = record %>
+        <% else %>
+          <% tag1 = "" %>
+          <% tag2 = "" %>
+        <% end %>
+
+        <tr>
+          <td valign="top"><div align="center"><%= chapter.chapter_no.to_s %></div></td>
+          <td valign="top"><div align="center"><%= tag1.html_safe %></div></td>
+          <td valign="top"><div align="center"><%= tag2 %></div></td>
+        </tr>
+      <% end %>
+    </table>
+  </p>
+
+<% end %>
+
+
+<%= link_to '更改目標時間', edit_user_reading_plan_path(@user, @reading_plan), class: "btn btn-min btn-warning" %>
+<%= link_to '囘到計劃列表', user_reading_plans_path(@user), class: "btn btn-min btn-primary" %>

@@ -1,0 +1,25 @@
+<%= form_for([@user, @reading_plan]) do |f| %>
+  <% if @reading_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= 設定不成功，因計劃設定有@reading_plan.errors.count%>個錯誤:</h2>
+
+      <ul>
+      <% @reading_plan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :book_code, "選擇書卷" %><br />
+    <%= f.select :book_code, @book_names %>
+  </div>
+  <div class="field">
+    <%= f.label :target_date, "預定完成目標時間" %><br />
+    <%= f.date_select :target_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit  "送出讀經計劃", class: "btn btn-min btn-warning" %>
+  </div>
+<% end %>

@@ -1,12 +1,5 @@
 Book2::Application.routes.draw do
 
-
-  
-  
-
-
-  get "user/resume_reading"
-
   root :to => 'pages#index'
 
   get 'reader_guide' => 'pages#reader_guide'
@@ -19,7 +12,7 @@ Book2::Application.routes.draw do
   get 'book_verse' => 'pages#book_verse'
   get 'top_outline' => 'pages#top_outline'
 
-  devise_for :users
+  get "user/resume_reading"
 
   resources :book_series do
     resources :collections do
@@ -33,6 +26,14 @@ Book2::Application.routes.draw do
       end
     end
   end
+
+  devise_for :users
+
+  resources :users do
+    resources :reading_plans
+    resources :reading_histories
+  end
+
 
 
   # The priority is based upon order of creation:

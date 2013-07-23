@@ -32,6 +32,7 @@ torah = protestant_canon.collections.create(title: "律法書",
 		第二部分記載了神救贖計劃的開始，就是揀選亞伯拉罕，與他立約，要從他的身上興起屬神民族就是以色列。
 		以色列將成爲神祭祀的囯，向全世界的萬民作見證，帶領萬民歸向神。",
 		logo: "flower 2.jpg", static_link: "book_cover_1")
+
 		gen1 = genesis.chapters.create(chapter_no: 1)
 			gen1.verses.create(verse_no: 0,
 				content_kjv: "",
@@ -446,16 +447,19 @@ torah = protestant_canon.collections.create(title: "律法書",
 				content_cuvt: "",
 				content_revs: "耶和华的使者从荆棘里火焰中向摩西显现．摩西观看、不料、荆棘被火烧着、却没有烧毁。",
 				content_revt: "")
+
 	leviticus = torah.books.create(name: "Leviticus", title: "利未記", book_code: "Lev", chinese_code: "利",
 		description: "聖經的第一卷書。主要的内容，以神揀選以色列人的先祖亞伯拉罕的時間點之前和之后，分成兩大部分。PP
 		第一部分記載了4個主要事件：神的創造，人的犯罪，全球洪水，和巴別塔。這四個事件分別啓示了天國的世界觀，人類世界一切問題的根源，
 		神與人所立的彩虹之約，和人類各族的起源和有不同語言的原因。",
 		logo: "flower 6.jpg")
+
 	numbers = torah.books.create(name: "Numbers", title: "民數記", book_code: "Nu", chinese_code: "民",
 		description: "聖經的第一卷書。主要的内容，以神揀選以色列人的先祖亞伯拉罕的時間點之前和之后，分成兩大部分。PP
 		第一部分記載了4個主要事件：神的創造，人的犯罪，全球洪水，和巴別塔。這四個事件分別啓示了天國的世界觀，人類世界一切問題的根源，
 		神與人所立的彩虹之約，和人類各族的起源和有不同語言的原因。",
 		logo: "flower 4.jpg")
+
 	deuteronomy = torah.books.create(name: "Deuteronomy", title: "申命記", book_code: "Dt", chinese_code: "申",
 		description: "聖經的第一卷書。主要的内容，以神揀選以色列人的先祖亞伯拉罕的時間點之前和之后，分成兩大部分。PP
 		第一部分記載了4個主要事件：神的創造，人的犯罪，全球洪水，和巴別塔。這四個事件分別啓示了天國的世界觀，人類世界一切問題的根源，
@@ -470,28 +474,39 @@ isralite_history = protestant_canon.collections.create(title: "以色列歷史",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 1.jpg")
+
 	joshua = isralite_history.books.create(name: "Joshua", title: "約書亞記", book_code: "Jos", chinese_code: "書",
 		description: "")
+
 	judges = isralite_history.books.create(name: "Judges", title: "士師記", book_code: "Jdg", chinese_code: "士",
 		description: "")
+
 	ruth = isralite_history.books.create(name: "Ruth", title: "路得記", book_code: "Ru", chinese_code: "得",
 		description: "")
+
 	samuel_1 = isralite_history.books.create(name: "1 Samuel", title: "撒母耳記上", book_code: "1Sa", chinese_code: "撒上",
 		description: "")
 	samuel_2 = isralite_history.books.create(name: "2 Samuel", title: "撒母耳記下", book_code: "2Sa", chinese_code: "撒下",
 		description: "")
+
 	kings_1 = isralite_history.books.create(name: "1 Kings", title: "列王記上", book_code: "1Ki", chinese_code: "王上",
 		description: "")
+
 	kings_2 = isralite_history.books.create(name: "2 Kings", title: "列王記下", book_code: "2Ki", chinese_code: "王下",
 		description: "")
+
 	chron_1 = isralite_history.books.create(name: "1 Chronicles", title: "歷代志上", book_code: "1Ch", chinese_code: "代上",
 		description: "")
+
 	chron_2 = isralite_history.books.create(name: "2 Chronicles", title: "歷代志下", book_code: "2Ch", chinese_code: "代下",
 		description: "")
+
 	ezra = isralite_history.books.create(name: "Ezra", title: "以斯拉記", book_code: "Ezr", chinese_code: "拉",
 		description: "")
+
 	nehemiah = isralite_history.books.create(name: "Nehemiah", title: "尼希米記", book_code: "Ne", chinese_code: "尼",
 		description: "")
+
 	esther = isralite_history.books.create(name: "Esther", title: "以斯帖記", book_code: "Est", chinese_code: "斯",
 		description: "")
 
@@ -503,16 +518,21 @@ poetry = protestant_canon.collections.create(title: "智慧和詩歌",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 2.jpg")
+
 	job = poetry.books.create(name: "Job", title: "約伯記", book_code: "Job", chinese_code: "伯",
 		description: "")
+
 	psalms = poetry.books.create(name: "Psalms", title: "詩篇", book_code: "Ps", chinese_code: "詩",
 		description: "")
+
 		psalms19 = psalms.chapters.create(chapter_no: 19)
 
 	proverbs = poetry.books.create(name: "Proverbs", title: "箴言", book_code: "Pr", chinese_code: "箴",
 		description: "")
+
 	ecclesiastes = poetry.books.create(name: "Ecclesiastes", title: "傳道書", book_code: "Ecc", chinese_code: "傳",
 		description: "")
+
 	song = poetry.books.create(name: "Song of Songs", title: "雅歌", book_code: "SS", chinese_code: "歌",
 		description: "")
 
@@ -524,14 +544,19 @@ major_prophets = protestant_canon.collections.create(title: "大先知書",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 3.jpg")
+
 	isaiah = major_prophets.books.create(name: "Isaiah", title: "以賽亞書", book_code: "Isa", chinese_code: "賽",
 		description: "")
+
 	jerimiah = major_prophets.books.create(name: "Jerimiah", title: "耶利米書", book_code: "Jer", chinese_code: "耶",
 		description: "")
+
 	lament = major_prophets.books.create(name: "Lamentations", title: "耶利米哀歌", book_code: "La", chinese_code: "哀",
 		description: "")
+
 	ezekiel = major_prophets.books.create(name: "Ezekiel", title: "以西結書", book_code: "Eze", chinese_code: "結",
 		description: "")
+
 	daniel = major_prophets.books.create(name: "Daniel", title: "但以理書", book_code: "Da", chinese_code: "但",
 		description: "")
 
@@ -543,28 +568,40 @@ minor_prophets = protestant_canon.collections.create(title: "小先知書",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 4.jpg")
+
 	hosea = minor_prophets.books.create(name: "Hosea", title: "何西阿書", book_code: "Hos", chinese_code: "何",
 		description: "")
+
 	joel = minor_prophets.books.create(name: "Joel", title: "約珥書", book_code: "Joel", chinese_code: "珥",
 		description: "")
+
 	amos = minor_prophets.books.create(name: "Amos", title: "阿摩司書", book_code: "Am", chinese_code: "摩",
 		description: "")
+
 	obadiah = minor_prophets.books.create(name: "Obadiah", title: "俄巴底亞書", book_code: "Ob", chinese_code: "俄",
 		description: "")
+
 	jonah = minor_prophets.books.create(name: "Jonah", title: "約拿書", book_code: "Jnh", chinese_code: "拿",
 		description: "")
+
 	micah = minor_prophets.books.create(name: "Micah", title: "彌迦書", book_code: "Mic", chinese_code: "彌",
 		description: "")
+
 	nahum = minor_prophets.books.create(name: "Nahum", title: "那鴻書", book_code: "Na", chinese_code: "鴻",
 		description: "")
+
 	habakkuk = minor_prophets.books.create(name: "Habakkuk", title: "哈巴谷書", book_code: "Hab", chinese_code: "哈",
 		description: "")
+
 	zephaniah = minor_prophets.books.create(name: "Zephaniah", title: "西番亞書", book_code: "Zep", chinese_code: "番",
 		description: "")
+
 	haggai = minor_prophets.books.create(name: "Haggai", title: "哈該書", book_code: "Hag", chinese_code: "該",
 		description: "")
+
 	zechariah = minor_prophets.books.create(name: "Zechariah", title: "撒迦利亞書", book_code: "Zec", chinese_code: "亞",
 		description: "")
+
 	melachi = minor_prophets.books.create(name: "Melachi", title: "瑪拉基書", book_code: "Mal", chinese_code: "瑪",
 		description: "")
 
@@ -576,14 +613,19 @@ gospels = protestant_canon.collections.create(title: "四福音書",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "light 1.jpg")
+
 	matthew = gospels.books.create(name: "Matthew", title: "馬太福音", book_code: "Mt", chinese_code: "太",
 		description: "")
+
 	mark = gospels.books.create(name: "Mark", title: "馬可福音", book_code: "Mk", chinese_code: "可",
 		description: "")
+
 	luke = gospels.books.create(name: "Luke", title: "路加福音", book_code: "Lk", chinese_code: "路",
 		description: "")
+
 	john = gospels.books.create(name: "John", title: "約翰福音", book_code: "Jn", chinese_code: "約",
 		description: "")
+
 		john_1 = john.chapters.create(chapter_no: 1)
 
 church_history = protestant_canon.collections.create(title: "教會歷史", 
@@ -594,6 +636,7 @@ church_history = protestant_canon.collections.create(title: "教會歷史",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "light 2.jpg")
+
 	acts = church_history.books.create(name: "Acts", title: "使徒行傳", book_code: "Ac", chinese_code: "",
 		description: "")
 
@@ -605,34 +648,47 @@ paul_letters = protestant_canon.collections.create(title: "保羅書信",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "light 3.jpg")
+
 	romans = paul_letters.books.create(name: "Romans", title: "羅馬書", book_code: "Ro", chinese_code: "羅",
 		description: "")
+
 		romans1 = romans.chapters.create(chapter_no: 1)
 
 	corith_1 = paul_letters.books.create(name: "1 Corithians", title: "哥林多前書", book_code: "1Co", chinese_code: "林前",
 		description: "")
+
 	corith_2 = paul_letters.books.create(name: "2 Corithians", title: "哥林多后書", book_code: "2C", chinese_code: "林后",
 		description: "")
+
 	galatians = paul_letters.books.create(name: "Galatians", title: "加拉太書", book_code: "Gal", chinese_code: "加",
 		description: "")
+
 	ephesians = paul_letters.books.create(name: "Ephesians", title: "以弗所書", book_code: "Eph", chinese_code: "弗",
 		description: "")
+
 	phillippians = paul_letters.books.create(name: "Phillippians", title: "腓立比書", book_code: "Php", chinese_code: "腓",
 		description: "")
+
 	colossians = paul_letters.books.create(name: "Colossians", title: "歌羅西書", book_code: "Col", chinese_code: "西",
 		description: "")
+
 		col_1 = colossians.chapters.create(chapter_no: 1)
 		
 	thess_1 = paul_letters.books.create(name: "1 Thessalonians", title: "帖撒羅尼迦前書", book_code: "1Th", chinese_code: "帖前",
 		description: "")
+
 	thess_2 = paul_letters.books.create(name: "2 Thessalonians", title: "帖撒羅尼迦后書", book_code: "2Th", chinese_code: "帖后",
 		description: "")
+
 	tim_1 = paul_letters.books.create(name: "1 Timothy", title: "提摩太前書", book_code: "1Ti", chinese_code: "提前",
 		description: "")
+
 	tim_2 = paul_letters.books.create(name: "2 Timothy", title: "提摩太后書", book_code: "2Ti", chinese_code: "提后",
 		description: "")
+
 	titus = paul_letters.books.create(name: "Titus", title: "提多書", book_code: "Tit", chinese_code: "多",
 		description: "")
+
 	philemon = paul_letters.books.create(name: "Philemon", title: "腓利門書", book_code: "Phm", chinese_code: "門",
 		description: "")
 	
@@ -644,20 +700,28 @@ other_letters = protestant_canon.collections.create(title: "一般書信",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 1.jpg")
+
 	hebrews = other_letters.books.create(name: "Hebrews", title: "希伯來書", book_code: "Heb", chinese_code: "",
 		description: "")
+
 	james = other_letters.books.create(name: "James", title: "雅各書", book_code: "Jas", chinese_code: "",
 		description: "")
+
 	peter_1 = other_letters.books.create(name: "1 Peter", title: "彼得前書", book_code: "1Pe", chinese_code: "",
 		description: "")
+
 	peter_2 = other_letters.books.create(name: "2 Peter", title: "彼得后書", book_code: "2Pe", chinese_code: "",
 		description: "")
+
 	john_1 = other_letters.books.create(name: "1 John", title: "約翰１書", book_code: "1Jn", chinese_code: "",
 		description: "")
+
 	john_2 = other_letters.books.create(name: "2 John", title: "約翰２書", book_code: "2Jn", chinese_code: "",
 		description: "")
+
 	john_3 = other_letters.books.create(name: "3 John", title: "約翰３書", book_code: "3Jn", chinese_code: "",
 		description: "")
+
 	jude = other_letters.books.create(name: "Jude", title: "猶大書", book_code: "Jude", chinese_code: "",
 		description: "")
 
@@ -669,6 +733,7 @@ end_prophecy = protestant_canon.collections.create(title: "末世預言",
 	但人受魔鬼的欺騙而悖逆神，使原來神讓人來管理的美好世界被魔鬼控制，人也成爲罪的奴隸。但神對人有無比的大愛，安排了救贖計劃。
 	這個計劃在1500年后耶穌降生顯明出來。所以讀了舊約的律法書，就明白耶穌來到世界為人類死在十字架的原因。",
 	logo: "flower 2.jpg")
+
 	revelation = end_prophecy.books.create(name: "Revelation", title: "啓示錄", book_code: "Rev", chinese_code: "",
 		description: "")
 

@@ -14,8 +14,12 @@
 #  book_code     :string(255)
 #
 
+
+# for use as (1) reference verse blocks to chapters
+# or (2) reference verse blocks to theme-based topics
+
 class VerseBlock < ActiveRecord::Base
-  attr_accessible :book_code, :taggable_id, :taggable_type, :title, :verse_from, :verse_to, :chapter_no
+  attr_accessible :book_code, :chapter_no, :taggable_id, :taggable_type, :title, :verse_from, :verse_to
 
   belongs_to :taggable, :polymorphic => true
   validates :taggable_type, presence: true

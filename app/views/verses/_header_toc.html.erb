@@ -46,11 +46,50 @@
               <% dd = "<div class=\"tab-pane fade\" id=book_" + ii.to_s + "_" + jj.to_s %>
             <% end %>
               <%= dd.html_safe %>
+
               <p>閲讀本書第 |
                 <% book.chapters.order("chapter_no").each do |chap| %>
-                  <%= link_to chap.chapter_no.to_s, book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), :id => "chapter_list" %> |
+                  <% chapter_number = chap.chapter_no.to_s %>
+                  <% if user_signed_in? %>
+                    <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
+                    <% if @reading_plan != nil %>
+
+                      <% read_item = @reading_plan.read_record.split("PP") %>
+                      <% @read_hash = {} %>
+                      <% read_item.each do |item| %>
+                        <% item_pair = item.split("/") %>
+                        <% @read_hash[item_pair.first] = item_pair.last %>
+                      <% end %>
+                      <% if @read_hash[chapter_number] != nil %>
+                        <% chapter_number = "<font color=\"#FF0000\">" + chapter_number + "</font>" %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+
+                  <%= link_to chapter_number.html_safe, 
+                    book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), 
+                    :id => "chapter_list" %> |
+
                 <% end %>
                 章
+                <% if user_signed_in? %>
+                  <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
+                  <% if @reading_plan != nil %>
+                    <% rr = @reading_plan.read_record %>
+                    <% if rr != nil %>
+                      <% record = rr.split("PP") %>
+                      <% percent = 100*record.count/book.chapters.count %>
+                    <% else %>
+                      <% percent = 0 %>
+                    <% end %>
+                    <font color="#FF0000">
+                    <%= "- 本章在您的讀經計劃中 - 已完成閲讀:" + percent.to_s +  "%" %>
+                    </font>
+                    <font color="000000">
+                    <%= "(紅色表示已閲讀過）" %>
+                    </font>
+                  <% end %>
+                <% end %>
               </p>
               <% if !book.book_pages.empty? %>
                 <p>閲讀本書補充内容 |

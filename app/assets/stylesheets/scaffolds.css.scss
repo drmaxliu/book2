@@ -12,11 +12,13 @@ p, ol, ul, td {
   line-height: 18px;
 }
 
+
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
+
 
 /*
 a {
@@ -75,4 +77,10 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.white-caret
+{
+  border-top-color: white !important;
+  border-bottom-color: white !important;
 }

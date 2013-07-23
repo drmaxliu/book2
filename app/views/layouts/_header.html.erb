@@ -26,14 +26,24 @@
 
 		    <ul class="nav pull-right">
 
-        <% if user_signed_in? %>
-          <li><%= link_to "我的讀經", 'user#resume_reading' %></li>
-          <li><%= link_to current_user.name, edit_user_registration_path %></li>
-          <li><%= link_to "登出", destroy_user_session_path, method: :delete %></li>
-            <% else %>
+          <% if user_signed_in? %>
+            <li>
+              <div class="btn-group">
+                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><%= current_user.name %> 
+                  <span class="caret white-caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "帳號更新", edit_user_registration_path %></li>
+                  <li><%= link_to "讀經計劃列表", user_reading_plans_path(current_user) %></li>
+                  <li><%= link_to "新的書卷讀經", new_user_reading_plan_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <li><%= link_to "登出", destroy_user_session_path, method: :delete %></a></li>
+                </ul>
+              </div><!-- /btn-group -->
+            </li>
+          <% else %>
     			   <li><%= link_to "登入", new_user_session_path %></li>
-            <% end %>
-          <li><%= link_to "成爲會員", contact_path %></li>
+          <% end %>
+            <li><%= link_to "成爲會員", contact_path %></li>
 		    </ul>
 
       </div>

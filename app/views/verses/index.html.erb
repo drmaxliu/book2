@@ -47,11 +47,11 @@
 
   <div class="row-fluid">
 
-    <div class="span12">
+    <div class="span6">
+
       <h2>
         <%= @book.title %><%= @chapter.chapter_no %>章
-        <%= link_to "本书介绍", book_series_collection_book_url(@book_series, @collection, @book), 
-          class: "btn btn-min btn-primary" %>
+
         <% prev_id = @chapter.id - 1 %>
         <% if prev_id > 0 %>
           <% prev_chap = Chapter.find(prev_id) %>
@@ -75,207 +75,229 @@
           <%= link_to "下一章", book_series_collection_book_chapter_url(@book_series, next_coll, next_book, next_chap), 
             class: "btn btn-min btn-warning" %>
         <% end %>
+
+        <%= link_to "本书介绍", book_series_collection_book_url(@book_series, @collection, @book), 
+        class: "btn btn-min btn-primary" %>
+
+        &nbsp; &nbsp;
+
+        <h5>
+         
+        點閱本章總人數：<span class="badge badge-warning"><%= @chapter.stat_read.to_s %></span>
+
+        &nbsp; &nbsp;
+
+        完成閲讀本章總人數：<span class="badge badge-warning"><%= @chapter.stat_finish.to_s %></span>
+    
+        </h5>
+
       </h2>
+    </div>
+
+    <div class="span4 offset2">
+      <p> &nbsp; </p>
+      <p>
+        <div class="btn-group">
+          <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">相關經文
+            <span class="caret white-caret"></span></button>
+          <ul class="dropdown-menu">
+            <% if @chapter.verse_blocks.empty? %>
+              <li><%= "無相關經文" %></li>
+            <% else %>
+              <% @chapter.verse_blocks.each do |ref| %>
+                <% bb = Book.find_by_book_code(ref.book_code) %>
+                <% coll = Collection.find(bb.collection_id) %>
+                <% cc = bb.chapters.find_by_chapter_no(ref.chapter_no) %>
+
+                <% verse_ref = bb.chinese_code + ref.chapter_no.to_s + ":" + ref.verse_from.to_s + "-" + 
+                   ref.verse_to.to_s %>
+                <li><%= link_to verse_ref.html_safe, 
+                  book_series_collection_book_chapter_url(@book_series, coll, bb, cc) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div><!-- /btn-group -->
+
+        <div class="btn-group">
+          <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">閲讀書簽
+            <span class="caret white-caret"></span></button>
+          <ul class="dropdown-menu">
+            <% if !user_signed_in? %>
+              <li><%= "請先登入" %></li>
+            <% elsif current_user.reading_histories.empty? %>
+              <li><%= "尚無閲讀書簽" %></li>
+            <% else %>
+              <% current_user.reading_histories.each do |record| %>
+                <% if record.html_path!=nil %>
+                  <li><%= link_to record.page_code, record.html_path.html_safe %></li>
+                <% end %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div><!-- /btn-group -->
+      </p>
+    </div>
+
+  </div>
+
+  <hr class="featurette-divider">
+
+
+  <div class="row-fluid">
+
+    <div class="span6">
+
+      <button type="button" class="btn btn-block btn-success">和合本經文
+      </button>
+      <p></p>
+
+      <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
+      </button>
+      <p></p>
+      <font color="#000000">
+        <p>
+          <% @chapter.verses.each do |verse| %>
+            <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
+            <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
+              <!--
+              <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
+              <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
+              -->
+            <% else %>
+              |<%= verse.verse_no.to_s %>| <%= verse.content_cuvs.html_safe %>
+            <% end %>
+          <% end %>
+        </p>
+      </font>
 
       <hr class="featurette-divider">
+    </div>
 
+    <div class="span6">
+
+      <button type="button" class="btn btn-block btn-success">
+        經文修正參考
+      </button>
+      <p></p>
+
+      <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
+      </button>
+      <p></p>
+      <font color="#000000">
+        <p>
+          <% @chapter.verses.each do |verse| %>
+            <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
+            <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
+              <!--
+              <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
+              <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
+              -->
+             
+            <% else %>
+             |<%= verse.verse_no.to_s %>| <%= verse.content_revs.html_safe %>
+            <% end %>
+          <% end %>
+        </p>
+      </font>
+
+      <hr class="featurette-divider">
+    </div>
+
+  </div>
+
+  <div class="row-fluid">
+    <div align="middle">
+
+
+      <% icon_tag1 = "<i class=\"icon-file icon-white\"></i>" + " 加入閲讀書簽" %>
+    
+      <% if user_signed_in? %>
+
+        <!-- add a new reading history with click -->
+        <% if current_user.reading_histories.empty? %>
+          <% reading_history = current_user.reading_histories.create %>
+          <% "reading history empty, create a new one" %>
+        <% elsif current_user.reading_histories.order("created_at").last.html_path!=nil %>
+          <% if current_user.reading_histories.count > 9 %>
+            <% n = current_user.reading_histories.count - 9 %>
+            <% n.to_s %>
+            <% n.times {current_user.reading_histories.order("created_at").first.delete} %>
+          <% end %>
+          <% reading_history = current_user.reading_histories.create %>
+          <% "no available history record for use, create a new one" %>
+        <% else %>
+          <% reading_history = current_user.reading_histories.order("created_at").last %>
+          <% "obtain the available history" %>
+        <% end %>
+
+        <% current_page_url = "/book_series/1/collections/" + @collection.id.to_s + "/books/" + 
+            @book.id.to_s + "/chapters/" + @chapter.id.to_s + "/verses" %>
+        <% page_title = "書卷：" + @book.title + @chapter.chapter_no.to_s + "章" %>
       
+      
+        <%= link_to icon_tag1.html_safe, user_reading_history_path(current_user, reading_history,
+          :reading_history => {:html_path => current_page_url, :page_code => page_title}), method: :put,
+          class: "btn btn-min btn-primary" %>  
 
-      <div class="row-fluid">
-
-        <div class="span3">
-          <% if user_signed_in? %>
-            <p>聖經進度：10%</p> 
-            <div class="progress">
-              <div class="bar bar-info" style="width: 10%;"></div>
-            </div>
-          <% else %>
-            <p>聖經進度：　-- 請先登入</p> 
-            <div class="progress">
-              <div class="bar bar-info" style="width: 0%;"></div>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="span3">
-          <% if user_signed_in? %>
-            <p>本書進度：30%</p> 
-            <div class="progress">
-              <div class="bar bar-info" style="width: 30%;"></div>
-            </div>
-          <% else %>
-            <p>本書進度：　-- 請先登入</p> 
-            <div class="progress">
-              <div class="bar bar-info" style="width: 0%;"></div>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="span3">
-          <p>本章點閱縂數：　
-            <span class="badge badge-success"><%= @chapter.stat_read.to_s %></span>
-          </p>
-        </div>
-
-        <div class="span3">
-          <p>完成本章閲讀：　
-            <span class="badge badge-success"><%= @chapter.stat_finish.to_s %></span>
-          </p>
-        </div>
+      <% else %>
+         <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %> 
+      <% end %>
 
 
-      </div><!--row-fluid-->
+      <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 點擊完成閲讀"  %>
 
-      <!-- if user_signed_in? -->
+      <!-- update stat_finish -->
+      <% @chapter.stat_finish += 1 %>
+      <%= link_to icon_tag2.html_safe, book_series_collection_book_chapter_path(@book_series,
+        @collection, @book, @chapter, :chapter => {:stat_finish => @chapter.stat_finish}), method: :put,
+        class: "btn btn-min btn-primary" %>
 
-      <div class="row-fluid">
-        <div class="span6">
-          <h3>本章相關經文:</h3>
-          <% if @chapter.verse_blocks.empty? %>
-            <%= "無相關經文" %>
-          <% else %>
-            <% @chapter.verse_blocks.each do |ref| %>
-              <% bb = Book.find_by_book_code(ref.book_code) %>
-              <% coll = Collection.find(bb.collection_id) %>
-              <% cc = bb.chapters.find_by_chapter_no(ref.chapter_no) %>
+    </div>
+  </div>
 
-              <% verse_ref = bb.chinese_code + ref.chapter_no.to_s + ":" + ref.verse_from.to_s + "-" + 
-                 ref.verse_to.to_s %>
-              <%= link_to verse_ref.html_safe, 
-                book_series_collection_book_chapter_url(@book_series, coll, bb, cc),
-                class: "btn btn-min btn-primary" %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="span6">
-          <h3>经文阅读历史:</h3>
-          <%= link_to "马太福音14", "#", class: "btn btn-min btn-inverse" %> 
-          <%= link_to "马可福音6", "#", class: "btn btn-min btn-inverse" %> 
-          <%= link_to "路加福音9", "#", class: "btn btn-min btn-inverse" %>
-          <%= link_to "约翰福音1", "#", class: "btn btn-min btn-inverse" %>
-        </div>
-      </div><!--row-fluid-->
+  <p></p>
 
+  <div class="row-fluid">
+    <div class="span12">
+      <button type="button" class="btn btn-block btn-warning">
+        經文註釋
+      </button>
+      <p></p>
+      <p>
 
-      <hr class="featurette-divider">
-
-      <div class="row-fluid">
-
-        <div class="span6">
-
-          <button type="button" class="btn btn-block btn-success">和合本經文
-          </button>
-          <p></p>
-
-          <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
-          </button>
-          <p></p>
-          <font color="#000000">
-            <p>
-              <% @chapter.verses.each do |verse| %>
-                <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
-                <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
-                  <!--
-                  <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
-                  <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
-                  -->
-                <% else %>
-                  |<%= verse.verse_no.to_s %>| <%= verse.content_cuvs.html_safe %>
-                <% end %>
-              <% end %>
-            </p>
-          </font>
-
-          <hr class="featurette-divider">
-        </div>
-
-        <div class="span6">
-
-          <button type="button" class="btn btn-block btn-success">
-            經文修正參考
-          </button>
-          <p></p>
-
-          <button type="button" class="btn btn-primary"><%= @book.title %> <%= @chapter.chapter_no.to_s %>章
-          </button>
-          <p></p>
-          <font color="#000000">
-            <p>
-              <% @chapter.verses.each do |verse| %>
-                <% if verse.verse_no==0 %> <h4><%= verse.content_cuvs.html_safe %></h4>
-                <% elsif verse.verse_no==-1 %> <h5><%= verse.content_cuvs.html_safe %></h5>
-                  <!--
-                  <% verse_number = @chapter.chapter_no.to_s + ":"  + verse.verse_no.to_s %>
-                  <span class="badge"><%= verse_number %></span> <%= verse.content_cuvs.html_safe %>
-                  -->
-                 
-                <% else %>
-                 |<%= verse.verse_no.to_s %>| <%= verse.content_revs.html_safe %>
-                <% end %>
-              <% end %>
-            </p>
-          </font>
-
-          <hr class="featurette-divider">
-        </div>
-
-        <div align="middle">
-          <% icon_tag1 = "<i class=\"icon-file icon-white\"></i>" + " 加入讀經历史" %>
-          <% icon_tag2 = "<i class=\"icon-star icon-white\"></i>" + " 完成本章閲讀" %>
-
-          <%= link_to icon_tag1.html_safe, "#", class: "btn btn-min btn-primary" %>
-
-          <% @chapter.stat_finish += 1 %>
-          <%= link_to icon_tag2.html_safe, book_series_collection_book_chapter_path(@book_series,
-            @collection, @book, @chapter, :chapter => {:stat_finish => @chapter.stat_finish}), method: :put,
-            class: "btn btn-min btn-primary" %>
-          <p></p>
-        </div>
-
-      </div>
-
-      <div class="row-fluid">
-        <div class="span12">
-          <button type="button" class="btn btn-block btn-warning">
-            經文註釋
-          </button>
-          <p></p>
+      <% @chapter.comments.each do |comment| %>
+        <% if comment.grp==0 %> 
           <p>
-
-          <% @chapter.comments.each do |comment| %>
-            <% if comment.grp==0 %> 
-              <p>
-                <% comment_number = @chapter.chapter_no.to_s + ":"  + comment.verse_from.to_s %>
-                <% if comment.verse_from != comment.verse_to %>
-                  <% comment_number = comment_number + "-"  + comment.verse_to.to_s %>
-                <% end %>
-                <!-- <span class="badge"><%= comment_number %></span> -->
-                |<%= comment_number %>| <%= comment.note.html_safe %>
-              </p>
+            <% comment_number = @chapter.chapter_no.to_s + ":"  + comment.verse_from.to_s %>
+            <% if comment.verse_from != comment.verse_to %>
+              <% comment_number = comment_number + "-"  + comment.verse_to.to_s %>
             <% end %>
-          <% end %>
+            <!-- <span class="badge"><%= comment_number %></span> -->
+            |<%= comment_number %>| <%= comment.note.html_safe %>
+          </p>
+        <% end %>
+      <% end %>
 
-          <div align="middle">
-            <p>
-              <% icon_tag3 = "<i class=\"icon-heart icon-white\"></i>" + " 給以上解釋按赞" %>
-            </p>
-            <p>
-              <% jj = @chapter.stat_note %>
-              <% @chapter.stat_note += 1 %>
-              <%= link_to icon_tag3.html_safe, book_series_collection_book_chapter_path(@book_series,
-                @collection, @book, @chapter, :chapter => {:stat_note => @chapter.stat_note}), method: :put,
-                class: "btn btn-min btn-primary" %>
-              <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> 
-              <%= @chapter.stat_note.to_s %></span>
-              
-            </p>
-          </div>
-        </div>
+      <div align="middle">
+        <p>
+          <% icon_tag3 = "<i class=\"icon-heart icon-white\"></i>" + " 給以上解釋按赞" %>
+        </p>
+        <p>
+          <% jj = @chapter.stat_note %>
+          <% @chapter.stat_note += 1 %>
+          <%= link_to icon_tag3.html_safe, book_series_collection_book_chapter_path(@book_series,
+            @collection, @book, @chapter, :chapter => {:stat_note => @chapter.stat_note}), method: :put,
+            class: "btn btn-min btn-primary" %>
+          <span class="badge badge-success"><i class="icon-thumbs-up icon-white"></i> 
+          <%= @chapter.stat_note.to_s %></span>
+          
+        </p>
       </div>
+    </div>
+  </div>
 
-      <hr class="featurette-divider">
+  <hr class="featurette-divider">
 
-    </div> <!-- end of first span12 -->
   </div> <!-- end of first row-fluid -->
 
   <div class="row-fluid">
