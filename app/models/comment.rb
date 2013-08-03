@@ -3,18 +3,20 @@
 # Table name: comments
 #
 #  id         :integer          not null, primary key
-#  chapter_id :integer
-#  verse_from :integer
-#  verse_to   :integer
 #  note       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  grp        :integer
+#  light_id   :integer
+#  user_id    :integer
+#  praise     :integer
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :chapter_id, :note, :verse_from, :verse_to, :grp
+  attr_accessible :note, :user_id, :light_id, :praise
 
-  belongs_to :chapter
-  validates :chapter_id, presence: true
+  belongs_to :light
+  
+  validates :light_id, presence: true
+  validates :note,  presence: true
+  validate :user_id, presence: true
 end

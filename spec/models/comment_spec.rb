@@ -3,13 +3,12 @@
 # Table name: comments
 #
 #  id         :integer          not null, primary key
-#  chapter_id :integer
-#  verse_from :integer
-#  verse_to   :integer
 #  note       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  grp        :integer
+#  light_id   :integer
+#  user_id    :integer
+#  praise     :integer
 #
 
 require 'spec_helper'

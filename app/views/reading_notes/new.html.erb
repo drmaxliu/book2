@@ -1,0 +1,9 @@
+<div class="container-fluid">
+
+<h3><%= @user.name %>, 寫下您新的讀經筆記：</h3>
+
+<%= render 'form' %>
+
+<%= link_to '囘到筆記列表', user_reading_notes_path(@user), class: "btn btn-min btn-primary" %>
+
+<hr class="featurette-divider">

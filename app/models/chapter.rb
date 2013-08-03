@@ -20,11 +20,16 @@
 
 class Chapter < ActiveRecord::Base
   attr_accessible :book_id, :chapter_no, :description, :title, :static_link,
-  	:stat_read, :stat_finish, :stat_summary, :stat_note, :stat_question, :stat_app
+  	:stat_read, :stat_finish, :stat_summary, :stat_note, :stat_question, :stat_app,
+  	:verse_from, :verse_to, :content
 
   has_many :verses, dependent: :destroy
-  has_many :comments, dependent: :destroy
   belongs_to :book
   validates :book_id, presence: true
+
+  # verse_blocks: for cross references
+  # bible_notes: for commentary
   has_many :verse_blocks, :as => :taggable, dependent: :destroy
+  has_many :bible_notes, dependent: :destroy
+  has_many :lights, :as => :taggable, dependent: :destroy
 end

@@ -1,0 +1,60 @@
+<h3><%= @user.name %>, 您的讀經筆記列表如下：</h3>
+
+<% icon_tag1 = "<i class=\"icon-th-list icon-white\"></i>" %>
+<% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>" %>
+<% icon_tag3 = "<i class=\"icon-trash icon-white\"></i>" %>
+
+<p>
+  <table width="８00" border="1">
+    <tr>
+      <th width="100" scope="col">書卷名</th>
+      <th width="100" scope="col">經節</th>
+      <th width="100" scope="col">標題</th>
+      <th width="100" scope="col">筆記首次時間</th>
+      <th width="100" scope="col">上次更新時間</th>
+      <th width="100" scope="col">閲讀讀經筆記</th>
+      <th width="100" scope="col">修改讀經筆記</th>
+      <th width="100" scope="col">刪除讀經筆記</th>
+    </tr>
+    <% @reading_notes.each do |reading_note| %>
+      <% bb = Book.find_by_book_code(reading_note.book_code) %>
+      <% if bb != nil %>
+        <% book_name = bb.title %>
+      <% else %>
+        <% book_name = "書卷未知" %>
+      <% end %>
+
+      <!-- test purpose -->
+      <!-- reading_note.read_record -->
+
+      <% created = reading_note.created_at %>
+      <% created_date = created.year.to_s + "-" + created.month.to_s + "-" + created.day.to_s %>
+      <% updated = reading_note.updated_at %>
+      <% updated_date = updated.year.to_s + "-" + updated.month.to_s + "-" + updated.day.to_s %>
+      <% passage = bb.title + reading_note.chapter_no.to_s + "章" + reading_note.verse_from.to_s + "-"  + 
+        reading_note.verse_to.to_s + "節" %>
+
+      <tr>
+        <td valign="top"><div align="left"><%= book_name %></div></td>
+        <td valign="top"><div align="left"><%= passage %></div></td>
+        <td valign="top"><div align="left"><%= reading_note.title %></div></td>
+        <td valign="top"><div align="left"><%= created_date %></div></td>
+        <td valign="top"><div align="left"><%= updated_date %></div></td>
+        <td valign="top"><div align="center">
+          <%= link_to icon_tag1.html_safe, user_reading_note_path(@user, reading_note),
+          class: "btn btn-min btn-primary" %></div></td>
+        <td valign="top"><div align="center">
+          <%= link_to icon_tag2.html_safe, edit_user_reading_note_path(@user, reading_note),
+          class: "btn btn-min btn-primary" %></div></td>
+        <td valign="top"><div align="center">
+            <%= link_to icon_tag3.html_safe, user_reading_note_path(@user, reading_note), 
+            method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-warning" %></div></td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<br />
+
+<%= link_to '寫新的讀經筆記', new_user_reading_note_path(@user), class: "btn btn-min btn-success" %>
+

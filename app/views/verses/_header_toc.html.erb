@@ -1,3 +1,4 @@
+
 <ul id="collection_tabs" class="nav nav-pills">
   <% ii = 1 %>
   <% @book_series_1.collections.each do |collection| %>
@@ -48,31 +49,41 @@
               <%= dd.html_safe %>
 
               <p>閲讀本書第 |
-                <% book.chapters.order("chapter_no").each do |chap| %>
-                  <% chapter_number = chap.chapter_no.to_s %>
-                  <% if user_signed_in? %>
-                    <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
-                    <% if @reading_plan != nil %>
 
-                      <% rr = @reading_plan.read_record %>
-                      <% if rr != nil %>
-                        <% read_item = rr.split("PP") %>
-                        <% @read_hash = {} %>
-                        <% read_item.each do |item| %>
-                          <% item_pair = item.split("/") %>
-                          <% @read_hash[item_pair.first] = item_pair.last %>
-                        <% end %>
-                        <% if @read_hash[chapter_number] != nil %>
-                          <% chapter_number = "<font color=\"#FF0000\">" + chapter_number + "</font>" %>
-                        <% end %>
+                <!-- set up @read_hash to check for any chapter has been read within the book,
+                     then display with read color -->
+                <% @read_hash = {} %>
+                <% if user_signed_in? %>
+                  <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
+                  <% if @reading_plan != nil %>
+                    <% rr = @reading_plan.read_record %>
+                    <% if rr != nil %>
+                      <% read_item = rr.split("PP") %>
+                      <% read_item.each do |item| %>
+                        <% item_pair = item.split("/") %>
+                        <% @read_hash[item_pair.first] = item_pair.last %>
                       <% end %>
                     <% end %>
                   <% end %>
+                <% end %>
 
-                  <%= link_to chapter_number.html_safe, 
+                <% if @read_hash == {} %>
+                <% book.chapters.order("chapter_no").each do |chap| %>
+                  <% chapter_number = chap.chapter_no.to_s %>
+                  <%= link_to chapter_number, 
                     book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), 
                     :id => "chapter_list" %> |
-
+                  <% end %>
+                <% else %>
+                  <% book.chapters.order("chapter_no").each do |chap| %>
+                    <% chapter_number = chap.chapter_no.to_s %>
+                    <% if @read_hash[chapter_number] != nil %>
+                      <% chapter_number = "<font color=\"#FF0000\">" + chapter_number + "</font>" %>
+                    <% end %>
+                    <%= link_to chapter_number.html_safe, 
+                      book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), 
+                      :id => "chapter_list" %> |
+                  <% end %>
                 <% end %>
                 章
                 <% if user_signed_in? %>

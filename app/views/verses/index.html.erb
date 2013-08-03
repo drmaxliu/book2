@@ -217,14 +217,18 @@
         <% if current_user.reading_histories.empty? %>
           <% reading_history = current_user.reading_histories.create %>
           <% "reading history empty, create a new one" %>
+
         <% elsif current_user.reading_histories.order("created_at").last.html_path!=nil %>
+          <% "all history records are used for last.html_path!=nil, need to create a new record" %>
+
+          <% "check if the history count is over the limit" %>
           <% if current_user.reading_histories.count > 9 %>
             <% n = current_user.reading_histories.count - 9 %>
             <% n.to_s %>
             <% n.times {current_user.reading_histories.order("created_at").first.delete} %>
           <% end %>
           <% reading_history = current_user.reading_histories.create %>
-          <% "no available history record for use, create a new one" %>
+
         <% else %>
           <% reading_history = current_user.reading_histories.order("created_at").last %>
           <% "obtain the available history" %>
@@ -234,7 +238,7 @@
             @book.id.to_s + "/chapters/" + @chapter.id.to_s + "/verses" %>
         <% page_title = "書卷：" + @book.title + @chapter.chapter_no.to_s + "章" %>
       
-      
+        <% "update the history record with html_path" %>
         <%= link_to icon_tag1.html_safe, user_reading_history_path(current_user, reading_history,
           :reading_history => {:html_path => current_page_url, :page_code => page_title}), method: :put,
           class: "btn btn-min btn-primary" %>  
@@ -265,8 +269,8 @@
       <p></p>
       <p>
 
-      <% @chapter.comments.each do |comment| %>
-        <% if comment.grp==0 %> 
+      <% @chapter.bible_notes.each do |comment| %>
+        <% if comment.usage==0 %> 
           <p>
             <% comment_number = @chapter.chapter_no.to_s + ":"  + comment.verse_from.to_s %>
             <% if comment.verse_from != comment.verse_to %>
@@ -327,8 +331,8 @@
           <p></p>
 
           <% ii = 0 %>
-          <% @chapter.comments.each do |comment| %>
-            <% if comment.grp==0 %> 
+          <% @chapter.bible_notes.each do |comment| %>
+            <% if comment.usage==0 %> 
               <p>
                 <% ii += 1 %>
                 <span class="badge badge-warning"><%= ii.to_s %></span>
@@ -366,8 +370,8 @@
           <p></p>
 
           <% ii = 0 %>
-          <% @chapter.comments.each do |comment| %>
-            <% if comment.grp==0 %> 
+          <% @chapter.bible_notes.each do |comment| %>
+            <% if comment.usage==0 %> 
               <p>
                 <% ii += 1 %>
                 <span class="badge badge-warning"><%= ii.to_s %></span>
@@ -440,8 +444,8 @@
           </button>
           <p></p>
             <% ii = 0 %>
-            <% @chapter.comments.each do |comment| %>
-            <% if comment.grp==0 %> 
+            <% @chapter.bible_notes.each do |comment| %>
+            <% if comment.usage==0 %> 
               <p>
                 <% ii += 1 %>
                 <span class="badge badge-warning"><%= ii.to_s %></span>
@@ -488,7 +492,7 @@
         <li><a href="#write_posts" data-toggle="tab">发表分享</a></li>
         <li><a href="#write_suggestions" data-toggle="tab">網站建議</a></li>
         <li><a href="#search_bible" data-toggle="tab">查找圣经</a></li>
-        <li><a href="#search_comments" data-toggle="tab">查找注释</a></li>
+        <li><a href="#search_bible_notes" data-toggle="tab">查找注释</a></li>
         <li><a href="#search_notes" data-toggle="tab">查找笔记</a></li>
         <li><a href="#search_posts" data-toggle="tab">查找分享</a></li>
         <li><a href="#search_members" data-toggle="tab">查找会员</a></li>
@@ -513,7 +517,7 @@
         <li><a href="#write_posts" data-toggle="tab">发表分享</a></li>
         <li><a href="#write_suggestions" data-toggle="tab">網站建議</a></li>
         <li><a href="#search_bible" data-toggle="tab">查找圣经</a></li>
-        <li><a href="#search_comments" data-toggle="tab">查找注释</a></li>
+        <li><a href="#search_bible_notes" data-toggle="tab">查找注释</a></li>
         <li><a href="#search_notes" data-toggle="tab">查找笔记</a></li>
         <li><a href="#search_posts" data-toggle="tab">查找分享</a></li>
         <li><a href="#search_members" data-toggle="tab">查找会员</a></li>
@@ -525,13 +529,9 @@
       <p></p>
       <div id="write" class="tab-content">
         <div class="tab-pane fade in active" id="write_notes">
-          <span class="help-inline">題目：</span><input type="text" id="subject">
-          <span class="help-inline"> 经文： <%= @book.title %>第<%= @chapter.chapter_no %>章：
-          <input type="text" id="verse">-<input type="text" id="verse">节。</span>
-          <textarea id="description">写下你的心得：</textarea>
-          <p></p>
-          <%= link_to "存入", "#", class: "btn btn-min btn-primary" %>
-          <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+
+          <%= render 'note_form' %>
+
         </div>
 
         <div class="tab-pane fade" id="write_posts">
@@ -563,7 +563,7 @@
           <%= link_to "打开经文", "#", class: "btn btn-min btn-primary" %>
         </div>
 
-        <div class="tab-pane fade" id="search_comments">
+        <div class="tab-pane fade" id="search_bible_notes">
           <span class="help-inline">查询字词：</span><input type="text">
           <span class="help-inline">注释类别：</span><input type="text">
           <p></p>
@@ -610,9 +610,9 @@
           <%= link_to "退出粉丝", "#", class: "btn btn-min btn-primary" %>
         </div>
         <div class="tab-pane fade" id="read_notes">
-          <span class="help-inline">时间范围：</span><input type="text">
-          <span class="help-inline">圣经范围：</span><input type="text">
-          <span class="help-inline">收藏范围：</span><input type="text">
+          <span class="help-inline">主題：</span>
+          <span class="help-inline">經文範圍：</span>
+          <span class="help-inline">筆記時間：</span>
           <p></p>
           <textarea style="overflow:auto" id="description">我的笔记：</textarea>
           <p></p>

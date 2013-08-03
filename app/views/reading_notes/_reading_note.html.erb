@@ -1,0 +1,44 @@
+<!--
+<li>
+  <span class="content"><%= reading_note.title %></span>
+  <span class="content"><%= reading_note.content %></span>
+  <span class="timestamp">
+    written <%= time_ago_in_words(reading_note.created_at) %> ago.
+  </span>
+</li>
+-->
+
+<div class="row-fluid">
+  <div class="span6">
+
+    <% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>　修改" %>
+    <% icon_tag3 = "<i class=\"icon-trash icon-white\"></i> 刪除" %>
+    <% bb = Book.find_by_book_code(reading_note.book_code) %>
+    <% passage = bb.title + reading_note.chapter_no.to_s + "章" + reading_note.verse_from.to_s + "-"  + 
+        reading_note.verse_to.to_s + "節" %>
+
+
+
+    <span class="badge badge-warning">筆記主題：</span>　<%= reading_note.title %></br>
+    <span class="badge badge-inverse">經文範圍：</span>　<%= passage %></br>
+    <span class="badge badge-inverse">筆記時間：</span>　<%= reading_note.created_at.to_s %></br>
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">我的筆記：</h3>
+      </div>
+      <%= reading_note.content %>
+      <div class="panel-footer">
+        
+      </div>
+    </div>
+
+    <%= link_to icon_tag3.html_safe, user_path(@user), 
+        method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-inverse" %>
+    <%= link_to icon_tag2.html_safe, edit_user_reading_note_path(@user, reading_note),
+          class: "btn btn-min btn-info" %>
+
+    <hr class="featurette-divider">
+
+  </div>
+</div>

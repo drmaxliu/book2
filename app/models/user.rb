@@ -32,4 +32,16 @@ class User < ActiveRecord::Base
   has_many :reading_plans, dependent: :destroy
   has_many :reading_histories, dependent: :destroy
 
+  has_many :reading_notes, dependent: :destroy
+
+  # for a user to follow a lead_reader through relationships
+  # user.lead_readers will give a list of all its lead readers
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :lead_readers, through: :relationships, source: :lead_leader
+
+  # a reverse relationship
+  # user.followers will give a list of all its followers
+  has_many :reverse_relationships, foreign_key: "lead_reader_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
 end

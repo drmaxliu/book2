@@ -1,0 +1,27 @@
+<h1>Listing lead_readers</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Bio</th>
+    <th>Follower count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lead_readers.each do |lead_reader| %>
+  <tr>
+    <td><%= lead_reader.user_id %></td>
+    <td><%= lead_reader.bio %></td>
+    <td><%= lead_reader.follower_count %></td>
+    <td><%= link_to 'Show', lead_reader %></td>
+    <td><%= link_to 'Edit', edit_lead_reader_path(lead_reader) %></td>
+    <td><%= link_to 'Destroy', lead_reader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lead reader', new_lead_reader_path %>

@@ -59,6 +59,7 @@ class ReadingHistoriesController < ApplicationController
 
   # PUT /reading_histories/1
   # PUT /reading_histories/1.json
+  
   # save a new reading history here ...
   # once done, back to the reading page
   def update

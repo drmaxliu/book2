@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130721165148) do
+ActiveRecord::Schema.define(:version => 20130801074218) do
+
+  create_table "bible_notes", :force => true do |t|
+    t.integer  "chapter_id"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.text     "note"
+    t.integer  "praise_count"
+    t.integer  "usage"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "book_pages", :force => true do |t|
     t.string   "title"
@@ -57,6 +68,9 @@ ActiveRecord::Schema.define(:version => 20130721165148) do
     t.integer  "stat_question"
     t.integer  "stat_note"
     t.integer  "stat_finish"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.text     "content"
   end
 
   create_table "collection_pages", :force => true do |t|
@@ -78,13 +92,66 @@ ActiveRecord::Schema.define(:version => 20130721165148) do
   end
 
   create_table "comments", :force => true do |t|
-    t.integer  "chapter_id"
-    t.integer  "verse_from"
-    t.integer  "verse_to"
     t.text     "note"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "grp"
+    t.integer  "light_id"
+    t.integer  "user_id"
+    t.integer  "praise"
+  end
+
+  create_table "critics", :force => true do |t|
+    t.string   "title"
+    t.string   "category"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "html_path"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "group_members", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "joined"
+    t.date     "join_date"
+    t.date     "exit_date"
+    t.boolean  "group_leader"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "group_id"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.boolean  "active"
+    t.date     "last_active"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "lead_readers", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "bio"
+    t.integer  "follower_count"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "lights", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "book_code"
+    t.integer  "chapter_no"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.integer  "praise_count"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
+    t.integer  "usage"
   end
 
   create_table "reading_histories", :force => true do |t|
@@ -97,6 +164,19 @@ ActiveRecord::Schema.define(:version => 20130721165148) do
     t.string   "html_path"
   end
 
+  create_table "reading_notes", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.string   "book_code"
+    t.integer  "chapter_no"
+    t.integer  "verse_from"
+    t.integer  "verse_to"
+    t.string   "html_path"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "reading_plans", :force => true do |t|
     t.integer  "user_id"
     t.string   "book_code"
@@ -105,6 +185,30 @@ ActiveRecord::Schema.define(:version => 20130721165148) do
     t.text     "read_record"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "lead_reader_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "relationships", ["follower_id", "lead_reader_id"], :name => "index_relationships_on_follower_id_and_lead_reader_id", :unique => true
+  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+  add_index "relationships", ["lead_reader_id"], :name => "index_relationships_on_lead_reader_id"
+
+  create_table "salts", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content"
+    t.string   "book_code"
+    t.integer  "chapter_no"
+    t.integer  "verse_from"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "verse_to"
   end
 
   create_table "users", :force => true do |t|

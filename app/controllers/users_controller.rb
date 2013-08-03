@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user =  User.find(params[:id])
+    @user =  current_user
+    @reading_notes = @user.reading_notes.paginate(page: params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -60,15 +61,12 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
-
     respond_to do |format|
-      if @book_series.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      if user_signed_in?
+        if current_user.update_attributes(params[:user])
+          format.html { redirect_to current_user, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        end
       end
     end
   end
@@ -76,13 +74,28 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
 
     respond_to do |format|
       format.html { redirect_to user_index_url }
       format.json { head :no_content }
     end
+  end
+
+  # Check if following any lead readers
+  def following?(other_user)
+    relationships.find_by(read_leader_id: other_user.id)
+  end
+
+  # To follow a read leader
+  def follow(other_user)
+    relationships.create(lead_reader_id: other_user.id)
+  end
+
+  # To drop folloing a read leader
+  def unfollow(other_user)
+    relationships.find_by(lead_reader_id: other_user.id).destroy
   end
 
 end

@@ -1,0 +1,36 @@
+<%= form_for([@user, @reading_note]) do |f| %>
+  <% if @reading_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= 更改不成功，因讀經筆記更改有@reading_note.errors.count%>個錯誤:</h2>
+
+      <ul>
+      <% @reading_note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <%= f.hidden_field :user_id, { :value => current_user.id } %>
+  <%= f.hidden_field :html_path, {:value => user_reading_notes_url(@user) } %>
+
+  <div class="field">
+    <%= f.label :title, "標題：" %> <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "書卷：" %> <%= f.select :title, @book_names %>
+  </div>
+  <div class="field">
+    <%= f.label "經節：" %>  <%= f.number_field :chapter_no %> 章
+    <%= f.number_field :verse_from %> - <%= f.number_field :verse_to %> 節
+  </div>
+  <div class="field">
+    <%= f.label :content, "筆記内容：" %><br />
+    <%= f.text_area :content, class: "textarea", id: "description" %>
+  </div>
+  <div class="actions">
+    <%= f.submit  "筆記内容存入", class: "btn btn-min btn-warning" %>
+  </div>
+<% end %>

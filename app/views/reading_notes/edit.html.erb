@@ -1,0 +1,5 @@
+<h2><%= current_user.name %>, 更改您的讀經筆記</h2>
+
+<%= render 'form' %>
+
+<%= link_to '囘到筆記列表', user_reading_notes_path(@user), class: "btn btn-min btn-primary" %>

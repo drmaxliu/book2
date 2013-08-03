@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @lead_reader.user_id %>
+</p>
+
+<p>
+  <b>Bio:</b>
+  <%= @lead_reader.bio %>
+</p>
+
+<p>
+  <b>Follower count:</b>
+  <%= @lead_reader.follower_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_lead_reader_path(@lead_reader) %> |
+<%= link_to 'Back', lead_readers_path %>

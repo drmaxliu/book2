@@ -6,10 +6,10 @@
 #  page_type  :string(255)
 #  page_code  :string(255)
 #  page_no    :integer
-#  html_path  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
+#  html_path  :string(255)
 #
 
 class ReadingHistory < ActiveRecord::Base

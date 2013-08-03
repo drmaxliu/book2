@@ -68,10 +68,20 @@ class ChaptersController < ApplicationController
   # PUT /chapters/1.json
   def update
     @chapter = @book.chapters.find(params[:id])
-    # @chapter = Chapter.find(params[:id])
+
+    # check if the update is for sharing "light" by a user
+    update_params = params[:chapter]
+    user_note = update_params["user_id"]
 
     respond_to do |format|
-      if @chapter.update_attributes(params[:chapter])
+      if user_note != nil
+        notice_msg = update_params.to_s
+        # create a reading note
+        current_user.reading_notes.create(update_params)
+        format.html { redirect_to book_series_collection_book_chapters_url(@book_series, @collection, @book), 
+          notice: notice_msg.html_safe }
+        format.json { head :no_content }
+      elsif @chapter.update_attributes(params[:chapter])
         # to avoid a repetitive count for the page read
         jj = @chapter.stat_read-1
         if @chapter.stat_read >0 then @chapter.update_attributes(:stat_read => jj)
@@ -98,6 +108,7 @@ class ChaptersController < ApplicationController
               @reading_plan.update_attributes(:read_record => new_read_record)
               notice_msg = notice_msg + "Record of finishing reading on " + dd.to_s + " is added!"
             else
+              # the chapter has been read. show message on the date of the first read.
               notice_msg = notice_msg + "This chapter has been read on " + @read_hash[@chapter.chapter_no.to_s] 
               nn = @chapter.stat_finish - 1
               @chapter.update_attributes(:stat_finish => nn)

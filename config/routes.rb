@@ -1,5 +1,14 @@
 Book2::Application.routes.draw do
 
+  resources :lead_readers
+
+
+  resources :critics
+
+
+  resources :groups
+
+
   root :to => 'pages#index'
 
   get 'reader_guide' => 'pages#reader_guide'
@@ -21,7 +30,6 @@ Book2::Application.routes.draw do
         resources :book_pages
         resources :chapters do
           resources :verses
-          resources :comments
         end
       end
     end
@@ -32,6 +40,7 @@ Book2::Application.routes.draw do
   resources :users do
     resources :reading_plans
     resources :reading_histories
+    resources :reading_notes
   end
 
 
