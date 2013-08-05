@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
-gem 'bootstrap-sass', '~>2.2.2.0'
+gem 'bootstrap-sass', '~>2.3.2.1'
 gem 'devise'
 gem 'simple_form'
 # gem 'bcrypt-ruby', '3.0.1'

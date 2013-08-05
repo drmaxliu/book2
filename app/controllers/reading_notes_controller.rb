@@ -94,10 +94,10 @@ class ReadingNotesController < ApplicationController
 
   def all_book_titles
     @series_one = BookSeries.find(1)
-    @book_names = Array.new
+    @book_names = {}
     @series_one.collections.each do |collection|
       collection.books.each do |book|
-        @book_names << book.title
+        @book_names[book.title] = book.book_code
       end
     end
   end

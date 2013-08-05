@@ -3,6 +3,9 @@
 <% if @user.reading_notes.any? %>
 	<h3><%= current_user.name %> 的筆記：共<%= current_user.reading_notes.count %>篇</h3>
 	
+	<% @total_count = @user.reading_notes.count %>
+	<% @current_note_index = 1 %>
+
 	<%= render @reading_notes %>
 
 	<%= will_paginate @reading_notes %>

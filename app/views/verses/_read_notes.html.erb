@@ -1,0 +1,34 @@
+
+<div class="row-fluid">
+  <div class="span8">
+
+    <% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>　修改" %>
+    <% icon_tag3 = "<i class=\"icon-trash icon-white\"></i> 刪除" %>
+
+    <% @reading_notes.each  do |reading_note| %>
+
+      <% passage = @book.title + reading_note.chapter_no.to_s + "章" + reading_note.verse_from.to_s + "-"  + 
+        reading_note.verse_to.to_s + "節" %>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          題目：<%= reading_note.title %></br>
+          經文範圍：<%= passage %></br>
+        </div>
+
+        <%= reading_note.content %>
+
+        <div class="panel-footer">
+          <p>筆記時間：<%= reading_note.created_at.to_s %></p>
+          <%= link_to icon_tag3.html_safe, book_series_collection_book_chapter_path(@book_series, @collection, @book, 
+            @chapter), method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-danger" %>
+          <%= link_to icon_tag2.html_safe, edit_user_reading_note_path(@user, reading_note),
+            class: "btn btn-min btn-info" %>
+          
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>

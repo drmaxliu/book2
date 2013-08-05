@@ -20,7 +20,7 @@
     <%= f.label :title, "標題：" %> <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :title, "書卷：" %> <%= f.select :title, @book_names %>
+    <%= f.label :book_code, "書卷：" %> <%= f.select :book_code, @book_names %>
   </div>
   <div class="field">
     <%= f.label "經節：" %>  <%= f.number_field :chapter_no %> 章

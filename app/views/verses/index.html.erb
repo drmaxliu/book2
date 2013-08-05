@@ -532,17 +532,22 @@
 
           <%= render 'note_form' %>
 
+
         </div>
 
         <div class="tab-pane fade" id="write_posts">
+
           <span class="help-inline">題目：</span><input type="text" id="subject">
           <span class="help-inline"> 经文： <%= @book.title %>第<%= @chapter.chapter_no %>章：
+
           <input type="text" id="verse">-<input type="text" id="verse">节。</span>
+
           <textarea style="overflow:auto" id="description">写下你的分享：</textarea>
           <p></p>
           <%= link_to "分享", "#", class: "btn btn-min btn-primary" %>
           <%= link_to "邮寄", "#", class: "btn btn-min btn-primary" %>
           <%= link_to "取消", "#", class: "btn btn-min btn-primary" %>
+
         </div>
         <div class="tab-pane fade" id="write_suggestions">
           <span class="help-inline">关于：</span><input type="text">
@@ -609,17 +614,35 @@
           <%= link_to "成为粉丝", "#", class: "btn btn-min btn-primary" %>
           <%= link_to "退出粉丝", "#", class: "btn btn-min btn-primary" %>
         </div>
+
         <div class="tab-pane fade" id="read_notes">
-          <span class="help-inline">主題：</span>
-          <span class="help-inline">經文範圍：</span>
-          <span class="help-inline">筆記時間：</span>
-          <p></p>
-          <textarea style="overflow:auto" id="description">我的笔记：</textarea>
-          <p></p>
-          <%= link_to "上一篇", "#", class: "btn btn-min btn-primary" %>
-          <%= link_to "下一篇", "#", class: "btn btn-min btn-primary" %>
-          <%= link_to "再思", "#", class: "btn btn-min btn-primary" %>
+          <% icon_tag1 = "<i class=\"icon-th-list icon-white\"></i> 查看所有筆記" %>
+          <% if user_signed_in? %>
+            <% @user = current_user %>
+            <% if @user.reading_notes.any? %>
+              <% @book_notes = ReadingNote.where(:user_id => current_user.id, :book_code => @book.book_code) %>
+              <% if @book_notes.count > 0 %>
+                <% @reading_notes =  ReadingNote.where(:user_id => current_user.id, :book_code => @book.book_code, 
+                  :chapter_no => @chapter.chapter_no) %>
+                <% if @reading_notes.count > 0 %>
+                  <h5>筆記共<%= @reading_notes.count %>篇
+                      <%= link_to icon_tag1.html_safe, user_reading_notes_path(@user), class: "btn btn-min btn-primary" %>
+                  </h5>
+                  <%= render 'read_notes' %>
+                <% else %>
+                  <h5>關於本章經文您尚未有任何筆記</h5>
+                <% end %>
+              <% else %>
+                <h5>關於本書卷您尚未有任何筆記</h5>
+              <% end %>
+            <% else  %>
+              <h5>您尚未寫有任何筆記。鼓勵即可寫下您的領受！</h5>
+            <% end %>
+          <% else %>
+            <h5>請先登入</h5>
+          <% end %>
         </div>
+
         <div class="tab-pane fade" id="read_posts">
           <span class="help-inline">我的关注：</span><input type="text">
           <span class="help-inline">我的小组：</span><input type="text">

@@ -1,32 +1,44 @@
-<%= form_for([@book_series, @collection, @book, @chapter]) do |f| %>
-  <% if @chapter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+<div class="row-fluid">
+  <div class="span6">
 
-      <ul>
-      <% @chapter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <%= form_for([@book_series, @collection, @book, @chapter]) do |f| %>
+      <% if @chapter.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+
+          <ul>
+          <% @chapter.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :title, "標題：" %><br />
-    <%= f.text_field :title %>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%= f.label :title, "標題：" %>
+        </div>
+          <%= f.text_field :title %>
+      </div>
+
+
+      <%= f.hidden_field :user_id, { :value => current_user.id } %>
+      <%= f.hidden_field :chapter_no, { :value => @chapter.chapter_no } %>
+      <%= f.hidden_field :book_code, {:value => @book.book_code } %>
+      <%= f.hidden_field :html_path, {:value => book_series_collection_book_chapter_url(@book_series, @collection, @book, @chapter) } %>
+      <div class="field">
+        <%= f.label "經節：" %>
+        <%= f.number_field :verse_from %> - <%= f.number_field :verse_to %> 節
+      </div>
+      <div class="field">
+        <%= f.label :content, "筆記内容：", :html => { :style => 'background-color:yellow;' }%>
+        <%= f.text_area :content, class: "textarea", id: "description" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "存入", class: "btn btn-min btn-primary" %>
+      </div>
+    <% end %>
+  
+
   </div>
-  <%= f.hidden_field :user_id, { :value => current_user.id } %>
-  <%= f.hidden_field :chapter_no, { :value => @chapter.chapter_no } %>
-  <%= f.hidden_field :book_code, {:value => @book.book_code } %>
-  <%= f.hidden_field :html_path, {:value => book_series_collection_book_chapter_url(@book_series, @collection, @book, @chapter) } %>
-  <div class="field">
-    <%= f.label "關於經節：" %>
-    <%= f.number_field :verse_from %> - <%= f.number_field :verse_to %> 節
-  </div>
-  <div class="field">
-    <%= f.label :content, "筆記内容：", :html => { :style => 'background-color:yellow;' }%><br />
-    <%= f.text_area :content, class: "textarea", id: "description" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "存入", class: "btn btn-min btn-primary" %>
-  </div>
-<% end %>
+</div>
