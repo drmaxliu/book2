@@ -489,16 +489,16 @@
   <div class="row-fluid">
     <div class="span12">
       <ul id="social_tabs" class="nav nav-tabs">
-        <li class="active"><a href="#write_notes" data-toggle="tab">个人筆記</a></li>
-        <li><a href="#write_posts" data-toggle="tab">发表分享</a></li>
+        <li class="active"><a href="#write_notes" data-toggle="tab">個人筆記</a></li>
+        <li><a href="#write_posts" data-toggle="tab">發表分享</a></li>
         <li><a href="#write_suggestions" data-toggle="tab">網站建議</a></li>
-        <li><a href="#search_bible" data-toggle="tab">查找圣经</a></li>
-        <li><a href="#search_bible_notes" data-toggle="tab">查找注释</a></li>
-        <li><a href="#search_notes" data-toggle="tab">查找笔记</a></li>
+        <li><a href="#search_bible" data-toggle="tab">查找聖經</a></li>
+        <li><a href="#search_bible_notes" data-toggle="tab">查找註釋</a></li>
+        <li><a href="#search_notes" data-toggle="tab">查找筆記</a></li>
         <li><a href="#search_posts" data-toggle="tab">查找分享</a></li>
-        <li><a href="#search_members" data-toggle="tab">查找会员</a></li>
-        <li><a href="#read_notes" data-toggle="tab">阅读笔记</a></li>
-        <li><a href="#read_posts" data-toggle="tab">阅读分享</a></li>
+        <li><a href="#search_members" data-toggle="tab">查找會員</a></li>
+        <li><a href="#read_notes" data-toggle="tab">閲讀筆記</a></li>
+        <li><a href="#read_posts" data-toggle="tab">閲讀分享</a></li>
       </ul>
     </div>
   </div>
@@ -531,8 +531,11 @@
       <div id="write" class="tab-content">
         <div class="tab-pane fade in active" id="write_notes">
 
-          <%= render 'note_form' %>
-
+          <% if user_signed_in? %>
+            <%= render 'note_form' %>
+          <% else %>
+            <p>個人筆記：使用此個人化功能，請先登錄。</p>
+          <% end %>
 
         </div>
 
