@@ -286,7 +286,6 @@ table {
   }
 }
 
-/*
 
 * {
   -webkit-box-sizing: border-box;
@@ -294,7 +293,6 @@ table {
           box-sizing: border-box;
 }
 
-*/
 
 html {
   font-size: 62.5%;
@@ -308,8 +306,6 @@ body {
   color: #333333;
   background-color: #ffffff;
 }
-
-*/
 
 input,
 button,

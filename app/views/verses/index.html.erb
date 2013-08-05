@@ -47,7 +47,7 @@
 
   <div class="row-fluid">
 
-    <div class="span6">
+    <div class="span8">
 
       <h2>
         <%= @book.title %><%= @chapter.chapter_no %>章
@@ -94,7 +94,7 @@
       </h2>
     </div>
 
-    <div class="span4 offset2">
+    <div class="span4">
       <p> &nbsp; </p>
       <p>
         <div class="btn-group">
@@ -140,8 +140,9 @@
 
   </div>
 
-  <hr class="featurette-divider">
+  <%= render 'chapter_list' %>
 
+  <hr class="featurette-divider">
 
   <div class="row-fluid">
 

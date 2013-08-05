@@ -1,6 +1,5 @@
 $navbarBackgroundHighlight: white;
 $navbarBackground: white;
-/* $btnPrimaryBackground: green; */
 
 
 @import 'bootstrap';
@@ -10,11 +9,6 @@ body {
 	margin-bottom: 200px;
 }
 
-
-.navbar-inner {
-	@include box-shadow(none !important);
-	border: 0;
-}
 
 .footer {
 	background-color: #AACCFF;

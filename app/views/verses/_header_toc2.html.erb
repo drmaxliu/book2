@@ -1,0 +1,125 @@
+
+<ul id="collection_tabs" class="nav nav-pills">
+  <% ii = 1 %>
+  <% @book_series_1.collections.each do |collection| %>
+    <% link_1 = "#collect_" + ii.to_s %>
+    <% if ii==1 %>
+      <li class="active"><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
+    <% else %>
+      <li><%= link_to collection.title, link_1, :data => {:toggle=>"tab"} %></li>
+    <% end %>
+    <% ii = ii+1 %>
+  <% end %>
+</ul>
+
+<div id="collection_list" class="tab-content"> <!-- level 1 tab content -->
+   <% ii = 1 %>
+    <% @book_series_1.collections.each do |collection| %> <!-- level 1 iteration -->
+      <% if ii==1 %>
+        <% dd = "<div class=\"tab-pane fade in active\" id=" + "\"collect_" + ii.to_s + "\">" %>
+      <% else %>
+        <% dd = "<div class=\"tab-pane fade\" id=" + "\"collect_" + ii.to_s + "\">" %>
+      <% end %>
+      <%= dd.html_safe %>
+
+      <!-- <div class="bs-docs-example">  level 2 tab block -->
+        <% dd = "<ul id=\"book_tabs_" + ii.to_s + "\" class=\"nav nav-tabs yellow\">" %>
+        <%= dd.html_safe %>
+          <% jj = 1 %>
+          <% collection.books.each do |book| %>
+            <% link_1 = "#book_" + ii.to_s + "_" + jj.to_s %>
+            <% if jj==1 %>
+              <li class="active"><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
+            <% else %>
+              <li><%= link_to book.title, link_1, :data => {:toggle=>"tab"} %></li>
+            <% end %>
+            <% jj = jj+1 %>
+          <% end %> <!-- book -->
+        </ul>
+
+        <div class="tab-content"> <!-- level 2 tab content-->
+
+          <% jj = 1 %>
+          <% collection.books.each do |book| %>
+            <% if jj==1 %>
+              <% dd = "<div class=\"tab-pane fade in active\" id=book_" + ii.to_s + "_" + jj.to_s %>
+            <% else %>
+              <% dd = "<div class=\"tab-pane fade\" id=book_" + ii.to_s + "_" + jj.to_s %>
+            <% end %>
+              <%= dd.html_safe %>
+
+              <p>閲讀本書第 |
+
+                <!-- set up @read_hash to check for any chapter has been read within the book,
+                     then display with read color -->
+                <% @read_hash = {} %>
+                <% if user_signed_in? %>
+                  <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
+                  <% if @reading_plan != nil %>
+                    <% rr = @reading_plan.read_record %>
+                    <% if rr != nil %>
+                      <% read_item = rr.split("PP") %>
+                      <% read_item.each do |item| %>
+                        <% item_pair = item.split("/") %>
+                        <% @read_hash[item_pair.first] = item_pair.last %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+
+                <% if @read_hash == {} %>
+                <% book.chapters.order("chapter_no").each do |chap| %>
+                  <% chapter_number = chap.chapter_no.to_s %>
+                  <%= link_to chapter_number, 
+                    book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), 
+                    :id => "chapter_list" %> |
+                  <% end %>
+                <% else %>
+                  <% book.chapters.order("chapter_no").each do |chap| %>
+                    <% chapter_number = chap.chapter_no.to_s %>
+                    <% if @read_hash[chapter_number] != nil %>
+                      <% chapter_number = "<font color=\"#FF0000\">" + chapter_number + "</font>" %>
+                    <% end %>
+                    <%= link_to chapter_number.html_safe, 
+                      book_series_collection_book_chapter_url(@book_series_1, collection, book, chap), 
+                      :id => "chapter_list" %> |
+                  <% end %>
+                <% end %>
+                章
+                <% if user_signed_in? %>
+                  <% @reading_plan = current_user.reading_plans.find_by_book_code(book.book_code) %>
+                  <% if @reading_plan != nil %>
+                    <% rr = @reading_plan.read_record %>
+                    <% if rr != nil %>
+                      <% record = rr.split("PP") %>
+                      <% percent = 100*record.count/book.chapters.count %>
+                    <% else %>
+                      <% percent = 0 %>
+                    <% end %>
+                    <font color="#FF0000">
+                    <%= "- 本章在您的讀經計劃中 - 已完成閲讀:" + percent.to_s +  "%" %>
+                    </font>
+                    <font color="000000">
+                    <%= "(紅色表示已閲讀過）" %>
+                    </font>
+                  <% end %>
+                <% end %>
+              </p>
+              <% if !book.book_pages.empty? %>
+                <p>閲讀本書補充内容 |
+                  <% book.book_pages.each do |book_page| %>
+                    <%= link_to book_page.title, book_series_collection_book_book_page_url(@book_series_1, collection, book, book_page), :id => "chapter_list" %> |
+                  <% end %>
+                </p>
+              <% end %>
+            <% jj = jj+1 %>
+            </div>
+          <% end %> <!-- level 2 iteration -->
+        </div> <!-- level 2 tab content -->
+      <!-- /div> level 2 tab block -->
+
+      <% ii = ii+1 %> <!-- for each level 1 collection -->
+      </div>
+    <% end %> <!-- level 1 iteration -->
+</div> <!-- level 1 tab content -->
+<!-- </div>  level tab block -->
