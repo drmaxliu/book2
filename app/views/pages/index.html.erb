@@ -1,25 +1,22 @@
 
 <div class="hero-unit">
 	<div class="container-fluid">
-	  <div class="row-fluid">
-	    <div class="span3">
-	      <p>
-	      </p>
-	      <p>
-	      </p>
-	      <img data-src="holder.js/160x160" class="img-rounded" alt="160x160" style="width: 160px; height: 160px;" src="flower 4.jpg">
-	    </div>
+		<div class="row-fluid">
+			<div class="span3">
+				<p>
+				</p>
+				<p>
+				</p>
+				<img data-src="holder.js/160x160" class="img-rounded" alt="160x160" style="width: 160px; height: 160px;" src="flower 4.jpg">
+			</div>
 
-	    <div class="span9">		
+			<div class="span9">		
 				<h2>歡迎來到 maxBibleReader!</h2>
-				<p> 這是以鼓勵聖經閲讀，激發個人生活智慧，增進屬靈生命成長，提供靈裏交流，幫助教會建立的網站。</p>
-	    </div>
-	  </div>
+				<p> 這是以鼓勵聖經閲讀，激發個人生活智慧，增進屬靈生命成長，提供靈裏交流，幫助教會牧養群羊的聖經讀經與交流網站。</p>
+			</div>
+		</div>
 	</div>
 </div>
-
-
-
 
 <p >
 聖經66卷書，是神寶貴的話語，能照亮我們的生命，指引我們人生正確的方向。更重要的聖經幫助我們認識智慧和愛的源頭救主耶穌。祂救我們脫離罪惡的捆綁，得以進入他榮耀與慈愛的國度裏。祂在軟弱時能給我們力量和醫治，祂的愛不離不棄，祂賜的福不會先甜后苦。
@@ -31,22 +28,27 @@
 
 <p>
 有許多人想讀懂聖經，可是常常因爲歷史，地理，翻譯，等各樣問題而不能完成。鑒于聖經是這樣寶貴的書，如何輕鬆卻能有果效的把聖經讀完就成爲一個重要但挑戰的事。maxBibleReader在此提供了以主題為單位的主題式閲讀。這是相對于傳統的以書卷為單位的閲讀方式。
-主題式聖經將整本聖經用主題的方式展開，將所有聖經書卷根據時間和情節重新整理，成爲深動，感人，有趣，有關聯主題的書。如此讀者在閲讀時就不會迷失在聖經的大海裏，反而能有更深的領受。需要注意的是，雖然我們把聖經按著主題做了閲讀次序的整理，這些整理基本上仍然是以書卷為單位，以避免斷章的問題。
+主題式聖經將整本聖經用主題的方式展開，將所有聖經書卷根據時間和情節重新整理，幫助讀者在閲讀聖經時更有情境的感覺。如此聖經書卷不再是獨立的，而是有關聯性，成爲深動，感人，有趣，有主題的書。這樣的設計也與教育心理學所講情境式閲讀一致。如此讀者在閲讀時就不會迷失在聖經的大海裏，反而能有更深的領受。需要注意的是，雖然我們把聖經按著主題做了閲讀次序的整理，這些整理基本上仍然是以書卷為單位，以避免斷章的問題。
 </p>
 
-<p>
-如果您是第一次來到這裡，歡迎點選： <%=link_to "聖經介紹", bible_intro_path, class: "btn btn-min" %> 或 <%=link_to "讀經指南", reader_guide_path, class: "btn btn-min" %> ，以了解maxBibleReader的理念和所精心設計的讀經方式，從而享受讀經的喜樂。當然，您也可以立即點選 <%=link_to "書卷讀經", 'book_series', class: "btn btn-min" %> 或 <%=link_to "主題讀經", topics_path, class: "btn btn-min" %>，展開您新的聖經讀經之旅。
-</p>
+<ol>
+<li>
+如果您是第一次來到這裡，或對聖經的背景認識有限，歡迎點選： <%=link_to "聖經介紹", bible_intro_path, class: "btn btn-min btn-success" %> 或 <%=link_to "讀經指南", reader_guide_path, class: "btn btn-min btn-success" %> ，以對聖經和讀經的方法有基本的認識，並了解maxBibleReader的理念和所精心設計的讀經方式，從而享受讀經的喜樂。
+</li>
+<li>
+如果您已經對聖經，讀經方法，和maxBibleReader的理念有了認識，可以點選 <%=link_to "書卷讀經", 'book_series', class: "btn btn-min btn-success" %> 或 <%=link_to "主題讀經", topics_path, class: "btn btn-min btn-success" %>，展開您新的聖經讀經之旅。前者是按著聖經書卷一卷一卷的讀。後者是將聖經書卷整合成爲主題。
+</li>
 
-<p>除了讀經，如果您想擁有個人化服務，如寫下讀經心得，分享個人領受，設定讀經目標和追蹤讀經進度，收藏別人分享，建立讀經夥伴群等豐富功能，maxBibleReader鼓勵您加入成爲我們的會員。
-關於加入會員的信息，可以點選：<%=link_to "成爲會員", contact_path, class: "btn btn-min btn-warning" %>。如果想要先在就加入成爲會員，請點選：
+<li>除了讀經，如果您想擁有個人化服務，如寫下讀經心得，分享個人領受，設定讀經目標和追蹤讀經進度，收藏別人分享，建立讀經夥伴群等豐富功能，maxBibleReader鼓勵您加入成爲我們的會員。
+關於加入會員的更多介紹，請點選：<%=link_to "成爲會員", contact_path, class: "btn btn-min btn-warning" %>。如果想現在就加入會員，請點選：
 	<%=link_to "新人註冊", new_user_registration_path, class: "btn btn-min btn-warning" %> 
-</p>
+</li>
 
-<p>如果您已是會員，歡迎回來。請先登錄：
-	<%=link_to "新人註冊", new_user_session_path, class: "btn btn-min btn-primary" %> 以便maxBibleReader追蹤您的讀經進度，幫助您完成您的讀經目標。
+<li>如果您已是會員，歡迎回來。請先
+	<%=link_to "登錄", new_user_session_path, class: "btn btn-min btn-primary" %> 讓maxBibleReader追蹤您的讀經進度，讓您使用各樣個人化工具。
 
-</p>
+</li>
+</ol>
 
 <p>祝您閲讀愉快！</p>
 

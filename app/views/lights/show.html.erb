@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+
+<% created = @light.created_at %>
+<% created_date = created.year.to_s + "-" + created.month.to_s + "-" + created.day.to_s %>
+<% updated = @light.updated_at %>
+<% updated_date = updated.year.to_s + "-" + updated.month.to_s + "-" + updated.day.to_s %>
+
+<% @usage_map = {} %>
+<% @usage_map[0] = "亮光分享" %>
+<% @usage_map[1] = "重點整理" %>
+<% @usage_map[2] = "聖經註釋" %>
+<% @usage_map[3] = "討論問題" %>
+<% @usage_map[4] = "生活應用" %>
+<% @usage_map[5] = "翻譯建議" %>
+
+<% bb = Book.find_by_book_code(@light.book_code) %>
+<% passage = bb.title + @light.chapter_no.to_s + "章" + @light.verse_from.to_s + "-"  + 
+  @light.verse_to.to_s + "節" %>
+
+<% icon_tag1 = "<i class=\"icon-star\"></i>" %>
+
+<div class="row-fluid">
+  <div class="span6">
+
+    <p>
+      <b>首次分享時間:</b> <%= created_date %>
+    </p>
+    <p>
+      <b>上次修改時間:</b> <%= created_date %>
+    </p>
+
+    <p>類別：　<%= @usage_map[@light.usage] %></p>
+    <p>作者：　<%= User.find(@light.user_id).name %></p>
+    <p>題目：　<%= @light.title %></p>
+    <p>經文：　<%= passage %></p>
+    <p>内容：</p>
+
+    <div class="thumbnail">
+      <div class="caption">
+        <p>
+          <%= @light.content %>
+        </p>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+  </div>
+</div>
+
+<% @chapter = Chapter.find(@light.taggable_id) %>
+<% @book = Book.find(@chapter.book_id) %>
+<% @collection = Collection.find(@book.collection_id) %>
+<% @book_series = BookSeries.find(@collection.book_series_id) %>
+
+<%= link_to '囘到經文', book_series_collection_book_chapter_lights_path(@book_series, @collection, @book, @chapter), 
+  class: "btn btn-min btn-primary" %>
+
+  

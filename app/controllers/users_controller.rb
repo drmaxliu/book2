@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user =  current_user
-    @reading_notes = @user.reading_notes.paginate(page: params[:page], :per_page => 10)
+    @reading_notes = @user.reading_notes.paginate(page: params[:page], :per_page => 2)
 
     respond_to do |format|
       format.html # show.html.erb

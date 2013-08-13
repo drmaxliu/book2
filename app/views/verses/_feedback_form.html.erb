@@ -1,0 +1,35 @@
+
+
+    <% @light = Light.find(@comment.light_id) %>
+    <% @chapter = Chapter.find(@light.taggable_id) %>
+    <% @book = Book.find(@chapter.book_id) %>
+    <% @collection = Collection.find(@book.collection_id) %>
+    <% @book_series = BookSeries.find(@collection.book_series_id) %>
+
+
+    <%= form_for([@book_series, @collection, @book, @chapter, @light, @comment]) do |f| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited posting this sharing:</h2>
+
+          <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+
+      <%= f.hidden_field :user_id, { :value => @user.id } %>
+      <%= f.hidden_field :voted, { :value => false } %>
+
+      <div class="field">
+        <%= f.label :note, "回應内容：" %>
+        <%= f.text_area :note, class: "textarea", id: "description2" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "發佈", class: "btn btn-min btn-success" %>
+      </div>
+    <% end %>
+  

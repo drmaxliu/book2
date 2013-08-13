@@ -68,7 +68,8 @@ class VersesController < ApplicationController
 
     respond_to do |format|
       if @verse.save
-        format.html { redirect_to book_series_collection_book_chapter_verses_url(@book_series, @collection, @book, @chapter), notice: 'Verse was successfully created.' }
+        format.html { redirect_to book_series_collection_book_chapter_verses_url(@book_series, 
+          @collection, @book, @chapter), notice: 'Verse was successfully created.' }
         format.json { render json: @verse, status: :created, location: @verse }
       else
         format.html { render action: "new" }

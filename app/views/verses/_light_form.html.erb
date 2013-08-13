@@ -1,0 +1,77 @@
+<div class="row-fluid">
+  <div class="span6">
+
+    <%= form_for([@book_series, @collection, @book, @chapter, @light]) do |f| %>
+      <% if @light.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@light.errors.count, "error") %> prohibited posting this sharing:</h2>
+
+          <ul>
+          <% @light.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% @usage_options = {} %>
+      <% @usage_options['亮光分享'] = 0 %>
+      <% @usage_options["重點看見"] = 1 %>
+      <% @usage_options["聖經註釋"] = 2 %>
+      <% @usage_options["討論問題"] = 3 %>
+      <% @usage_options["生活應用"] = 4 %>
+      <% @usage_options["翻譯建議"] = 5 %>
+
+      <% usage_explains = Array.new %>
+
+      <% usage_explains << "分享你讀經的領受。你的分享將發佈在本章的分享欄。" %>
+      <% usage_explains << "寫下你觀察到本章聖經的重點。當你對這卷書的全章都發佈分享后，你的分享將發佈在相關欄位。你的分享也將接受會員評價。" %>
+      <% usage_explains << "寫下你對一些經節的解釋。當你對這卷書的全章都發佈分享后，你的分享將發佈在相關欄位。你的分享也將接受會員評價。" %>
+      <% usage_explains << 
+      "寫下你可以幫助啓發思想，對經文有更深了解的問題。當你對這卷書的全章都發佈分享后，你的分享將發佈在相關欄位。你的分享也將接受會員評價。" %>
+      <% usage_explains << "寫下你如何應用本章經文在實際生活中。當你對這卷書的全章都發佈分享后，你的分享將發佈在相關欄位。你的分享也將接受會員評價。" %>
+      <% usage_explains << "給聖經中文和合本在的經文翻譯提出你更好的建議。請在尊重，正確，達意的基礎上提出。你的建議將納入翻譯修正的考慮。" %>
+
+
+      <h5>選擇你要分享的類別：</h5>
+      <ol>
+        <% ii = 0 %>
+        <% @usage_options.keys.each do |option| %>
+          <li><%= option.to_s %>: <%= usage_explains[ii] %></li>
+          <% ii += 1 %>
+        <% end %>
+      </ol>
+      <div class="field">
+        <%= f.label :usage, "分享類別" %>
+        <%= f.select :usage, @usage_options %>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%= f.label :title, "標題：" %>
+        </div>
+          <%= f.text_field :title %>
+      </div>
+
+      <% @user = current_user %>
+
+      <%= f.hidden_field :user_id, { :value => @user.id } %>
+      <%= f.hidden_field :usage, { :value => 0 } %>
+      <%= f.hidden_field :chapter_no, { :value => @chapter.chapter_no } %>
+      <%= f.hidden_field :book_code, {:value => @book.book_code } %>
+
+      <div class="field">
+        <%= f.label "經節範圍：" %>
+        <%= f.number_field :verse_from %> - <%= f.number_field :verse_to %> 節
+      </div>
+      <div class="field">
+        <%= f.label :content, "分享内容：", :html => { :style => 'background-color:yellow;' }%>
+        <%= f.text_area :content, class: "textarea", id: "description" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "存入", class: "btn btn-min btn-primary" %>
+      </div>
+    <% end %>
+  
+
+  </div>
+</div>

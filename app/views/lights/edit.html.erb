@@ -1,0 +1,11 @@
+<h2><%= current_user.name %>, 更改您的讀經分享</h2>
+
+<%= render 'light_form' %>
+
+<% @chapter = Chapter.find(@light.taggable_id) %>
+<% @book = Book.find(@chapter.book_id) %>
+<% @collection = Collection.find(@book.collection_id) %>
+<% @book_series = Chapter.find(@collection.book_series_id) %>
+
+<%= link_to '囘到分享列表', book_series_collection_book_chapter_lights_path(@book_series, @collection, @book, @chapter), 
+  class: "btn btn-min btn-primary" %>

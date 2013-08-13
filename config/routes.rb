@@ -20,6 +20,7 @@ Book2::Application.routes.draw do
   get 'topic_verse' => 'pages#topic_verse'
   get 'book_verse' => 'pages#book_verse'
   get 'top_outline' => 'pages#top_outline'
+  get 'test_tabs' => 'pages#test_tabs'
 
   get "user/resume_reading"
 
@@ -30,6 +31,9 @@ Book2::Application.routes.draw do
         resources :book_pages
         resources :chapters do
           resources :verses
+          resources :lights do
+            resources :comments
+          end
         end
       end
     end

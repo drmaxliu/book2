@@ -1,0 +1,97 @@
+
+<% @lights = @chapter.lights %>
+<% if @lights == nil %>
+  <h3>尚無任何分享</h3>
+<% elsif @lights.count == 0 %>
+  <h3>尚無任何分享</h3>
+<% else %>
+  <h3>本章分享列表如下：</h3>
+
+  <% icon_tag1 = "<i class=\"icon-th-list icon-white\"></i>" %>
+  <% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>" %>
+  <% icon_tag3 = "<i class=\"icon-trash icon-white\"></i>" %>
+
+  <p>
+    <table width="８40" border="1">
+      <tr>
+        <th width="120" scope="col">經節</th>
+        <th width="100" scope="col">標題</th>
+        <th width="80" scope="col">類別</th>
+        <th width="100" scope="col">分享作者</th>
+        <th width="100" scope="col">分享首次時間</th>
+        <th width="100" scope="col">上次更新時間</th>
+        <th width="80" scope="col">閲讀</th>
+        <th width="80" scope="col">修改</th>
+        <th width="80" scope="col">刪除</th>
+      </tr>
+      <% @lights.each do |light| %>
+        <% bb = Book.find_by_book_code(light.book_code) %>
+        <% if bb != nil %>
+          <% book_name = bb.title %>
+        <% else %>
+          <% book_name = "書卷未知" %>
+        <% end %>
+
+        <!-- test purpose -->
+        <!-- light.read_record -->
+
+        <% created = light.created_at %>
+        <% created_date = created.year.to_s + "-" + created.month.to_s + "-" + created.day.to_s %>
+        <% updated = light.updated_at %>
+        <% updated_date = updated.year.to_s + "-" + updated.month.to_s + "-" + updated.day.to_s %>
+        <% passage = book_name + light.chapter_no.to_s + "章" + light.verse_from.to_s + "-"  + 
+          light.verse_to.to_s + "節" %>
+
+        <% @chapter = Chapter.find(light.taggable_id) %>
+        <% @book = Book.find(@chapter.book_id) %>
+        <% @collection = Collection.find(@book.collection_id) %>
+        <% @book_series = BookSeries.find(@collection.book_series_id) %>
+
+        <% @usage_map = {} %>
+        <% @usage_map[0] = "亮光分享" %>
+        <% @usage_map[1] = "重點看見" %>
+        <% @usage_map[2] = "聖經註釋" %>
+        <% @usage_map[3] = "討論問題" %>
+        <% @usage_map[4] = "生活應用" %>
+        <% @usage_map[5] = "翻譯建議" %>
+
+        <% @user = User.find(light.user_id) %>
+
+        <tr>
+          <td valign="top"><div align="left"><%= passage %></div></td>
+          <td valign="top"><div align="left"><%= light.title %></div></td>
+          <td valign="top"><div align="left"><%= @usage_map[light.usage] %></div></td>
+          <td valign="top"><div align="left"><%= @user.name %></div></td>
+          <td valign="top"><div align="left"><%= created_date %></div></td>
+          <td valign="top"><div align="left"><%= updated_date %></div></td>
+          <td valign="top"><div align="center">
+            <%= link_to icon_tag1.html_safe, book_series_collection_book_chapter_light_path(@book_series, 
+              @collection, @book, @chapter, light),
+            class: "btn btn-min btn-primary" %></div></td>
+          <% if user_signed_in? && current_user.id == @user.id %>
+            <td valign="top"><div align="center">
+              <%= link_to icon_tag2.html_safe, edit_book_series_collection_book_chapter_light_path(@book_series, 
+                @collection, @book, @chapter, light), class: "btn btn-min btn-primary" %></div></td>
+            <td valign="top"><div align="center">
+                <%= link_to icon_tag3.html_safe, book_series_collection_book_chapter_light_path(@book_series, 
+                @collection, @book, @chapter, light),
+                method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-warning" %></div></td>
+          <% else %>
+            <td> - </td>
+            <td> - </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </p>
+<% end %>
+
+<br />
+
+<% @book = Book.find(@chapter.book_id) %>
+<% @collection = Collection.find(@book.collection_id) %>
+<% @book_series = BookSeries.find(@collection.book_series_id) %>
+
+<%= link_to '閲讀經文', book_series_collection_book_chapter_path(@book_series, 
+            @collection, @book, @chapter), class: "btn btn-min btn-success" %>
+

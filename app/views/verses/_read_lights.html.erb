@@ -1,0 +1,33 @@
+
+<div class="row-fluid">
+  <div class="span8">
+
+    <% icon_tag2 = "<i class=\"icon-edit icon-white\"></i>　修改" %>
+    <% icon_tag3 = "<i class=\"icon-trash icon-white\"></i> 刪除" %>
+
+    <% @lights.each  do |light| %>
+
+      <% passage = @book.title + light.chapter_no.to_s + "章" + light.verse_from.to_s + "-"  + 
+        light.verse_to.to_s + "節" %>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          題目：<%= light.title %></br>
+          經文範圍：<%= passage %></br>
+        </div>
+
+        <%= light.content %>
+
+        <div class="panel-footer">
+          <p>分享發佈時間：<%= light.created_at.to_s %></p>
+          <%= link_to icon_tag3.html_safe, [@book_series, @collection, @book, @chapter, light], 
+              method: :delete, data: { confirm: '確定要刪除?' }, class: "btn btn-min btn-danger" %>
+          <%= link_to icon_tag2.html_safe, edit_book_series_collection_book_chapter_light_path(@book_series, @collection, 
+              @book, @chapter, light), class: "btn btn-min btn-info" %>
+        </div>
+
+      </div>
+    <% end %>
+
+  </div>
+</div>

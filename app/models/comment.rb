@@ -9,10 +9,11 @@
 #  light_id   :integer
 #  user_id    :integer
 #  praise     :integer
+#  voted      :boolean
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :note, :user_id, :light_id, :praise
+  attr_accessible :note, :user_id, :light_id, :praise, :voted
 
   belongs_to :light
   

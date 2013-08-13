@@ -17,7 +17,9 @@
 #  user_id       :integer
 #  usage         :integer
 #
+#  comments:
 #  taggable_type: chapter or theme page
+#  usage: 0: sharing, 1: bible passage commentary, 2: applications, 3: translation suggestions
 
 class Light < ActiveRecord::Base
   attr_accessible :book_code, :chapter_no, :content, :praise_count, 

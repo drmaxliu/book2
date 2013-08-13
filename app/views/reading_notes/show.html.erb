@@ -12,27 +12,33 @@
 <% passage = bb.title + @reading_note.chapter_no.to_s + "章" + @reading_note.verse_from.to_s + "-"  + 
   @reading_note.verse_to.to_s + "節" %>
 
-<h4>
-  <b>筆記首次時間:</b>
-  <%= created_date %>
-</h4>
 
-<h4>
-  <b>上次修改時間:</b>
-  <%= updated_date %>
-</h4>
 
 <% icon_tag1 = "<i class=\"icon-star\"></i>" %>
 
 <div class="row-fluid">
   <div class="span6">
 
-    <span class="badge badge-warning">筆記主題：</span>　<%= @reading_note.title %></br>
-    <span class="badge badge-inverse">經文範圍：</span>　<%= passage %></br>
-    <span class="badge badge-inverse">筆記時間：</span>　<%= @reading_note.created_at.to_s %></br>
-    <span class="badge badge-info">我的笔记：</span></br>
+    <p>
+      <b>筆記首次時間:</b> <%= created_date %>
+    </p>
 
-    <p><%= @reading_note.content %></p>
+    <p>
+      <b>上次修改時間:</b> <%= updated_date %>
+    </p>
+
+    <p>筆記主題：　<%= @reading_note.title %></p>
+    <p>經文範圍：　<%= passage %></p>
+    <p>筆記時間： <%= @reading_note.created_at.to_s %></p>
+    <p>我的笔记：</p>
+
+    <div class="thumbnail">
+      <div class="caption">
+        <p>
+          <%= @reading_note.content %>
+        </p>
+      </div>
+    </div>
 
     <hr class="featurette-divider">
 

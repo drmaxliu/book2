@@ -1,0 +1,25 @@
+
+
+     <% if comment.id != nil %>
+
+      <p></p>
+      <p><span class="badge badge-info"><%= @comment_index %>/<%= @comments.count %></span> </p>
+      <% @comment_index += 1 %>
+
+      <div class="thumbnail">
+        <div class="caption">
+          <p>回應者：<%= User.find(comment.user_id).name %></p>
+          <p>内容：</p>
+        </div>
+        <p>
+          <%= comment.note %>
+        </p>
+
+        <hr/>
+
+        <p>分享時間：<%= comment.updated_at.to_s %></p>
+      </div>
+
+    <% end %>
+
+    

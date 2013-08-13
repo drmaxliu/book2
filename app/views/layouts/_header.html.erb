@@ -47,9 +47,10 @@
                   <li><%= link_to "讀經計劃列表", user_reading_plans_path(current_user) %></li>
                   <li><%= link_to "新的書卷讀經", new_user_reading_plan_path(current_user) %></li>
                   <li class="divider"></li>
-                  <li><%= link_to "登出", destroy_user_session_path, method: :delete %></a></li>
+                  
                 </ul>
               </div><!-- /btn-group -->
+              <li><%= link_to "登出", destroy_user_session_path, method: :delete %></a></li>
             </li>
           <% else %>
     			   <li><%= link_to "登入", new_user_session_path %></li>

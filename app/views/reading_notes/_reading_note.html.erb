@@ -1,13 +1,3 @@
-<!--
-<li>
-  <span class="content"><%= reading_note.title %></span>
-  <span class="content"><%= reading_note.content %></span>
-  <span class="timestamp">
-    written <%= time_ago_in_words(reading_note.created_at) %> ago.
-  </span>
-</li>
--->
-
 <div class="row-fluid">
   <div class="span6">
 
@@ -21,8 +11,9 @@
     <% @book_series = BookSeries.find(@collection.book_series_id) %>
     <% @chapter = bb.chapters.find_by_chapter_no(reading_note.chapter_no) %>
 
-    <p><span class="badge badge-info"><%= @current_note_index %>/<%= @total_count %></span> </p>
-    <% @current_note_index += 1 %>
+    <p></p>
+    <p><span class="badge badge-info"><%= @reading_index %>/<%= @reading2_notes.count %></span> </p>
+    <% @reading_index += 1 %>
 
     <div class="panel panel-primary">
       <div class="panel-heading">

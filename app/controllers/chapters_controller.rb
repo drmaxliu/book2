@@ -72,14 +72,19 @@ class ChaptersController < ApplicationController
     # check if the update is for sharing "light" by a user
     update_params = params[:chapter]
     user_note = update_params["user_id"]
+    usage_note = update_params["usage"]
 
     respond_to do |format|
+
       if user_note != nil
         notice_msg = update_params.to_s
-        # create a reading note
-        current_user.reading_notes.create(update_params)
+        if usage_note != nil
+        else
+          # create a reading note
+          current_user.reading_notes.create(update_params)
+        end
         format.html { redirect_to book_series_collection_book_chapters_url(@book_series, @collection, @book), 
-          notice: notice_msg.html_safe }
+            notice: notice_msg.html_safe }
         format.json { head :no_content }
       elsif @chapter.update_attributes(params[:chapter])
         # to avoid a repetitive count for the page read

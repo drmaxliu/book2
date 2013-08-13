@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801074218) do
+ActiveRecord::Schema.define(:version => 20130811232611) do
 
   create_table "bible_notes", :force => true do |t|
     t.integer  "chapter_id"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20130801074218) do
     t.datetime "updated_at", :null => false
     t.integer  "light_id"
     t.integer  "user_id"
-    t.integer  "praise"
+    t.boolean  "voted"
   end
 
   create_table "critics", :force => true do |t|

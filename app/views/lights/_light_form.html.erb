@@ -1,0 +1,62 @@
+<div class="row-fluid">
+  <div class="span6">
+
+    <% @chapter = Chapter.find(@light.taggable_id) %>
+    <% @book = Book.find(@chapter.book_id) %>
+    <% @collection = Collection.find(@book.collection_id) %>
+    <% @book_series = BookSeries.find(@collection.book_series_id) %>
+
+
+    <%= form_for([@book_series, @collection, @book, @chapter, @light]) do |f| %>
+      <% if @light.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@light.errors.count, "error") %> prohibited posting this sharing:</h2>
+
+          <ul>
+          <% @light.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <%= f.label :title, "標題：" %>
+        </div>
+          <%= f.text_field :title %>
+      </div>
+
+      <% @user = current_user %>
+      <% @usage_options = {} %>
+      <% @usage_options['亮光分享'] = 0 %>
+      <% @usage_options["重點看見"] = 1 %>
+      <% @usage_options["聖經註釋"] = 2 %>
+      <% @usage_options["討論問題"] = 3 %>
+      <% @usage_options["生活應用"] = 4 %>
+      <% @usage_options["翻譯建議"] = 5 %>
+
+      <%= f.hidden_field :user_id, { :value => @user.id } %>
+      <%= f.hidden_field :chapter_no, { :value => @chapter.chapter_no } %>
+      <%= f.hidden_field :book_code, {:value => @book.book_code } %>
+
+      <div class="field">
+        <%= f.label "經節：" %>
+        <%= f.number_field :verse_from %> - <%= f.number_field :verse_to %> 節
+      </div>
+      <div class="field">
+        <%= f.label :usage, "分享類別" %>
+        <%= f.select :usage, @usage_options %>
+      </div>
+      <div class="field">
+        <%= f.label :content, "分享内容：", :html => { :style => 'background-color:yellow;' }%>
+        <%= f.text_area :content, class: "textarea", id: "description" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "存入", class: "btn btn-min btn-primary" %>
+      </div>
+    <% end %>
+  
+
+  </div>
+</div>
